@@ -3,12 +3,14 @@ package com.skilldistillery.cofish.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -52,7 +54,19 @@ public class Location {
 	@OneToMany(mappedBy="location")
 	private List<Rating> ratings;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinTable(name="location_comment",
+	joinColumns=@JoinColumn(name="location_id"),
+	inverseJoinColumns=@JoinColumn(name="user_profile_user_id"))
+	private List<LocationComment> locationComments;
+	
+	public List<LocationComment> getLocationComments() {
+		return locationComments;
+	}
+
+	public void setLocationComments(List<LocationComment> locationComments) {
+		this.locationComments = locationComments;
+	}
 
 	public List<Rating> getRatings() {
 		return ratings;
@@ -68,6 +82,21 @@ public class Location {
 
 	public void setReports(List<Report> reports) {
 		this.reports = reports;
+	}
+	
+	public void addLocationComment(LocationComment locationComment) {
+		if(locationComments == null ) { locationsComments = new ArrayList<>(); }
+		if(!locationComments.contains(locationComment)) {
+			locationComments.add(locationComment);
+			locationComment.addLocation(this);
+		}
+	}
+	
+	public void removeLocationComment(LocationComment locationComment) {
+		if(locationComments != null && locationComments.contains(locationComment)) {
+			locationComments.remove(locationComment);
+			locationComment.removeLocation(this);
+		}
 	}
 
 	public void addReports(Report report) {
