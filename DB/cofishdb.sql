@@ -175,19 +175,19 @@ DROP TABLE IF EXISTS `location_comment` ;
 CREATE TABLE IF NOT EXISTS `location_comment` (
   `id` INT NOT NULL,
   `location_id` INT NOT NULL,
-  `user_profile_user_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL,
   `comment_date` DATETIME NULL,
   `comment_text` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_location_comment_location1_idx` (`location_id` ASC),
-  INDEX `fk_location_comment_user_profile1_idx` (`user_profile_user_id` ASC),
+  INDEX `fk_location_comment_user_profile1_idx` (`user_profile_id` ASC),
   CONSTRAINT `fk_location_comment_location1`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_location_comment_user_profile1`
-    FOREIGN KEY (`user_profile_user_id`)
+    FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -406,7 +406,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `location_comment` (`id`, `location_id`, `user_profile_user_id`, `comment_date`, `comment_text`) VALUES (1, 1, 1, '2019-07-16 11:30', 'That was wild y\'all');
+INSERT INTO `location_comment` (`id`, `location_id`, `user_profile_id`, `comment_date`, `comment_text`) VALUES (1, 1, 1, '2019-07-16 11:30', 'That was wild y\'all');
 
 COMMIT;
 

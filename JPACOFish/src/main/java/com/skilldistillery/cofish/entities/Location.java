@@ -117,7 +117,7 @@ public class Location {
 	public void addRatings(Rating rating) {
 		if(ratings == null) { ratings = new ArrayList<>(); }
 		if(!ratings.contains(rating)) {
-			ratings.add(report);
+			ratings.add(rating);
 		}
 		
 	}
