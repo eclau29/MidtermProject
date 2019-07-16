@@ -91,7 +91,6 @@ public class CaughtFish {
 		this.comment = comment;
 	}
 	
-	//HASHCODE EQUALS
 
 	public FishType getFishType() {
 		return fishType;
@@ -108,6 +107,8 @@ public class CaughtFish {
 	public void setReport(Report report) {
 		this.report = report;
 	}
+	
+	//HASHCODE EQUALS
 
 	@Override
 	public int hashCode() {
