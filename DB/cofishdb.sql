@@ -219,6 +219,30 @@ CREATE TABLE IF NOT EXISTS `rating` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `favorite_location`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `favorite_location` ;
+
+CREATE TABLE IF NOT EXISTS `favorite_location` (
+  `user_profile_id` INT NOT NULL,
+  `location_id` INT NOT NULL,
+  PRIMARY KEY (`user_profile_id`, `location_id`),
+  INDEX `fk_user_profile_has_location_location1_idx` (`location_id` ASC),
+  INDEX `fk_user_profile_has_location_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_user_profile_has_location_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_profile_has_location_location1`
+    FOREIGN KEY (`location_id`)
+    REFERENCES `location` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS cofish@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
