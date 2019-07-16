@@ -4,10 +4,13 @@
 
 ### Team: Pestilential Tranquility
 * Emily Lau
-* Dunwei
-* Miguel
+* Dunwei Zheng
+* Miguel Marsiglia
+* Kayla Hatle
 
 ### Overview
+
+You can use this application to search fishing spots.
 
 ### Technologies Used
 * Spring MVC
