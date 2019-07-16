@@ -46,9 +46,10 @@ public class User {
 		if(!reports.contains(report)) {
 			reports.add(report);
 			
-			if (report.getUser() != null); 
+			if (report.getUser() != null) { 
 			report.getUser().getReports().remove(report); //this line is saying if the incoming report already has an associated user, to remove that old user and use this new user
-			
+			}
+			report.setUser(this); //new report's user is set here
 		}
 	}
 	
@@ -160,5 +161,7 @@ public class User {
 		this.active = active;
 		this.reports = reports;
 	}
+
+	
 	
 }
