@@ -53,7 +53,7 @@ public class UserProfile {
 	@OneToMany(mappedBy="userProfileId")
 	private List<LocationComment> locationComments;
 	
-	@OneToMany(mappedBy=//FIXME)
+	@OneToMany(mappedBy="user_id_profile")
 	private List<Rating> ratings;
 
 	// M E T H O D S
