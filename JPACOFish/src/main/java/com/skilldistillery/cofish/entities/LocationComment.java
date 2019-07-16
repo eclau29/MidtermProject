@@ -1,5 +1,6 @@
 package com.skilldistillery.cofish.entities;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class LocationComment {
@@ -25,7 +28,8 @@ public class LocationComment {
 	private Location location;
 	
 	@Column(name="comment_date")
-	private Date commentDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime commentDate;
 	
 	@Column(name="comment_text")
 	private String commentText;
@@ -54,11 +58,11 @@ public class LocationComment {
 		this.location = location;
 	}
 
-	public Date getCommentDate() {
+	public LocalDateTime getCommentDate() {
 		return commentDate;
 	}
 
-	public void setCommentDate(Date commentDate) {
+	public void setCommentDate(LocalDateTime commentDate) {
 		this.commentDate = commentDate;
 	}
 
@@ -92,7 +96,10 @@ public class LocationComment {
 		return true;
 	}
 
-	public LocationComment(int id, UserProfile userProfileId, Location location, Date commentDate, String commentText) {
+	
+
+	public LocationComment(int id, UserProfile userProfileId, Location location, LocalDateTime commentDate,
+			String commentText) {
 		super();
 		this.id = id;
 		this.userProfileId = userProfileId;
