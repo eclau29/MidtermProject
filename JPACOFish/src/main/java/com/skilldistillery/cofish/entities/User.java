@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -31,6 +32,9 @@ public class User {
 	private int role;
 	
 	private boolean active;
+	
+	@OneToOne(mappedBy="user")
+	private UserProfile userProfile;
 	
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
@@ -60,6 +64,14 @@ public class User {
 		}
 	}
 	
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
 	public int getId() {
 		return id;
 	}
