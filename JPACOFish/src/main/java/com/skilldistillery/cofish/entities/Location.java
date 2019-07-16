@@ -54,10 +54,7 @@ public class Location {
 	@OneToMany(mappedBy="location")
 	private List<Rating> ratings;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinTable(name="location_comment",
-	joinColumns=@JoinColumn(name="location_id"),
-	inverseJoinColumns=@JoinColumn(name="user_profile_user_id"))
+	@OneToMany(mappedBy="location")
 	private List<LocationComment> locationComments;
 	
 	public List<LocationComment> getLocationComments() {
