@@ -3,15 +3,12 @@ package com.skilldistillery.cofish.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -82,17 +79,15 @@ public class Location {
 	}
 	
 	public void addLocationComment(LocationComment locationComment) {
-		if(locationComments == null ) { locationsComments = new ArrayList<>(); }
+		if(locationComments == null ) { locationComments = new ArrayList<>(); }
 		if(!locationComments.contains(locationComment)) {
 			locationComments.add(locationComment);
-			locationComment.addLocation(this);
 		}
 	}
 	
 	public void removeLocationComment(LocationComment locationComment) {
 		if(locationComments != null && locationComments.contains(locationComment)) {
 			locationComments.remove(locationComment);
-			locationComment.removeLocation(this);
 		}
 	}
 
