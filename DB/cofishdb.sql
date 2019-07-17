@@ -420,3 +420,13 @@ INSERT INTO `rating` (`user_profile_id`, `location_id`, `rating_date`, `rating`)
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `favorite_location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cofishdb`;
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 1);
+
+COMMIT;
+
