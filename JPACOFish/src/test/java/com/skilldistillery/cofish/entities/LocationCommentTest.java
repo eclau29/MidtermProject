@@ -42,5 +42,7 @@ class LocationCommentTest {
 		assertEquals("That was wild y'all", comment.getCommentText());
 		assertEquals(1, comment.getUserProfile().getId());
 	}
+	
+	
 
 }

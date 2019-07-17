@@ -100,7 +100,10 @@ public class Report {
 	
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", date=" + date + ", comment=" + comment + ", userProfile=" + userProfile + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Report [id=").append(id).append(", date=").append(date).append(", comment=").append(comment)
+				.append("]");
+		return builder.toString();
 	}
 
 	public Location getLocation() {
@@ -119,13 +122,11 @@ public class Report {
 		this.comment = comment;
 	}
 
-	
-
-	public UserProfile getUser() {
+	public UserProfile getUserProfile() {
 		return userProfile;
 	}
 
-	public void setUser(UserProfile user) {
+	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
 
