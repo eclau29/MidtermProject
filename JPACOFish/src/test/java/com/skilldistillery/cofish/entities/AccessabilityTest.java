@@ -13,10 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class CaughtFishTest {
+class AccessabilityTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private CaughtFish caughtFish;
+	private Accessibility acce;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,13 +31,13 @@ class CaughtFishTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		caughtFish = em.find(CaughtFish.class, 1);
+		acce = em.find(Accessibility.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		caughtFish = null;
+		acce = null;
 	}
 
 	@Disabled
@@ -47,21 +47,16 @@ class CaughtFishTest {
 	}
 	
 	@Test
-	void test_CaughtFish_Mapping() {
-		assertEquals(1, caughtFish.getReport().getId());
-		assertEquals(1, caughtFish.getFishType().getId());
-		assertEquals(13, caughtFish.getLengthInches());
-		assertEquals(3.2, caughtFish.getWeightLbs());
-		assertEquals("Hoppers/Stimulators/GoldenStone nymph", caughtFish.getLureType()	);	
+	void test_Accessibility_Mapping() {
+		assertEquals(1, acce.getId());
+		assertEquals("Easy", acce.getName());
 	}
 
-	@Test
-	void test_CaughtFish_to_FishType_Association_ManyToOne() {
-		assertNotNull(caughtFish.getFishType());
-		assertEquals("Rainbow Trout", caughtFish.getFishType().getName());
-		
-	}
 }
+
+
+
+
 
 
 

@@ -13,10 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class CaughtFishTest {
+class ReportTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private CaughtFish caughtFish;
+	private Report report;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,13 +31,13 @@ class CaughtFishTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		caughtFish = em.find(CaughtFish.class, 1);
+		report = em.find(Report.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		caughtFish = null;
+		report = null;
 	}
 
 	@Disabled
@@ -45,31 +45,28 @@ class CaughtFishTest {
 	void test() {
 		fail("Not yet implemented");
 	}
+
+	@Test
+	void test_Report_Mapping() {
+		assertEquals("Great spot to fish caught me a big trout", report.getComment());
+		assertEquals("2019-07-16 11:30:00.0", report.getDate().toString());
+	}
+
+	@Test
+	void test_Report_to_CaughtFish_Mapping() {
+		assertNotNull(report.getCaughtFishList());
+		assertTrue(report.getCaughtFishList().size() > 0);
+		assertEquals("Rainbow Trout", report.getCaughtFishList().get(0).getFishType().getName());
+	}
+	@Test
+	void test_Report_to_UserProfile_Mapping() {
+		assertNotNull(report.getUserProfile());
+		assertEquals("Bob", report.getUserProfile().getFirstName());
+	}
+	@Test
+	void test_Report_to_Location_Mapping() {
+		assertNotNull(report.getLocation());
+		assertEquals("Waterton Canyon", report.getLocation().getName());
+	}
 	
-	@Test
-	void test_CaughtFish_Mapping() {
-		assertEquals(1, caughtFish.getReport().getId());
-		assertEquals(1, caughtFish.getFishType().getId());
-		assertEquals(13, caughtFish.getLengthInches());
-		assertEquals(3.2, caughtFish.getWeightLbs());
-		assertEquals("Hoppers/Stimulators/GoldenStone nymph", caughtFish.getLureType()	);	
-	}
-
-	@Test
-	void test_CaughtFish_to_FishType_Association_ManyToOne() {
-		assertNotNull(caughtFish.getFishType());
-		assertEquals("Rainbow Trout", caughtFish.getFishType().getName());
-		
-	}
 }
-
-
-
-
-
-
-
-
-
-
-
