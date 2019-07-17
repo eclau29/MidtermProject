@@ -27,8 +27,8 @@ public class Report {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	@Column(name="user_id")
-	private String userId;
+//	@Column(name="user_id")
+//	private String userId;
 	
 	@ManyToOne
 	@JoinColumn(name="location_id")
@@ -86,12 +86,20 @@ public class Report {
 		this.date = date;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
+//	public String getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(String userId) {
+//		this.userId = userId;
+//	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	
+
+	
+	@Override
+	public String toString() {
+		return "Report [id=" + id + ", date=" + date + ", comment=" + comment + ", user=" + user + "]";
 	}
 
 	public Location getLocation() {
@@ -127,11 +135,6 @@ public class Report {
 	}
 
 	@Override
-	public String toString() {
-		return "Report [id=" + id + ", date=" + date + ", userId=" + userId + ", comment=" + comment + "]";
-	}
-	
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -156,17 +159,16 @@ public class Report {
 		super();
 	}
 
-	public Report(int id, Date date, String userId, Location location, String comment, User user,
-			List<CaughtFish> caughtFishList) {
+	public Report(int id, Date date, Location location, String comment, User user) {
 		super();
 		this.id = id;
 		this.date = date;
-		this.userId = userId;
 		this.location = location;
 		this.comment = comment;
 		this.user = user;
-		this.caughtFishList = caughtFishList;
 	}
+
+	
 	
 	
 	
