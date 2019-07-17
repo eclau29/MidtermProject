@@ -1,6 +1,7 @@
 package com.skilldistillery.cofish.entities;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -49,6 +50,7 @@ class LocationTest {
 		assertTrue(location.getRatings().size() > 0);
 		assertTrue(location.getLocationComments().size() > 0);
 		assertTrue(location.getReports().size() > 0);
+		assertEquals("2019-07-16 11:30:00.0", location.getLocationComments().get(0).getCommentDate().toString());
 		
 	}
 }
