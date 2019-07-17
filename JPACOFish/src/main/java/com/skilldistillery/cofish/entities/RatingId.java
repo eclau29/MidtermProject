@@ -2,6 +2,8 @@ package com.skilldistillery.cofish.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
+
 public class RatingId implements Serializable {
 	
 	//fields

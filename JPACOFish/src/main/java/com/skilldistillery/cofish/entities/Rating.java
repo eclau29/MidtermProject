@@ -15,11 +15,11 @@ public class Rating {
 	
 	// F I E L D S 
 	@Id
-	@Column(name="user_profile_id")
+	@Column(name="user_profile_id", nullable=false)
 	private int userProfileId;
 	
 	@Id
-	@Column(name="location_id")
+	@Column(name="location_id", nullable=false)
 	private int locationId;
 	
 	private LocalDateTime date;
@@ -27,12 +27,13 @@ public class Rating {
 	private int rating; // rated 1-5 fish! :D
 	
 	@ManyToOne
-	@JoinColumn(name="user_profile_id")
+	@JoinColumn(name="user_profile_id", insertable=false, updatable=false)
 	private UserProfile userProfile;
 	
 	@ManyToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name="location_id", insertable=false, updatable=false)
 	private Location location;
+	
 	// M E T H O D S
 
 	public int getUserProfileId() {
@@ -83,52 +84,27 @@ public class Rating {
 		this.location = location;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + locationId;
-		result = prime * result + userProfileId;
-		return result;
-	}
+	
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rating other = (Rating) obj;
-		if (locationId != other.locationId)
-			return false;
-		if (userProfileId != other.userProfileId)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Rating [userProfileId=" + userProfileId + ", locationId=" + locationId + ", date=" + date + "]";
-	}
+	
+	
+	
 	
 	// C T O R S
-	
 	public Rating() {
 		super();
 	}
-	
-	public Rating(int userProfileId, int locationId, LocalDateTime date, int rating, UserProfile userProfile,
-			Location location) {
+
+	public Rating(int userProfileId, LocalDateTime date, int rating, UserProfile userProfile, Location location) {
 		super();
 		this.userProfileId = userProfileId;
-		this.locationId = locationId;
 		this.date = date;
 		this.rating = rating;
 		this.userProfile = userProfile;
 		this.location = location;
 	}
+	
+	
 	
 
 }

@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "location_comment")
 public class LocationComment {
 
 	// F I E L D S
@@ -30,7 +32,7 @@ public class LocationComment {
 	@JoinColumn(name = "location_id")
 	private Location location;
 
-	@Column(name = "comment_text")
+	@Column(name = "comment_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date commentDate;
 	
