@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 
 class LocationTest {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("COFishPU");
-	static EntityManager em;
-	Location location; 
+	private static EntityManager em;
+	private Location location; 
 
 //	@BeforeAll
 //	static void setUpBeforeClass() throws Exception {
