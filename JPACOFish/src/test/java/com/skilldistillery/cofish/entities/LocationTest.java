@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class LocationTest {
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("COFish");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("COFishPU");
 	private static EntityManager em;
 	private Location location; 
 

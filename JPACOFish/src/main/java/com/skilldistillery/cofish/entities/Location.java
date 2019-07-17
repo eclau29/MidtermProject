@@ -22,7 +22,7 @@ public class Location {
 	private int id;
 
 	@OneToOne
-	@JoinColumn(name = "accessibilty_id")
+	@JoinColumn(name = "accessability_id")
 	private Accessability access;
 
 	private double latitude;
@@ -39,7 +39,7 @@ public class Location {
 	@Column(name = "fishing_notes")
 	private String fishingNotes;
 
-	private String discription;
+	private String description;
 
 	@Column(name = "map_url")
 	private String mapUrl;
@@ -193,12 +193,12 @@ public class Location {
 		this.fishingNotes = fishingNotes;
 	}
 
-	public String getDiscription() {
-		return discription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getMapUrl() {
@@ -240,7 +240,7 @@ public class Location {
 	}
 
 	public Location(int id, Accessability access, double latitude, double longitude, String name, String waterBody,
-			String area, String fishingNotes, String discription, String mapUrl, String imageUrl) {
+			String area, String fishingNotes, String description, String mapUrl, String imageUrl) {
 		super();
 		this.id = id;
 		this.access = access;
@@ -250,7 +250,7 @@ public class Location {
 		this.waterBody = waterBody;
 		this.area = area;
 		this.fishingNotes = fishingNotes;
-		this.discription = discription;
+		this.description = description;
 		this.mapUrl = mapUrl;
 		this.imageUrl = imageUrl;
 	}
@@ -263,7 +263,7 @@ public class Location {
 	public String toString() {
 		return "Locations [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + ", name=" + name
 				+ ", waterBody=" + waterBody + ", area=" + area + ", fishingNotes=" + fishingNotes + ", discription="
-				+ discription + ", mapUrl=" + mapUrl + ", imageUrl=" + imageUrl + "]";
+				+ description + ", mapUrl=" + mapUrl + ", imageUrl=" + imageUrl + "]";
 	}
 
 }

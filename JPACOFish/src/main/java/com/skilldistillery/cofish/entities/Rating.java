@@ -1,6 +1,7 @@
 package com.skilldistillery.cofish.entities;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,8 @@ public class Rating {
 	@Column(name="location_id", nullable=false)
 	private int locationId;
 	
-	private LocalDateTime date;
+	@Column(name="rating_date")
+	private Date date;
 	
 	private int rating; // rated 1-5 fish! :D
 	
@@ -52,11 +54,11 @@ public class Rating {
 		this.locationId = locationId;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -95,7 +97,7 @@ public class Rating {
 		super();
 	}
 
-	public Rating(int userProfileId, LocalDateTime date, int rating, UserProfile userProfile, Location location) {
+	public Rating(int userProfileId, Date date, int rating, UserProfile userProfile, Location location) {
 		super();
 		this.userProfileId = userProfileId;
 		this.date = date;
