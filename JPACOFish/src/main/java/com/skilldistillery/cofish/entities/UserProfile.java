@@ -72,15 +72,15 @@ public class UserProfile {
 		if(!reports.contains(report)) {
 			reports.add(report);
 			
-			if (report.getUser() != null) { 
-			report.getUser().getReports().remove(report); //this line is saying if the incoming report already has an associated user, to remove that old user and use this new user
+			if (report.getUserProfile() != null) { 
+			report.getUserProfile().getReports().remove(report); //this line is saying if the incoming report already has an associated user, to remove that old user and use this new user
 			}
-			report.setUser(this); //new report's user is set here
+			report.setUserProfile(this); //new report's user is set here
 		}
 	}
 	
 	public void removeReport(Report report) {
-		report.setUser(null); //remove the existing user first
+		report.setUserProfile(null); //remove the existing user first
 		if (reports != null) {
 			reports.remove(report);
 		}

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class AccessabilityTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Accessability acce;
+	private Accessibility acce;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,7 +31,7 @@ class AccessabilityTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		acce = em.find(Accessability.class, 1);
+		acce = em.find(Accessibility.class, 1);
 	}
 
 	@AfterEach

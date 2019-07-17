@@ -53,6 +53,20 @@ class ReportTest {
 	}
 
 	@Test
-	void test_() {
+	void test_Report_to_CaughtFish_Mapping() {
+		assertNotNull(report.getCaughtFishList());
+		assertTrue(report.getCaughtFishList().size() > 0);
+		assertEquals("Rainbow Trout", report.getCaughtFishList().get(0).getFishType().getName());
 	}
+	@Test
+	void test_Report_to_UserProfile_Mapping() {
+		assertNotNull(report.getUserProfile());
+		assertEquals("Bob", report.getUserProfile().getFirstName());
+	}
+	@Test
+	void test_Report_to_Location_Mapping() {
+		assertNotNull(report.getLocation());
+		assertEquals("Waterton Canyon", report.getLocation().getName());
+	}
+	
 }
