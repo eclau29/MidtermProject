@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+ html, body {
+	 height: 100%;
+}
+* {
+	 -webkit-font-smoothing: antialiased;
+	 text-rendering: optimizeLegibility;
+}
+
+ body {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+	 position: relative;
+	 font-size: 1.5em;
+	 background-image: url("../images/user_background.png"); 
+	 -webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+ 	 background-size: cover;
+ 	 width: 100vw;
+  	 height: 100vh;
+  	 margin: 0;
+     padding: 0;
+}
