@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,11 +34,11 @@ public class CaughtFish {
 	private String comment;
 	
 	@ManyToOne
-	@JoinTable(name = "fish_type_id")
+	@JoinColumn(name = "fish_type_id")
 	private FishType fishType;
 
 	@ManyToOne
-	@JoinTable(name = "report_id")
+	@JoinColumn(name = "report_id")
 	private Report report;
 	
 	//G E T & S E T S
