@@ -53,5 +53,8 @@ class LocationTest {
 		assertEquals("2019-07-16 11:30:00.0", location.getLocationComments().get(0).getCommentDate().toString());
 		assertEquals("Rainbow Trout", location.getReports().get(0).getCaughtFishList().get(0).getFishType().getName());
 		assertEquals("2019-07-16 11:30:00.0", location.getRatings().get(0).getDate().toString());
+		assertEquals("South Platte", location.getWaterBody());
+		assertEquals("Waterton Canyon", location.getName());
+		assertEquals(3.2, location.getLocationComments().get(0).getUserProfile().getReports().get(0).getCaughtFishList().get(0).getWeightLbs());
 	}
 }
