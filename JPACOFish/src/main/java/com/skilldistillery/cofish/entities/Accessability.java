@@ -8,11 +8,15 @@ import javax.persistence.Id;
 @Entity
 public class Accessability {
 
+	// F I E L D S
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
+
+	// M E T H O D S
 
 	public int getId() {
 		return id;
@@ -61,6 +65,5 @@ public class Accessability {
 			return false;
 		return true;
 	}
-	
-	
+
 }

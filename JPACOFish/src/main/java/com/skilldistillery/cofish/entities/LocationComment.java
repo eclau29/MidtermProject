@@ -15,24 +15,29 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class LocationComment {
+
+	// F I E L D S
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_profile_id")
+	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfileId;
-	
+
 	@ManyToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name = "location_id")
 	private Location location;
-	
-	@Column(name="comment_date")
+
+	@Column(name = "comment_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime commentDate;
-	
-	@Column(name="comment_text")
+
+	@Column(name = "comment_text")
 	private String commentText;
+
+	// M E T H O D S
 
 	public int getId() {
 		return id;
@@ -96,8 +101,6 @@ public class LocationComment {
 		return true;
 	}
 
-	
-
 	public LocationComment(int id, UserProfile userProfileId, Location location, LocalDateTime commentDate,
 			String commentText) {
 		super();
@@ -111,6 +114,5 @@ public class LocationComment {
 	public LocationComment() {
 		super();
 	}
-	
-	
+
 }
