@@ -65,7 +65,7 @@ class UserTests {
 	}
 	
 	@Test
-	void test_User_knows_its_list_of_reports() {
+	void test_User_can_get_its_list_of_reports() {
 		assertNotNull(user.getUserProfile().getReports());
 		assertTrue(user.getUserProfile().getReports().size() > 0);
 		assertEquals(1, user.getUserProfile().getReports().size());

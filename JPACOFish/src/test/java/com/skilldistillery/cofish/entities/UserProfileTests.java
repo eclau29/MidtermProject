@@ -1,6 +1,6 @@
 package com.skilldistillery.cofish.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -47,9 +47,33 @@ class UserProfileTests {
 		fail("Not yet implemented");
 	}
 	
-//	@Test
-//	void test_get_UserProfile_info() {
-//		assertEquals(expected, actual);
-//	}
+	@Test
+	void test_get_UserProfile_info() {
+		assertEquals("Fishermen", userProfile.getLastName());
+		assertEquals("Colorado", userProfile.getState());
+	}
+	@Test
+	void test_UserProfile_knows_its_list_of_reports() {
+		assertNotNull(userProfile.getReports());
+		assertTrue(userProfile.getReports().size() > 0);
+		assertEquals("2019-07-16 11:30:00.0", userProfile.getReports().get(0).getDate().toString());
+	}
+	@Test
+	void test_UserProfile_knows_its_list_of_locationComments() {
+		assertNotNull(userProfile.getLocationComments());
+		assertTrue(userProfile.getLocationComments().size() > 0);
+		assertEquals("That was wild y'all", userProfile.getLocationComments().get(0).getCommentText());
+		assertEquals("2019-07-16 11:30:00.0", userProfile.getLocationComments().get(0).getCommentDate().toString());
+		assertEquals(1, userProfile.getLocationComments().get(0).getUserProfile().getId());
+		assertEquals("Waterton Canyon", userProfile.getLocationComments().get(0).getLocation().getName());
+		
+	}
+	
+	@Test
+	void test_UserProfile_knows_its_list_of_ratings () {
+		assertNotNull(userProfile.getRatings());
+		assertTrue(userProfile.getRatings().size() > 0);
+		assertEquals(3, userProfile.getRatings().get(0).getRating());
+	}
 
 }

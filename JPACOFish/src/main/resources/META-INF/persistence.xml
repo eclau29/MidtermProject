@@ -8,15 +8,15 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
-    <class>com.skilldistillery.jpacofish.entities.Accessibility</class>
-    <class>com.skilldistillery.jpacofish.entities.CaughtFish</class>
-    <class>com.skilldistillery.jpacofish.entities.FishType</class>
-    <class>com.skilldistillery.jpacofish.entities.Location</class>
-    <class>com.skilldistillery.jpacofish.entities.LocationComment</class>
-    <class>com.skilldistillery.jpacofish.entities.Rating</class>
-    <class>com.skilldistillery.jpacofish.entities.Report</class>
-    <class>com.skilldistillery.jpacofish.entities.User</class>
-    <class>com.skilldistillery.jpacofish.entities.UserProfile</class>
+    <class>com.skilldistillery.cofish.entities.Accessibility</class>
+    <class>com.skilldistillery.cofish.entities.CaughtFish</class>
+    <class>com.skilldistillery.cofish.entities.FishType</class>
+    <class>com.skilldistillery.cofish.entities.Location</class>
+    <class>com.skilldistillery.cofish.entities.LocationComment</class>
+    <class>com.skilldistillery.cofish.entities.Rating</class>
+    <class>com.skilldistillery.cofish.entities.Report</class>
+    <class>com.skilldistillery.cofish.entities.User</class>
+    <class>com.skilldistillery.cofish.entities.UserProfile</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cofishdb?useSSL=false" />

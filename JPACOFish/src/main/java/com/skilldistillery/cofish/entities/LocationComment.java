@@ -1,6 +1,5 @@
 package com.skilldistillery.cofish.entities;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,7 +25,7 @@ public class LocationComment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_profile_id")
-	private UserProfile userProfileId;
+	private UserProfile userProfile;
 
 	@ManyToOne
 	@JoinColumn(name = "location_id")
@@ -49,12 +48,12 @@ public class LocationComment {
 		this.id = id;
 	}
 
-	public UserProfile getUserProfileId() {
-		return userProfileId;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
-	public void setUserProfileId(UserProfile userProfileId) {
-		this.userProfileId = userProfileId;
+	public void setUserProfileId(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public Location getLocation() {
@@ -105,11 +104,13 @@ public class LocationComment {
 		return true;
 	}
 
-	public LocationComment(int id, UserProfile userProfileId, Location location, Date commentDate,
-			String commentText) {
+
+	public LocationComment(int id, UserProfile userProfile, Location location, Date commentDate,
+
+	String commentText) {
 		super();
 		this.id = id;
-		this.userProfileId = userProfileId;
+		this.userProfile = userProfile;
 		this.location = location;
 		this.commentDate = commentDate;
 		this.commentText = commentText;
