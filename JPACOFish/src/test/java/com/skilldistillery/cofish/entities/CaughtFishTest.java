@@ -1,9 +1,6 @@
 package com.skilldistillery.cofish.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,10 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-public class FishTypeTest {
+class CaughtFishTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private FishType fishType;
+	private CaughtFish caughtFish;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,13 +31,13 @@ public class FishTypeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		fishType = em.find(FishType.class, 1);
+		caughtFish = em.find(CaughtFish.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		fishType = null;
+		caughtFish = null;
 	}
 
 	@Disabled
@@ -50,26 +47,21 @@ public class FishTypeTest {
 	}
 	
 	@Test
-	void test_FishType_mapping() {
-		assertEquals("Rainbow Trout", fishType.getName());
-		assertEquals(1, fishType.getId());
+	void test_CaughtFish_Mapping() {
+		assertEquals(1, caughtFish.getReport().getId());
+		assertEquals(1, caughtFish.getFishType().getId());
+		assertEquals(13, caughtFish.getLengthInches());
+		assertEquals(3.2, caughtFish.getWeightLbs());
+		assertEquals("Hoppers/Stimulators/GoldenStone nymph", caughtFish.getLureType()	);	
 	}
-	
+
 	@Test
-	void test_FishType_to_CaughtFish_Association() {
-		assertNotNull(fishType.getCaughtFishes());
-		assertTrue(fishType.getCaughtFishes().size() > 0);
-		assertEquals(1, fishType.getCaughtFishes().size());
+	void test_CaughtFish_to_FishType_Association() {
+		assertNotNull(caughtFish.getFishType());
+		assertEquals("Rainbow Trout", caughtFish.getFishType().getName());
+		
 	}
 }
-
-
-
-
-
-
-
-
 
 
 
