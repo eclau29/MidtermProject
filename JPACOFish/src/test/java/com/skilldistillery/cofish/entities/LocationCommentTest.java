@@ -40,7 +40,7 @@ class LocationCommentTest {
 		assertEquals(1, comment.getLocation().getId());
 		assertEquals("2019-07-16 11:30:00.0", comment.getCommentDate().toString());
 		assertEquals("That was wild y'all", comment.getCommentText());
-		assertEquals(1, comment.getUserProfile());
+		assertEquals(1, comment.getUserProfile().getId());
 	}
 	
 	
