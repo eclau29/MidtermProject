@@ -100,7 +100,7 @@ public class Report {
 	
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", date=" + date + ", comment=" + comment + ", user=" + user + "]";
+		return "Report [id=" + id + ", date=" + date + ", comment=" + comment + ", userProfile=" + userProfile + "]";
 	}
 
 	public Location getLocation() {
@@ -122,11 +122,11 @@ public class Report {
 	
 
 	public UserProfile getUser() {
-		return user;
+		return userProfile;
 	}
 
 	public void setUser(UserProfile user) {
-		this.user = user;
+		this.userProfile = userProfile;
 	}
 
 	public List<CaughtFish> getCaughtFishList() {
@@ -169,7 +169,7 @@ public class Report {
 		this.date = date;
 		this.location = location;
 		this.comment = comment;
-		this.user = user;
+		this.userProfile = user;
 		this.caughtFishList = caughtFishList;
 	}
 

@@ -66,10 +66,10 @@ class UserTests {
 	
 	@Test
 	void test_User_knows_its_list_of_reports() {
-		assertNotNull(user.getReports());
-		assertTrue(user.getReports().size() > 0);
-		assertEquals(1, user.getReports().size());
-		assertEquals("Great spot to fish caught me a big trout", user.getReports().get(0).getComment());
+		assertNotNull(user.getUserProfile().getReports());
+		assertTrue(user.getUserProfile().getReports().size() > 0);
+		assertEquals(1, user.getUserProfile().getReports().size());
+		assertEquals("Great spot to fish caught me a big trout", user.getUserProfile().getReports().get(0).getComment());
 	}
 
 }
