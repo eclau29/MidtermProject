@@ -54,6 +54,7 @@ class UserTests {
 		assertEquals("fisher", user.getPassword());
 		assertEquals(1, user.getRole());
 		assertEquals(true, user.isActive());
+		assertEquals("fisher@gmail.com", user.getEmail());
 	}
 	
 	@Test

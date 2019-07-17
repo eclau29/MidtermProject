@@ -75,5 +75,12 @@ class UserProfileTests {
 		assertTrue(userProfile.getRatings().size() > 0);
 		assertEquals(3, userProfile.getRatings().get(0).getRating());
 	}
+	
+	@Test
+	void test_UserProfile_knows_its_favorite_locations() {
+		assertNotNull(userProfile.getFavoriteLocations());
+		assertTrue(userProfile.getFavoriteLocations().size() > 0);
+		assertEquals(-105.09325, userProfile.getFavoriteLocations().get(0).getLatitude());
+	}
 
 }
