@@ -22,8 +22,8 @@ public class Location {
 	private int id;
 
 	@OneToOne
-	@JoinColumn(name = "accessability_id")
-	private Accessability access;
+	@JoinColumn(name = "accessibility_id")
+	private Accessibility access;
 
 	private double latitude;
 
@@ -137,11 +137,11 @@ public class Location {
 		this.id = id;
 	}
 
-	public Accessability getAccess() {
+	public Accessibility getAccess() {
 		return access;
 	}
 
-	public void setAccess(Accessability access) {
+	public void setAccess(Accessibility access) {
 		this.access = access;
 	}
 
@@ -239,7 +239,7 @@ public class Location {
 		return true;
 	}
 
-	public Location(int id, Accessability access, double latitude, double longitude, String name, String waterBody,
+	public Location(int id, Accessibility access, double latitude, double longitude, String name, String waterBody,
 			String area, String fishingNotes, String description, String mapUrl, String imageUrl) {
 		super();
 		this.id = id;

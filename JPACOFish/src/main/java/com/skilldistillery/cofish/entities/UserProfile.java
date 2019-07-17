@@ -1,7 +1,6 @@
 package com.skilldistillery.cofish.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +41,7 @@ public class UserProfile {
 	private String aboutMe;
 	
 	@Column(name="date_created")
-	private Date dateCreated;
+	private LocalDateTime dateCreated;
 	
 	@Column(name="image_url")
 	private String imageUrl;
@@ -58,42 +57,11 @@ public class UserProfile {
 	
 	@OneToMany(mappedBy="userProfile")
 	private List<Rating> ratings;
-	
-	@OneToMany(mappedBy="userProfile")
-	private List<Report> reports;
 
 	// M E T H O D S
 	
-	public void addReport(Report report) {
-		if (reports == null) {
-			reports = new ArrayList<>();
-		}
-		
-		if(!reports.contains(report)) {
-			reports.add(report);
-			
-			if (report.getUser() != null) { 
-			report.getUser().getReports().remove(report); //this line is saying if the incoming report already has an associated user, to remove that old user and use this new user
-			}
-			report.setUser(this); //new report's user is set here
-		}
-	}
 	
-	public void removeReport(Report report) {
-		report.setUser(null); //remove the existing user first
-		if (reports != null) {
-			reports.remove(report);
-		}
-	}
 	
-	public List<Report> getReports() {
-		return reports;
-	}
-
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -174,11 +142,11 @@ public class UserProfile {
 		this.aboutMe = aboutMe;
 	}
 
-	public Date getDateCreated() {
+	public LocalDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -225,7 +193,7 @@ public class UserProfile {
 	}
 
 	public UserProfile(int id, User user, String firstName, String lastName, String city, String state, String aboutMe,
-			Date dateCreated, String imageUrl) {
+			LocalDateTime dateCreated, String imageUrl) {
 		super();
 		this.id = id;
 		this.user = user;

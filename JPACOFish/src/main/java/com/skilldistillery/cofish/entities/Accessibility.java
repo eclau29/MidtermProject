@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Accessability {
+public class Accessibility {
 
 	// F I E L D S
 
@@ -34,13 +34,13 @@ public class Accessability {
 		this.name = name;
 	}
 
-	public Accessability(int id, String name) {
+	public Accessibility(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public Accessability() {
+	public Accessibility() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class Accessability {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Accessability other = (Accessability) obj;
+		Accessibility other = (Accessibility) obj;
 		if (id != other.id)
 			return false;
 		return true;

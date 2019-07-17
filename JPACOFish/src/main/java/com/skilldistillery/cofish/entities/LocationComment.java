@@ -89,6 +89,8 @@ public class LocationComment {
 		return result;
 	}
 
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -102,7 +104,6 @@ public class LocationComment {
 			return false;
 		return true;
 	}
-
 
 	public LocationComment(int id, UserProfile userProfileId, Location location, Date commentDate,
 			String commentText) {

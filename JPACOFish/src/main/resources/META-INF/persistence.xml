@@ -8,7 +8,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
-    <class>com.skilldistillery.jpacofish.entities.Accessability</class>
+    <class>com.skilldistillery.jpacofish.entities.Accessibility</class>
     <class>com.skilldistillery.jpacofish.entities.CaughtFish</class>
     <class>com.skilldistillery.jpacofish.entities.FishType</class>
     <class>com.skilldistillery.jpacofish.entities.Location</class>
