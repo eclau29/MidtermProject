@@ -53,7 +53,7 @@ public class UserProfile {
 		inverseJoinColumns = @JoinColumn(name = "location_id"))
 	private List<Location> favoriteLocations;
 	
-	@OneToMany(mappedBy="userProfileId")
+	@OneToMany(mappedBy="userProfile")
 	private List<LocationComment> locationComments;
 	
 	@OneToMany(mappedBy="userProfile")
@@ -85,7 +85,7 @@ public class UserProfile {
 			reports.remove(report);
 		}
 	}
-	
+
 	public List<Report> getReports() {
 		return reports;
 	}

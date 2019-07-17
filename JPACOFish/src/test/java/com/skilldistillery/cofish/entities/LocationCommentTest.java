@@ -13,24 +13,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class RatingTest {
+class LocationCommentTest {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("COFishPU");
 	private EntityManager em;
-	private Rating rating;
-	private RatingId ratingId;
-
+	private LocationComment comment;
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		ratingId = new RatingId(1, 1);
-		rating = em.find(Rating.class, ratingId);
+		comment = em.find(LocationComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		comment = null;
 		em.close();
 	}
-	
 	@Disabled
 	@Test
 	void test() {
@@ -38,12 +35,12 @@ class RatingTest {
 	}
 	
 	@Test
-	void test_rating_mappings() {
-		assertNotNull(rating.getDate());
-		assertEquals("Waterton Canyon",rating.getLocation().getName());
-		assertEquals("South Platte", rating.getLocation().getWaterBody());
-		assertEquals(3, rating.getRating());
-		assertEquals("Fishermen", rating.getUserProfile().getLastName());
+	void test_location_comment_mapping() {
+		assertNotNull(comment);
+		assertEquals(1, comment.getLocation().getId());
+		assertEquals("2019-07-16 11:30:00.0", comment.getCommentDate().toString());
+		assertEquals("That was wild y'all", comment.getCommentText());
+		assertEquals(1, comment.getUserProfileId());
 	}
 
 }
