@@ -101,13 +101,8 @@ public class LocationComment {
 		return true;
 	}
 
-<<<<<<< HEAD
-	public LocationComment(int id, UserProfile userProfileId, Location location, LocalDateTime commentDate,
-=======
-	
 
 	public LocationComment(int id, UserProfile userProfileId, Location location, Date commentDate,
->>>>>>> 224461466d92a7f09876e2bc136c57da612194c3
 			String commentText) {
 		super();
 		this.id = id;
