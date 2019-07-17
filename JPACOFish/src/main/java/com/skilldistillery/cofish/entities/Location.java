@@ -14,46 +14,50 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Location {
-	
+
+	// F I E L D S
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@OneToOne
-	@JoinColumn(name="accessibilty_id")
-	private Accessability access;
-	
-	private double latitude;
-	
-	private double longitude;
-	
-	private String name;
-	
-	@Column(name="water_body")
-	private String waterBody;
-	
-	private String area;
-	
-	@Column(name="fishing_notes")
-	private String fishingNotes;
-	
-	private String discription;
-	
-	@Column(name="map_url")
-	private String mapUrl;
- 	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	@OneToMany(mappedBy="location")
-	private List<Report> reports;	
 
-	@OneToMany(mappedBy="location")
+	@OneToOne
+	@JoinColumn(name = "accessibilty_id")
+	private Accessability access;
+
+	private double latitude;
+
+	private double longitude;
+
+	private String name;
+
+	@Column(name = "water_body")
+	private String waterBody;
+
+	private String area;
+
+	@Column(name = "fishing_notes")
+	private String fishingNotes;
+
+	private String discription;
+
+	@Column(name = "map_url")
+	private String mapUrl;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@OneToMany(mappedBy = "location")
+	private List<Report> reports;
+
+	@OneToMany(mappedBy = "location")
 	private List<Rating> ratings;
-	
-	@OneToMany(mappedBy="location")
+
+	@OneToMany(mappedBy = "location")
 	private List<LocationComment> locationComments;
-	
+
+	// M E T H O D S
+
 	public List<LocationComment> getLocationComments() {
 		return locationComments;
 	}
@@ -77,49 +81,54 @@ public class Location {
 	public void setReports(List<Report> reports) {
 		this.reports = reports;
 	}
-	
+
 	public void addLocationComment(LocationComment locationComment) {
-		if(locationComments == null ) { locationComments = new ArrayList<>(); }
-		if(!locationComments.contains(locationComment)) {
+		if (locationComments == null) {
+			locationComments = new ArrayList<>();
+		}
+		if (!locationComments.contains(locationComment)) {
 			locationComments.add(locationComment);
 		}
 	}
-	
+
 	public void removeLocationComment(LocationComment locationComment) {
-		if(locationComments != null && locationComments.contains(locationComment)) {
+		if (locationComments != null && locationComments.contains(locationComment)) {
 			locationComments.remove(locationComment);
 		}
 	}
 
 	public void addReports(Report report) {
-		if(reports == null) {
+		if (reports == null) {
 			reports = new ArrayList<>();
 		}
-		if(!reports.contains(report)) {
+		if (!reports.contains(report)) {
 			reports.add(report);
-	
+
 		}
 	}
+
 	public void removeReports(Report report) {
-		if(reports != null && reports.contains(report)) {
+		if (reports != null && reports.contains(report)) {
 			reports.remove(report);
 		}
 	}
-	
+
 	public void addRatings(Rating rating) {
-		if(ratings == null) { ratings = new ArrayList<>(); }
-		if(!ratings.contains(rating)) {
+		if (ratings == null) {
+			ratings = new ArrayList<>();
+		}
+		if (!ratings.contains(rating)) {
 			ratings.add(rating);
 		}
-		
+
 	}
-	
+
 	public void removeRating(Rating rating) {
-		if(ratings != null && ratings.contains(rating)) {
+		if (ratings != null && ratings.contains(rating)) {
 			ratings.remove(rating);
 		}
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -256,7 +265,5 @@ public class Location {
 				+ ", waterBody=" + waterBody + ", area=" + area + ", fishingNotes=" + fishingNotes + ", discription="
 				+ discription + ", mapUrl=" + mapUrl + ", imageUrl=" + imageUrl + "]";
 	}
-	
-	
-	
+
 }
