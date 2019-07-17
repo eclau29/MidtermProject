@@ -13,8 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_profile")
 public class UserProfile {
 
 	@Id
@@ -53,7 +55,7 @@ public class UserProfile {
 	@OneToMany(mappedBy="userProfileId")
 	private List<LocationComment> locationComments;
 	
-	@OneToMany(mappedBy="user_id_profile")
+	@OneToMany(mappedBy="userProfile")
 	private List<Rating> ratings;
 
 	// M E T H O D S
