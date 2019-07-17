@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) BINARY NOT NULL,
-  `role` INT NOT NULL DEFAULT 1,
+  `email` VARCHAR(200) BINARY NOT NULL,
+  `role` VARCHAR(50) NOT NULL DEFAULT 'user',
   `active` TINYINT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -259,7 +259,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 1, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 'user', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (2, 'guest', 'guest', 'guest@gmail.com', 'guest', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (3, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', 1);
 
 COMMIT;
 
