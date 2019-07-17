@@ -85,7 +85,7 @@ public class UserProfile {
 			reports.remove(report);
 		}
 	}
-	
+
 	public List<Report> getReports() {
 		return reports;
 	}

@@ -1,6 +1,5 @@
 package com.skilldistillery.cofish.entities;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -89,6 +88,8 @@ public class LocationComment {
 		return result;
 	}
 
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,7 +106,8 @@ public class LocationComment {
 
 
 	public LocationComment(int id, UserProfile userProfile, Location location, Date commentDate,
-			String commentText) {
+
+	String commentText) {
 		super();
 		this.id = id;
 		this.userProfile = userProfile;
