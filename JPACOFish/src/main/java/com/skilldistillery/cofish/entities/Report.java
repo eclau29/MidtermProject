@@ -39,7 +39,7 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name="profile_id")
-	private UserProfile user;
+	private UserProfile userProfile;
 	
 	@OneToMany(mappedBy="report")
 	private List<CaughtFish> caughtFishList;
