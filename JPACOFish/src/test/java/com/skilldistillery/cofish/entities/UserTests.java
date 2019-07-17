@@ -52,7 +52,7 @@ class UserTests {
 	void test_get_User_Info () {
 		assertEquals("fisher", user.getUserName());
 		assertEquals("fisher", user.getPassword());
-		assertEquals(1, user.getRole());
+		assertEquals("user", user.getRole());
 		assertEquals(true, user.isActive());
 		assertEquals("fisher@gmail.com", user.getEmail());
 	}

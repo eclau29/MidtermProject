@@ -57,4 +57,5 @@ class LocationTest {
 		assertEquals("Waterton Canyon", location.getName());
 		assertEquals(3.2, location.getLocationComments().get(0).getUserProfile().getReports().get(0).getCaughtFishList().get(0).getWeightLbs());
 	}
+	
 }

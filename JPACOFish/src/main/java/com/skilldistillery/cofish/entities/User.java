@@ -27,7 +27,7 @@ public class User {
 	@Email(message = "Email not valid. Please enter a valid email address.")
 	private String email;
 	
-	private int role;
+	private String role;
 	
 	private boolean active;
 	
@@ -78,14 +78,14 @@ public class User {
 		this.email = email;
 	}
 	
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
-	
-	public void setRole(int role) {
+
+	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -98,7 +98,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email + ", role="
-				+ role + ", active=" + active + "]";
+				+ role + ", active=" + active + ", userProfile=" + userProfile + "]";
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class User {
 		super();
 	}
 
-	public User(int id, String userName, String password, @Email String email, int role, boolean active) {
+	public User(int id, String userName, String password, @Email String email, String role, boolean active) {
 		super();
 		this.id = id;
 		this.userName = userName;
