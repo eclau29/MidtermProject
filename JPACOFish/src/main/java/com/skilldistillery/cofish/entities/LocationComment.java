@@ -29,7 +29,7 @@ public class LocationComment {
 	
 	@Column(name="comment_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime commentDate;
+	private Date commentDate;
 	
 	@Column(name="comment_text")
 	private String commentText;
@@ -58,11 +58,11 @@ public class LocationComment {
 		this.location = location;
 	}
 
-	public LocalDateTime getCommentDate() {
+	public Date getCommentDate() {
 		return commentDate;
 	}
 
-	public void setCommentDate(LocalDateTime commentDate) {
+	public void Date(Date commentDate) {
 		this.commentDate = commentDate;
 	}
 
@@ -98,7 +98,7 @@ public class LocationComment {
 
 	
 
-	public LocationComment(int id, UserProfile userProfileId, Location location, LocalDateTime commentDate,
+	public LocationComment(int id, UserProfile userProfileId, Location location, Date commentDate,
 			String commentText) {
 		super();
 		this.id = id;

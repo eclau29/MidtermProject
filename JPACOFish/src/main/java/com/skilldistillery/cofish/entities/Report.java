@@ -1,7 +1,7 @@
 package com.skilldistillery.cofish.entities;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ public class Report {
 	private int id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime date;
+	private Date date;
 	
 	@Column(name="user_id")
 	private String userId;
@@ -40,7 +40,7 @@ public class Report {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@OneToMany(mappedBy="reportId")
+	@OneToMany(mappedBy="report")
 	private List<CaughtFish> caughtFishList;
 	
 	
@@ -78,11 +78,11 @@ public class Report {
 		this.id = id;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -156,7 +156,7 @@ public class Report {
 		super();
 	}
 
-	public Report(int id, LocalDateTime date, String userId, Location location, String comment, User user,
+	public Report(int id, Date date, String userId, Location location, String comment, User user,
 			List<CaughtFish> caughtFishList) {
 		super();
 		this.id = id;
