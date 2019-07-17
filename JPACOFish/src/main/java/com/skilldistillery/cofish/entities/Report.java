@@ -25,6 +25,7 @@ public class Report {
 	private int id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="report_date")
 	private Date date;
 	
 //	@Column(name="user_id")
@@ -37,8 +38,8 @@ public class Report {
 	private String comment;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="profile_id")
+	private UserProfile userProfile;
 	
 	@OneToMany(mappedBy="report")
 	private List<CaughtFish> caughtFishList;
@@ -118,11 +119,13 @@ public class Report {
 		this.comment = comment;
 	}
 
-	public User getUser() {
+	
+
+	public UserProfile getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserProfile user) {
 		this.user = user;
 	}
 
@@ -159,14 +162,18 @@ public class Report {
 		super();
 	}
 
-	public Report(int id, Date date, Location location, String comment, User user) {
+	public Report(int id, Date date, Location location, String comment, UserProfile user,
+			List<CaughtFish> caughtFishList) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.location = location;
 		this.comment = comment;
 		this.user = user;
+		this.caughtFishList = caughtFishList;
 	}
+
+	
 
 	
 	

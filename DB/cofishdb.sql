@@ -344,7 +344,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `city`, `state`, `about_me`, `date_created`, `image_url`) VALUES (1, 1, 'Bob', 'Fishermen', 'Denver', 'Colordao', 'I fish for food', '2019-07-16 11:09', 'http://dslv9ilpbe7p1.cloudfront.net/bF7svvAwQ1OWrFzbHMnWdQ_store_header_image');
+INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `city`, `state`, `about_me`, `date_created`, `image_url`) VALUES (1, 1, 'Bob', 'Fishermen', 'Denver', 'Colorado', 'I fish for food', '2019-07-16 11:09', 'http://dslv9ilpbe7p1.cloudfront.net/bF7svvAwQ1OWrFzbHMnWdQ_store_header_image');
 
 COMMIT;
 
