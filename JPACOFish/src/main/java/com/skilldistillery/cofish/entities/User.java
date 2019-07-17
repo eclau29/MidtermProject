@@ -36,33 +36,9 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private UserProfile userProfile;
 	
-	@OneToMany(mappedBy="user")
-	private List<Report> reports;
-
 	
 	// M E T H O D S
 	
-	public void addReport(Report report) {
-		if (reports == null) {
-			reports = new ArrayList<>();
-		}
-		
-		if(!reports.contains(report)) {
-			reports.add(report);
-			
-			if (report.getUser() != null) { 
-			report.getUser().getReports().remove(report); //this line is saying if the incoming report already has an associated user, to remove that old user and use this new user
-			}
-			report.setUser(this); //new report's user is set here
-		}
-	}
-	
-	public void removeReport(Report report) {
-		report.setUser(null); //remove the existing user first
-		if (reports != null) {
-			reports.remove(report);
-		}
-	}
 	
 	public UserProfile getUserProfile() {
 		return userProfile;
@@ -120,14 +96,6 @@ public class User {
 		this.active = active;
 	}
 	
-	public List<Report> getReports() {
-		return reports;
-	}
-	
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
-	}
-	
 	
 	@Override
 	public String toString() {
@@ -162,8 +130,7 @@ public class User {
 		super();
 	}
 
-	public User(int id, String userName, String password, @Email String email, int role, boolean active,
-			List<Report> reports) {
+	public User(int id, String userName, String password, @Email String email, int role, boolean active) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -171,7 +138,6 @@ public class User {
 		this.email = email;
 		this.role = role;
 		this.active = active;
-		this.reports = reports;
 	}
 
 	
