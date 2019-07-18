@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `report` (
   `location_id` INT NOT NULL,
   `comment` VARCHAR(1000) NULL,
   `report_date` DATETIME NULL,
+  `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_report_location1_idx` (`location_id` ASC),
   INDEX `fk_report_profile_idx` (`profile_id` ASC),
@@ -356,7 +357,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30');
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30', NULL);
 
 COMMIT;
 

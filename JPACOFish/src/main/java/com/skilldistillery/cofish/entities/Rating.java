@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @IdClass(value=RatingId.class)
@@ -23,6 +25,7 @@ public class Rating {
 	private int locationId;
 	
 	@Column(name="rating_date")
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	private int rating; // rated 1-5 fish! :D
