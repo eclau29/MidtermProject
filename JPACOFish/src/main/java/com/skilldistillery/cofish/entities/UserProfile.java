@@ -85,6 +85,24 @@ public class UserProfile {
 			reports.remove(report);
 		}
 	}
+	
+	public void addFavLocation(Location location) {
+		if (favoriteLocations == null) {
+			favoriteLocations = new ArrayList<>();
+		}
+		
+		if (!favoriteLocations.contains(location)) {
+			favoriteLocations.add(location);
+		}
+	}
+	
+	public boolean removeFavLocation(Location location) {
+		if (favoriteLocations != null && favoriteLocations.contains(location)) {
+			favoriteLocations.remove(location);
+			return true;
+		}
+		return false;
+	}
 
 	public List<Report> getReports() {
 		return reports;
