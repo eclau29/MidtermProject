@@ -64,10 +64,11 @@ public class ReportController {
 		if(caughtFish.getReport().isActive()) {
 			CaughtFish fish = dao.create(caughtFish);
 			Report newReport = dao.findReportById(id);
-			
+			newReport.addCaughtFish(fish);
+			model.addAttribute("caughtFish", fish);
 		}
 		
-		return "";
+		return "cofish/searchResult";
 	}
 
 }
