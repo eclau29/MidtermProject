@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.UserDAO;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.User;
@@ -26,6 +27,7 @@ public class UserController {
 		
 	@Autowired
 	private UserDAO dao;
+	private LocationDAO locDAO;
 	
 	// USER METHODS
 	@RequestMapping(path = "loginUser.do", method = RequestMethod.GET)
@@ -65,7 +67,7 @@ public class UserController {
 	// this method adds a new location to a user profile's fav location list and then displays the user's favList.
 	@RequestMapping(path = "addFavLocation.do", method = RequestMethod.POST)
 	public String addFavLocation(@RequestParam("profileId") int id, UserProfile userProfile, String location, Model model) {
-		Location newLocation = dao.findLocationByName(location); //merge should fix this compilation error
+		Location newLocation = locDAO.findLocationByName(location); //merge should fix this compilation error
 		UserProfile currentProfile = dao.findUserProfileById(id);
 		
 		currentProfile.addFavLocation(newLocation);
@@ -78,7 +80,7 @@ public class UserController {
 	@RequestMapping(path = "removeFavLocation.do", method = RequestMethod.POST)
 	public String removeFavLocation(@RequestParam("profileId") int id, UserProfile userProfile, String location, Model model) {
 		try {
-			Location locToRemove = dao.findLocationByName(location); //merge should fix this compilation error
+			Location locToRemove = locDAO.findLocationByName(location); //merge should fix this compilation error
 			UserProfile currentProfile = dao.findUserProfileById(id);
 			boolean isDeleted = currentProfile.removeFavLocation(locToRemove);
 			if (isDeleted) {

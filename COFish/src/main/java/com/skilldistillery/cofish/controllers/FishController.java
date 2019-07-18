@@ -26,24 +26,24 @@ public class FishController {
 		return "WEB-INF/index.jsp";
 	}
 	
-	@RequestMapping(path="createFishType.do", method= RequestMethod.POST)
-	public String createFishType(@Valid FishType fishType, Errors errors, Model model) {
-		FishType newFishType;
-		if(errors.getErrorCount() != 0) {
-			return "WEB-INF/tool/generalError.jsp";
-		}
-		newFishType = dao.create(fishType);
-		model.addAttribute("fishType", newFishType);
-		return null;//FIXME
-	}
-	
-	@RequestMapping(path="updateFishType.do", method= RequestMethod.POST)
-	public String updateFishType(int id, Model model, FishType fishType) {
-		FishType updateFishType = dao.update(id, fishType);
-		updateFishType = dao.findByIdFishType(id);
-		model.addAttribute("fishType", updateFishType);
-		return null;//FIXME
-	}
+//	@RequestMapping(path="createFishType.do", method= RequestMethod.POST)
+//	public String createFishType(@Valid FishType fishType, Errors errors, Model model) {
+//		FishType newFishType;
+//		if(errors.getErrorCount() != 0) {
+//			return "WEB-INF/tool/generalError.jsp";
+//		}
+//		newFishType = dao.create(fishType);
+//		model.addAttribute("fishType", newFishType);
+//		return null;//FIXME
+//	}
+//	
+//	@RequestMapping(path="updateFishType.do", method= RequestMethod.POST)
+//	public String updateFishType(int id, Model model, FishType fishType) {
+//		FishType updateFishType = dao.update(id, fishType);
+//		updateFishType = dao.findByIdFishType(id);
+//		model.addAttribute("fishType", updateFishType);
+//		return null;//FIXME
+//	}
 	
 	@RequestMapping(path = "showAll.do", method= RequestMethod.GET)
 	public String showAllFishType(Model model) {
@@ -62,24 +62,24 @@ public class FishController {
 		return "cofish/searchResults"; 
 	}
 	
-	@RequestMapping(path="createCaughtFish.do", method= RequestMethod.POST)
-	public String createCaughtFish(@Valid CaughtFish caughtFish, Errors errors, Model model) {
-		CaughtFish newCaughtFish;
-		if(errors.getErrorCount() != 0) {
-			return "WEB-INF/tool/error.jsp";
-		}
-		newCaughtFish = dao.create(caughtFish);
-		model.addAttribute("caughtFish", newCaughtFish);
-		return "cofish/"; //FIXME
-	}
-	
-	@RequestMapping(path="updateCaughtFish.do", method= RequestMethod.POST)
-	public String updateCaughtFish(int id, Model model, CaughtFish caughtFish) {
-		CaughtFish updateCaughtFish = dao.update(id, caughtFish);
-		updateCaughtFish = dao.findByIdCaughtFish(id);
-		model.addAttribute("caughtFish", updateCaughtFish);
-		return null;//FIXME
-	}
+//	@RequestMapping(path="createCaughtFish.do", method= RequestMethod.POST)
+//	public String createCaughtFish(@Valid CaughtFish caughtFish, Errors errors, Model model) {
+//		CaughtFish newCaughtFish;
+//		if(errors.getErrorCount() != 0) {
+//			return "WEB-INF/tool/error.jsp";
+//		}
+//		newCaughtFish = dao.create(caughtFish);
+//		model.addAttribute("caughtFish", newCaughtFish);
+//		return "cofish/"; //FIXME
+//	}
+//	
+//	@RequestMapping(path="updateCaughtFish.do", method= RequestMethod.POST)
+//	public String updateCaughtFish(int id, Model model, CaughtFish caughtFish) {
+//		CaughtFish updateCaughtFish = dao.update(id, caughtFish);
+//		updateCaughtFish = dao.findByIdCaughtFish(id);
+//		model.addAttribute("caughtFish", updateCaughtFish);
+//		return null;//FIXME
+//	}
 	
 	
 

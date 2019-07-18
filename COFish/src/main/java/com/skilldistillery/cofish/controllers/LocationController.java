@@ -17,10 +17,10 @@ public class LocationController {
 	@Autowired
 	private LocationDAO dao;
 	
-	@RequestMapping(path = "/")
-	public String index() {
-		return "cofish/index";
-	}
+//	@RequestMapping(path = "/")
+//	public String index() {
+//		return "cofish/index";
+//	}
 	
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
 	public String createReport(Model model, Errors errors, Report report) {
@@ -45,15 +45,15 @@ public class LocationController {
 
 	}
 	
-	@RequestMapping(path = "showAllReportsForLocation.do", method= RequestMethod.GET)
-	public String showAllReportsForLocation(Model model) {
-		try {
-			for (Report report : iterable) {
-				
-			}
-		}
+//	@RequestMapping(path = "showAllReportsForLocation.do", method= RequestMethod.GET)
+//	public String showAllReportsForLocation(Model model) {
+//		try {
+//			for (Report report : iterable) {
+//				
+//			}
+//		}
 	}
-}
+
 
 
 
