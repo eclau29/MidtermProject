@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) BINARY NOT NULL,
-  `role` INT NOT NULL DEFAULT 1,
+  `email` VARCHAR(200) BINARY NOT NULL,
+  `role` VARCHAR(50) NOT NULL DEFAULT 'user',
   `active` TINYINT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `report` (
   `location_id` INT NOT NULL,
   `comment` VARCHAR(1000) NULL,
   `report_date` DATETIME NULL,
+  `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_report_location1_idx` (`location_id` ASC),
   INDEX `fk_report_profile_idx` (`profile_id` ASC),
@@ -259,7 +260,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 1, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 'user', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (2, 'guest', 'guest', 'guest@gmail.com', 'guest', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (3, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', 1);
 
 COMMIT;
 
@@ -354,7 +357,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30');
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30', NULL);
 
 COMMIT;
 

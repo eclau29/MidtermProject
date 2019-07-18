@@ -14,8 +14,11 @@
 </head>
 <body>
 
+<!--below is being used to test if data is being passed  -->
+<%-- <c:if test="${! empty user }"><h1>${user.userName}</h1></c:if> --%> 
+
 <div class='login-form'>
-<form action="getUserSplash.do" method="GET">
+<form action="loginUser.do" method="GET">
   <div class="flex-row">
     <label class="lf--label" for="username">
       <svg x="0px" y="0px" width="12px" height="13px">
@@ -24,7 +27,7 @@
       </g>
       </svg>
     </label>
-    <input id="username" class='lf--input' placeholder='Username' type='text'>
+    <input id="username" class='lf--input' placeholder='Username' name = "userName" type='text'>
   </div>
   <div class="flex-row">
     <label class="lf--label" for="password">
@@ -34,7 +37,7 @@
         </g>
       </svg>
     </label>
-    <input id="password" class='lf--input' placeholder='Password' type='password'>
+    <input id="password" class='lf--input' placeholder='Password' name = "password" type='password'>
   </div>
   
   <input class='lf--submit' type='submit' value='LOGIN'>

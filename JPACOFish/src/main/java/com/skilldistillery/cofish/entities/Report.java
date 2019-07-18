@@ -44,6 +44,8 @@ public class Report {
 	@OneToMany(mappedBy="report")
 	private List<CaughtFish> caughtFishList;
 	
+	private boolean active;
+	
 	
 	// M E T H O D S
 	
@@ -71,6 +73,14 @@ public class Report {
 	
 	
 	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public int getId() {
 		return id;
 	}
