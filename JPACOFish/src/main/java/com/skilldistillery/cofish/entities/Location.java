@@ -107,10 +107,12 @@ public class Location {
 		}
 	}
 
-	public void removeReports(Report report) {
+	public boolean removeReports(Report report) {
 		if (reports != null && reports.contains(report)) {
 			reports.remove(report);
+			return true;
 		}
+		return false;
 	}
 
 	public void addRatings(Rating rating) {

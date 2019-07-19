@@ -71,8 +71,6 @@ public class Report {
 		}
 	}
 	
-	
-	
 	public boolean isActive() {
 		return active;
 	}
@@ -182,13 +180,5 @@ public class Report {
 		this.comment = comment;
 		this.userProfile = user;
 		this.caughtFishList = caughtFishList;
-	}
-
-	
-
-	
-	
-	
-	
-	
+	}	
 }
