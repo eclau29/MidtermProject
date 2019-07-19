@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>User Portal</title>
 <link rel="stylesheet" href="css/search_results_styles.css">
-<link rel="stylesheet" href="css/Animate.css">
+<!-- animate is giving a 404 so commented out -->
+<!-- <link rel="stylesheet" href="css/Animate.css"> -->
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="/css/nav_bar.css">
@@ -44,7 +45,10 @@
       
       <div class="w3-container w3-white">
         <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <c:forEach items="${allLocations }" var="location">
+        	<a href="findLocationById.do?locationId=${location.id }">${location.name }</a>
+        	<br>
+        </c:forEach>
       </div>
     </div>
     

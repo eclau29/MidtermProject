@@ -45,8 +45,32 @@
     <div class="w3-third w3-container w3-margin-bottom">
       
       <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p><b>Location Details</b></p>
+        	<%-- <ul>
+        		<li>${location.name }</li>
+        		<li>${location.waterBody }</li>
+        		<li>${location.area }</li>
+        		<li>${location.mapUrl }</li>
+        		<li>${location.access.name }</li>
+        		<li>${location.description}</li>
+        		<li>${location.fishingNotes}</li>
+        	</ul> --%>
+        	
+        		<p>Location Name: ${location.name }
+        		<br>
+        		Body of Water: ${location.waterBody }
+        		<br>
+        		Region: ${location.area }
+        		<br>
+        		<a href="${location.mapUrl }">Map of Location</a>
+        		<br>
+        		Accessibility: ${location.access.name }
+        		<br>
+        		Location Description: ${location.description}
+        		<br>
+        		Fishing Notes: ${location.fishingNotes}</p>
+        	
+        	
       </div>
     </div>
     <div class="w3-third w3-container">
