@@ -46,16 +46,16 @@ public class ReportController {
 
 	// ==============
 	@RequestMapping(path = "updateCaughtFish.do", method = RequestMethod.POST)
-	public String updateCaughtFish(@RequestParam("reportId") int id, Model model,
+	public String updateCaughtFish(@RequestParam("caughtFishId") int id, Model model,
 			CaughtFish fishCaught) {
 		try {
-			CaughtFish fish = dao.findCaughtFishByReportId(id);
+			CaughtFish fish = dao.findByIdCaughtFish(id);
 			dao.update(id, fish);
-			
-			model.addAttribute("caughtFish", fish);
+			Report report = dao.findReportById(fish.getReport().getId());	
+			model.addAttribute("report", report);
 			return "cofish/searchResult";
 		} catch (Exception e) {
-			model.addAttribute("reportId", id);
+			model.addAttribute("report", id);
 			return "cofish/searchResult";
 		}
 	}
@@ -65,10 +65,18 @@ public class ReportController {
 			CaughtFish fish = dao.create(caughtFish);
 			Report newReport = dao.findReportById(id);
 			newReport.addCaughtFish(fish);
-			model.addAttribute("caughtFish", fish);
+			model.addAttribute("report", newReport);
 		}
 		
 		return "cofish/searchResult";
 	}
-
+	
+	@RequestMapping(path = "DirectUpdateCaughtFish.do", method = RequestMethod.GET)
+	public String directCaughtFish(@RequestParam("reportId") int id, Model model) {
+		List <CaughtFish> fishCaught = dao.findCaughtFishByReportId(id);
+		model.addAttribute("caughtFish", fishCaught);
+		return "updateCaughtFish";
+		
+	}
+	
 }

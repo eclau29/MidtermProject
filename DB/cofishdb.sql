@@ -261,8 +261,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `cofishdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 'user', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (2, 'guest', 'guest', 'guest@gmail.com', 'guest', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (3, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (2, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', 1);
 
 COMMIT;
 
@@ -357,7 +356,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30', NULL);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (1, 1, 1, 'Great spot to fish caught me a big trout', '2019-07-16 11:30', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (2, 1, 3, 'Fun spot to  fish and a challange to get to but very dangerous during spring ', '2019-07-17 12:00', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (3, 1, 4, 'Today was hot day the weather was about 98 degrees, with a warm breeze. This spot was not too difficult to get to', '2018-05-15 02:30', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (4, 1, 5, 'You can also access Waterton Canyon from the east. Drive south on Wadsworth Blvd (Hwy 121), south of C-470. The road essentially ends at Kassler where you can park and hike into the canyon. Strontia Springs Reservoir is found in the canyon. This area of non-vehicle access runs for about 8 miles.', '2018-08-11 03:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (5, 1, 6, 'Flows at Deckers are currently at 990 cfs. Cheesman reservoir is full and spilling. Flows will likely stay high for the foreseeable future. 2x and 3x fluorocarbon is a must when it comes to landing fish with these big flows. While the flows are high, the water is gin clear. You can expect leeches, worms, PMDs, caddis and stoneflies to be the ticket. Find the slow water created by banks, boulders and bends in the river to find the fish. When you find one, there will likely be more since they are very concentrated in the river. Please exercise extreme caution wading!', '2019-05-10 01:00', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (6, 1, 25, 'Clarity looks good this morning round Salida, and the river has fished extremely since Wednesday considering the above average flows.  Conditions will continue to improve over the next few days with the stable forecast and slowly dropping flows.  Fish are extremely concentrated along the banks and in broken pocket water as they seek refuge from the swift current.  Coincidentally, as stonefly nypmhs migrate to the edges and hatch they become vulnerable, easy food for trout.  This has provided some excellent dry and dry/dropper fishing with large stonefly imitations out along the edges.  Don\'t worry about the fast water in the middle of the river; think small stream tactics right along the shoreline, and you\'ll find success.  Fish are not leader shy, so stock up on heavy leader/tippet material to give yourself a fighting chance at landing your quarry in the fast flow!', '2019-05-20 01:45', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (7, 1, 35, 'It was very cold, don\'t know why I went fishing', '2018-11-25  02:15', 1);
 
 COMMIT;
 
@@ -400,6 +405,7 @@ COMMIT;
 START TRANSACTION;
 USE `cofishdb`;
 INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (1, 1, 1, 13, 3.2, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'Caught ealry morning cool weather');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (2, 1, 3, 6, 2.2, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'Caught mid afternoon, on a hot day with no wind');
 
 COMMIT;
 
@@ -430,6 +436,12 @@ COMMIT;
 START TRANSACTION;
 USE `cofishdb`;
 INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 1);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 3);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 5);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 7);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 8);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 20);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 35);
 
 COMMIT;
 
