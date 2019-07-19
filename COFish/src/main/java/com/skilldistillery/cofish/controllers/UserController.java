@@ -44,8 +44,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)
-	public String logoutUser(HttpSession session) {
+	public String logoutUser(HttpSession session, Model model) {
 		session.removeAttribute("user");
+		model.addAttribute("user", new User());
 		return "index";
 	}
 	
