@@ -128,6 +128,13 @@ public class User {
 		super();
 	}
 
+	public User(String userName,
+			@Size(min = 6, max = 35, message = "Password must be 6 to 35 characters long") String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+	}
+
 	public User(int id, String userName, String password, @Email String email, String role, boolean active) {
 		super();
 		this.id = id;

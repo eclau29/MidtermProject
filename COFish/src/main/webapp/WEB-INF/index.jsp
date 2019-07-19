@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>CO Fish</title>
 <link rel="stylesheet" href="css/index_styles.css">
+<link rel="stylesheet" href="css/light-modal.min.css">
 
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +17,9 @@
 
 <!--below is being used to test if data is being passed  -->
 <%-- <c:if test="${! empty user }"><h1>${user.userName}</h1></c:if> --%> 
-
+<!--  Login Page Forms -->
 <div class='login-form'>
+<!--  User Login form (start)-->
 <form action="loginUser.do" method="GET">
   <div class="flex-row">
     <label class="lf--label" for="username">
@@ -39,16 +41,53 @@
     </label>
     <input id="password" class='lf--input' placeholder='Password' name = "password" type='password'>
   </div>
-  
   <input class='lf--submit' type='submit' value='LOGIN'>
   </form>
-  <form >
+  <!--  User Login form (end)-->
+  <!--  Register form (start)-->
+  <form action="#registrationModal">
     <input class='lf--register' type='submit' value='REGISTER'>
   </form>
-  <form action="getGuestSplash.do" method="GET">
+  <!--  Register form (end)-->
+  <!--  Guest form (start)-->
+  <form action="getSearchResults.do" method="GET">
   <input class='lf--guest' type='submit' value='GUEST'>
   </form>
+  <!--  Guest form (end)-->
  </div>
+ <!--  Login Page Forms -->
+ 
+ <!-- Registration Modal-->
+<div class="light-modal" id="registrationModal" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+        <div class="light-modal-content animated zoomInUp">
+            <!-- light modal header -->
+            <div class="light-modal-header">
+                <h3 class="light-modal-heading">Registration</h3>
+               <input type="submit" class="light-modal-close-btn" form="registerForm" value="Register"/>
+            </div>
+            <!-- light modal body -->
+            <div class="light-modal-body">
+                <!-- Your content -->
+                <form action="registerNewUser.do" method="POST" id="registerForm">
+			Enter User Name: <input type="text" name="userName" /> 
+			<br>
+			Enter Email Name: <input type="text" name="email"/>
+			<br>
+			<br> 
+			Enter Password: <input type="text" name="password"/> 
+			<!-- <br>
+			Enter Confirm: <input type="text" />  -->
+			<br>
+			<br>
+		</form>
+            </div>
+            <!-- light modal footer -->
+            <div class="light-modal-footer">
+                <a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+            </div>
+        </div>
+    </div>
+     <!-- Registration Modal-->
 
 
 </body>

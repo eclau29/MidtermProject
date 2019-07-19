@@ -1,3 +1,4 @@
+
 package com.skilldistillery.cofish.controllers;
 
 import java.util.List;
@@ -96,3 +97,4 @@ public class LocationController {
 		return "locationDetails";
 	}
 }
+
