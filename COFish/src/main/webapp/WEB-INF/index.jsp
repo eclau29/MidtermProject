@@ -74,7 +74,9 @@
 			Enter Email Name: <input type="text" name="email"/>
 			<br>
 			<br> 
-			Enter Password: <input type="text" name="password"/> 
+			Enter Password: <input type="text" name="password"/>
+			<input type="hidden" name="role" value="user"> 
+			<input type="hidden" name="active" value="true"> 
 			<!-- <br>
 			Enter Confirm: <input type="text" />  -->
 			<br>
