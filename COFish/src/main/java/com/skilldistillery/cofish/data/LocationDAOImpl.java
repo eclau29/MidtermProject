@@ -110,6 +110,13 @@ public class LocationDAOImpl implements LocationDAO{
 			return locationByFishName;
 		}
 		
+		@Override
+		public List<Location> showAllLocations(){
+			String query = "Select loc From Location loc";
+			List<Location> showAllLocations = em.createQuery(query, Location.class).getResultList();
+			return showAllLocations;
+		}
+		
 		
 		//FOR EMILY'S SPECIAL NEEDS
 		@Override

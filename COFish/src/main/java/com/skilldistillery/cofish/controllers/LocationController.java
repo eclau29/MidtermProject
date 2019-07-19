@@ -44,13 +44,23 @@ public class LocationController {
 		return "locationsDetails";
 	}
 
+	@RequestMapping(path = "showAllLocations.do", method= RequestMethod.GET)
+	public String showAllLocations(Model model, Errors errors) {
+		if(errors.getErrorCount() != 0) {
+			return "generalError";
+		}
+		List<Location> showAllLocations = dao.showAllLocations();
+		model.addAttribute("allLocations", showAllLocations);
+		return "searchResults";
+	}
+	
 	@RequestMapping(path = "showAllReportsForLocation.do", method= RequestMethod.GET)
 	public String showAllReportsForLocation(Model model, @RequestParam("locationId") int id, Errors errors) {
 		if (errors.getErrorCount() != 0) {
 			return "generalError";
 		}
 		List<Report> allReports = dao.findAllReports(id);
-		model.addAttribute("allReports" ,allReports);
+		model.addAttribute("allReports", allReports);
 		return "locationsDetails";
 	}
 
