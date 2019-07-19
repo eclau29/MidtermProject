@@ -95,6 +95,7 @@ public class UserProfile {
 			favoriteLocations.add(location);
 		}
 	}
+
 	
 	public boolean removeFavLocation(Location location) {
 		if (favoriteLocations != null && favoriteLocations.contains(location)) {

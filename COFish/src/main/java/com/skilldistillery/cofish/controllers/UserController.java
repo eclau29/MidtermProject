@@ -9,20 +9,20 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.UserDAO;
 import com.skilldistillery.cofish.entities.Location;
+import com.skilldistillery.cofish.entities.Report;
 import com.skilldistillery.cofish.entities.User;
 import com.skilldistillery.cofish.entities.UserProfile;
 
 @Controller
-@SessionAttributes("loggedUserHx")
 public class UserController {
 		
 	@Autowired
@@ -36,17 +36,21 @@ public class UserController {
 		User loggedUser = dao.login(user.getUserName(), user.getPassword());
 		
 		session.setAttribute("user", loggedUser);
-		return "index";
+		return "userSplash";
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)
-	public String logoutUser(@Valid User user) {
-		//FIXME
-	return null;
+	public String logoutUser(HttpSession session) {
+		session.removeAttribute("user");
+		return "index";
 	}
 	
 	@RequestMapping(path = "registerNewUser.do", method = RequestMethod.POST)
-		//FIXME
+		public String clearUserHistory(HttpSession session, @Valid User user) {
+		
+
+		return "index";
+	}
 	
 	
 	
@@ -77,6 +81,7 @@ public class UserController {
 		return "showFavLocations";
 	}
 	
+	
 	@RequestMapping(path = "removeFavLocation.do", method = RequestMethod.POST)
 	public String removeFavLocation(@RequestParam("profileId") int id, UserProfile userProfile, String location, Model model) {
 		try {
@@ -96,5 +101,26 @@ public class UserController {
 		}
 		
 	}
+	
+	@RequestMapping(path = "updateUserProfileReport.do", method = RequestMethod.POST)
+	public String updateUserProfileReport(@RequestParam("reportId") int id, Model model, Errors errors, int userProfileId) {
+		if (errors.getErrorCount() != 0) {
+			return "generalErrror";
+		}
+		Report updatedReport = dao.updateUserProfileReport(userProfileId, id);
+		model.addAttribute("report", updatedReport);
+		return "userSplash";
+	}
+	
+	@RequestMapping(path = "removeUserProfileReport.do", method = RequestMethod.POST)
+	public String removeUserProfileReport (Model model, @RequestParam("reportId") int id, int userProfileId) {
+		Report reportToRemove = locDAO.searchReportById(id);
+		dao.removeUserProfileReport(reportToRemove, userProfileId);
+		
+		return "userSplash";
+	}
+	
+	//STRETCH goals: 
+	// update User and UserProfile Information methods
 
 }
