@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>User Portal</title>
 <link rel="stylesheet" href="css/user_splash_styles.css">
-<link rel="stylesheet" href="css/Animate.css">
+
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="/css/nav_bar.css">
@@ -46,7 +46,7 @@
 			<li><a class="btn" href="#searchModal">Search</a></li>
 			<li><a href="getSearchResults.do">Locations</a></li>
 			<li><a class="btn" href="#userModal">User Profile</a></li>
-			<li class="right"><a href="logout.do">Logout</a></li>
+			<li class="right"><a href="logoutUser.do">Logout</a></li>
 		</ul>
 		<!-- Nav Bar -->
 
@@ -99,22 +99,22 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 				<h4>User Name</h4>
-				<p></p>
+				<p>${user.userName}</p>
 				<br>
 				<h4>Email</h4>
-				<p></p>
+				<p>${user.email}</p>
 				<br>
 				<h4>First Name</h4>
-				<p></p>
+				<p>${user.userProfile.firstName}</p>
 				<br>
 				<h4>Last Name</h4>
-				<p></p>
+				<p>${user.userProfile.lastName}</p>
 				<br>
 				<h4>Address</h4>
-				<p></p>
+				<p>${user.userProfile.city}, ${user.userProfile.state}</p>
 				<br>
 				<h4>About</h4>
-				<p></p>
+				<p>${user.userProfile.aboutMe}</p>
 				<br>
 			</div>
 			<!-- light modal footer -->

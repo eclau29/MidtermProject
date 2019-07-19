@@ -29,14 +29,18 @@ public class UserController {
 	private UserDAO dao;
 	private LocationDAO locDAO;
 	
+	@RequestMapping(path = "/")
+	public String index() {
+		
+		return "index";
+	}
+	
 	// USER METHODS
 	@RequestMapping(path = "loginUser.do", method = RequestMethod.GET)
-	public String loginUser(@Valid User user, HttpSession session) {
-		System.out.println("****************IN CONTROLLER" + user);
-		User loggedUser = dao.login(user.getUserName(), user.getPassword());
-		
-		session.setAttribute("user", loggedUser);
-		return "userSplash";
+	public String loginUser(HttpSession session, 
+			@RequestParam("userName") String userName, @RequestParam("password") String password ) {
+		session.setAttribute("user", dao.login(userName, password));
+		return "cofish/userSplash";
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)
@@ -46,12 +50,24 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "registerNewUser.do", method = RequestMethod.POST)
-		public String clearUserHistory(HttpSession session, @Valid User user) {
-		
-
-		return "index";
+		public String registerNewUser(HttpSession session, @Valid User user) {
+		User newUser = dao.registerUser(user);
+		System.err.println(newUser);
+		if(newUser != null) {
+			session.setAttribute("user", newUser);
+			
+			return "cofish/userSplash";
+		}
+		else {
+			return "index";
+		}
 	}
 	
+	@RequestMapping(path = "getUserSplash.do")
+	public String userSplashPage(Model model) {
+		
+ 		return "cofish/userSplash";
+	}
 	
 	
 	// USER PROFILE METHODS

@@ -18,10 +18,7 @@ public class FishController {
 	@Autowired
 	private FishDAO dao;
 	
-	@RequestMapping(path = "/")
-	public String index() {
-		return "WEB-INF/index.jsp";
-	}
+	
 	
 	@RequestMapping(path = "showAll.do", method= RequestMethod.GET)
 	public String showAllFishType(Model model) {
