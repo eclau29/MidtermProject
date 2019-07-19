@@ -3,12 +3,11 @@
  html, body {
 	 height: 100%;
 }
-* {
-	 -webkit-font-smoothing: antialiased;
-	 text-rendering: optimizeLegibility;
-}
-
  body {
+ color: #FFF;
+  font-family: Helvetica;
+  text-align: center;
+  margin: 0;
 	 display: flex;
 	 align-items: center;
 	 justify-content: center;
@@ -25,3 +24,4 @@
   	 margin: 0;
      padding: 0;
 }
+
