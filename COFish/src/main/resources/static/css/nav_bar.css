@@ -46,7 +46,7 @@ li a:hover:not(.active) {
 
 /*  Search Modal */
 .modalDialog {
-	
+	display: none;
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     top: 0;
