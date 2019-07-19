@@ -7,7 +7,7 @@ import com.skilldistillery.cofish.entities.Report;
 
 public interface LocationDAO {
 
-	public List<Report> findAllReports();
+	public List<Report> findAllReports(int id);
 
 	public Report createReport(Report report);
 
@@ -17,6 +17,18 @@ public interface LocationDAO {
 
 	public Report searchReportById(int id);
 
-	public boolean deleteReport(int id);
+	public Location findLocationById(int id);
+
+	public Location removeReportFromLocation(Report report, int locationId);
+
+	List<Location> locationsByName(String name);
+
+	List<Location> locationsByWaterBody(String name);
+
+	List<Location> locationsByRegion(String name);
+
+	List<Location> locationsByAccessibility(String name);
+
+	List<Location> locationByFishName(String name);
 
 }
