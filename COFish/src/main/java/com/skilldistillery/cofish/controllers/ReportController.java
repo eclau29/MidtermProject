@@ -43,32 +43,40 @@
 ////		return "locationDetails";
 ////
 ////	}
-//
-//	// ==============
-//	@RequestMapping(path = "updateCaughtFish.do", method = RequestMethod.POST)
-//	public String updateCaughtFish(@RequestParam("reportId") int id, Model model,
-//			CaughtFish fishCaught) {
-//		try {
-//			CaughtFish fish = dao.findCaughtFishByReportId(id);
-//			dao.update(id, fish);
-//			
-//			model.addAttribute("caughtFish", fish);
-//			return "cofish/searchResult";
-//		} catch (Exception e) {
-//			model.addAttribute("reportId", id);
-//			return "cofish/searchResult";
-//		}
-//	}
-//	@RequestMapping(path = "createCaughtFish.do", method = RequestMethod.POST)
-//	public String addCaughtFish(@RequestParam("reportId") int id, CaughtFish caughtFish, Model model) {
-//		if(caughtFish.getReport().isActive()) {
-//			CaughtFish fish = dao.create(caughtFish);
-//			Report newReport = dao.findReportById(id);
-//			newReport.addCaughtFish(fish);
-//			model.addAttribute("caughtFish", fish);
-//		}
-//		
-//		return "cofish/searchResult";
-//	}
-//
-//}
+
+	// ==============
+	@RequestMapping(path = "updateCaughtFish.do", method = RequestMethod.POST)
+	public String updateCaughtFish(@RequestParam("caughtFishId") int id, Model model,
+			CaughtFish fishCaught) {
+		try {
+			CaughtFish fish = dao.findByIdCaughtFish(id);
+			dao.update(id, fish);
+			Report report = dao.findReportById(fish.getReport().getId());	
+			model.addAttribute("report", report);
+			return "cofish/searchResult";
+		} catch (Exception e) {
+			model.addAttribute("report", id);
+			return "cofish/searchResult";
+		}
+	}
+	@RequestMapping(path = "createCaughtFish.do", method = RequestMethod.POST)
+	public String addCaughtFish(@RequestParam("reportId") int id, CaughtFish caughtFish, Model model) {
+		if(caughtFish.getReport().isActive()) {
+			CaughtFish fish = dao.create(caughtFish);
+			Report newReport = dao.findReportById(id);
+			newReport.addCaughtFish(fish);
+			model.addAttribute("report", newReport);
+		}
+		
+		return "cofish/searchResult";
+	}
+	
+	@RequestMapping(path = "DirectUpdateCaughtFish.do", method = RequestMethod.GET)
+	public String directCaughtFish(@RequestParam("reportId") int id, Model model) {
+		List <CaughtFish> fishCaught = dao.findCaughtFishByReportId(id);
+		model.addAttribute("caughtFish", fishCaught);
+		return "updateCaughtFish";
+		
+	}
+	
+}

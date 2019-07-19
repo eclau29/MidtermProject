@@ -87,9 +87,9 @@ public class ReportDAOImpl implements ReportDAO{
 	}
 	
 	@Override
-	public CaughtFish findCaughtFishByReportId(int id) {
+	public List<CaughtFish> findCaughtFishByReportId(int id) {
 		String query = "SELECT cf FROM CaughtFish cf WHERE cf.reportId = :id";
-		CaughtFish fishFound = em.createQuery(query, CaughtFish.class).setParameter("id", id).getSingleResult();
+		List <CaughtFish> fishFound = em.createQuery(query, CaughtFish.class).setParameter("id", id).getResultList();
 		return fishFound;
 	}
 	

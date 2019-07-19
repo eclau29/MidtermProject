@@ -7,8 +7,10 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.cofish.entities.Location;
+import com.skilldistillery.cofish.entities.Report;
 import com.skilldistillery.cofish.entities.User;
 import com.skilldistillery.cofish.entities.UserProfile;
 
@@ -30,9 +32,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User logout(int id) {
-		// FIXME
-		return null;
+	public User registerUser (User user) {
+		em.persist(user);
+		em.flush();
+		
+		return user;
 	}
 	
 	@Override
@@ -40,8 +44,15 @@ public class UserDAOImpl implements UserDAO {
 		
 		return em.find(User.class, id);
 	}
+	
+//	public User updateUser(int userId) {} //stretch goal
 
 	// USER PROFILE METHODS
+	public UserProfile findUserProfileById (int id) {
+		
+		return em.find(UserProfile.class, id);
+	}
+	
 	@Override
 	public List<Location> getFavLocations(int id) {
 		User user = em.find(User.class, id);
@@ -49,9 +60,29 @@ public class UserDAOImpl implements UserDAO {
 		return favLocations;
 	}
 	
-	public UserProfile findUserProfileById (int id) {
+	
+	@Override
+	public List<Report> getUserProfileReportList (@RequestParam("profileId") int id){
+		UserProfile userProfile = em.find(UserProfile.class, id);
+		List<Report> reportList = userProfile.getReports();
 		
-		return em.find(UserProfile.class, id);
+		return reportList;
+	}
+	
+	@Override
+	public Report updateUserProfileReport(int id, int reportId) {
+		
+		return null;
+	}
+	
+	@Override
+	public UserProfile removeUserProfileReport(Report reportToRemove, int userProfileId) {
+		UserProfile foundUserProfile = findUserProfileById(userProfileId);
+		foundUserProfile.getReports().remove(reportToRemove);
+		em.persist(foundUserProfile);
+		em.flush();
+		
+		return foundUserProfile;
 	}
 	
 	@Override
@@ -69,7 +100,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	
-
-
+	
 	
 }

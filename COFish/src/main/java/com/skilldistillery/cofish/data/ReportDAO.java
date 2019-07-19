@@ -19,7 +19,7 @@ public interface ReportDAO {
 
 	Report searchReportById(int id);
 
-	CaughtFish findCaughtFishByReportId(int id);
+	List <CaughtFish> findCaughtFishByReportId(int id);
 
 	CaughtFish create(CaughtFish caughtFish);
 

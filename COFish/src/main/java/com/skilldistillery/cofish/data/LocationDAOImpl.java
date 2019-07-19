@@ -36,27 +36,79 @@ public class LocationDAOImpl implements LocationDAO{
 		}
 		
 		@Override
+		public Location removeReportFromLocation(Report report, int locationId) {
+			Location findLocation = findLocationById(locationId);
+			findLocation.getReports().remove(report);
+			em.persist(findLocation);
+			em.flush();
+			
+			return findLocation;
+		}
+		
+		@Override
 		public Report searchReportById(int id) {
 			return em.find(Report.class, id);
 		}
 		
-		@Override
-		public List<Report> findAllReports(){
+		@Override//RM DONE
+		public List<Report> findAllReports(int id){
 			String query = "Select r From Report r where r.location.id = :id";
 			List<Report> listAllReportsForLocation = em.createQuery(query, Report.class)
+														.setParameter("id", id)
 														.getResultList();
 			return listAllReportsForLocation;
 		}
 		
+//		@Override
+//		public boolean removeReport(int id) {
+//			Report report = em.find(Report.class, id);
+//			report.setActive(false);
+//			return true;
+//		}
 		
-		@Override//NO MAPPING NEEDED
-		public boolean deleteReport(int id) {
-			Report report = em.find(Report.class, id);
-			//report.setActive(false);
-			return true;
+		@Override
+		public Location findLocationById(int id) {
+			String query ="Select loc From Location loc Where loc.id = :id";
+			Location foundLocation = em.createQuery(query, Location.class)
+									   .setParameter("id", id)
+									   .getSingleResult();
+			return foundLocation;
 		}
 		
+		@Override
+		public List<Location> locationsByName(String name){
+			String query = "SELECT loc from Location loc WHERE loc.name LIKE :name ";
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			return locationsByName ;
+		}
 		
+		@Override
+		public List<Location> locationsByWaterBody(String name){
+			String query = "SELECT loc from Location loc WHERE loc.waterBody LIKE :name ";
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			return locationsByName ;
+		}
+		
+		@Override
+		public List<Location> locationsByRegion(String name){
+			String query = "SELECT loc from Location loc WHERE loc.area LIKE :name ";
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			return locationsByName ;
+		}
+		
+		@Override
+		public List<Location> locationsByAccessibility(String name){
+			String query = "SELECT loc from Location loc WHERE loc.access.name LIKE :name ";
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			return locationsByName ;
+		}
+		
+		@Override
+		public List<Location> locationByFishName(String name){
+			String query = "SELECT loc FROM Location loc WHERE loc.reports.caughtFishList.fishType.name LIKE :name ";
+			List<Location> locationByFishName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			return locationByFishName;
+		}
 		
 		
 		//FOR EMILY'S SPECIAL NEEDS
@@ -66,6 +118,7 @@ public class LocationDAOImpl implements LocationDAO{
 			Location foundLocation = em.createQuery(query, Location.class).setParameter("locName", locationName).getSingleResult();
 			return foundLocation;
 		}
+		
 		
 }
 
