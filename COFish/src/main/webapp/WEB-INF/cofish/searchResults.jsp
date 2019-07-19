@@ -47,6 +47,7 @@
         <p><b>Lorem Ipsum</b></p>
         <c:forEach items="${allLocations }" var="location">
         	<a href="findLocationById.do?locationId=${location.id }">${location.name }</a>
+        	<input type="hidden" value="${location.id }" name="locationId">
         	<br>
         </c:forEach>
       </div>

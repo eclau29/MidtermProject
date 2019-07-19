@@ -46,15 +46,7 @@
       
       <div class="w3-container w3-white">
         <p><b>Location Details</b></p>
-        	<%-- <ul>
-        		<li>${location.name }</li>
-        		<li>${location.waterBody }</li>
-        		<li>${location.area }</li>
-        		<li>${location.mapUrl }</li>
-        		<li>${location.access.name }</li>
-        		<li>${location.description}</li>
-        		<li>${location.fishingNotes}</li>
-        	</ul> --%>
+        	<%-- Note: CSS doesn't like <ul> and <li> tags... --%>
         	
         		<p>Location Name: ${location.name }
         		<br>
@@ -75,8 +67,31 @@
     </div>
     <div class="w3-third w3-container">
      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p><b>List of Reports for This Location</b></p>
+        <p>
+        	<c:forEach items="${location.reports }" var="report">
+        		<p>
+        		Posted By: ${report.userProfile.firstName }
+        		<br>
+        		Date of Report: ${report.date }
+        		<br>
+        		Fish Caught at this Location:
+        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
+        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs } lbs
+        				<br>
+        				Rod Type: ${caughtFish.rodType }
+        				<br>
+        				Lure Type: ${caughtFish.lureType }
+        				<br>
+        			</c:forEach>
+        		<br>
+        		Comment: ${report.comment }
+        		<br>
+        		</p>
+        		
+        	
+        	</c:forEach>
+        </p>
       </div>
     </div>
   </div>
