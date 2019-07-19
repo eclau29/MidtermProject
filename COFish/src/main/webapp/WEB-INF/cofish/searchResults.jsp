@@ -27,7 +27,8 @@
   <li><a href="getUserSplash.do">Home</a></li>
   <li><a class="btn" href="#searchModal">Search</a></li>
   <li><a href="getSearchResults.do">Locations</a></li>
-  <li class="right"><a href="logout.do">Logout</a></li>
+  <li class="right"><a href="logoutUser.do">Logout</a></li>
+  <li><a class="btn" href="#userModal">User Profile</a></li>
 </ul>
 
    <!-- Grid Information-->
@@ -89,6 +90,86 @@
 		</div>
 	</div>
 	<!-- Search Modal-->
+	
+	<!-- UserProfile Modal-->
+	<div class="light-modal" id="userModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">User Profile</h3>
+				<a href="#updateUserModal" class="light-modal-close-btn" aria-label="close">Update Profile</a>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<h4>User Name</h4>
+				<p>${user.userName}</p>
+				<br>
+				<h4>Email</h4>
+				<p>${user.email}</p>
+				<br>
+				<h4>First Name</h4>
+				<p>${user.userProfile.firstName}</p>
+				<br>
+				<h4>Last Name</h4>
+				<p>${user.userProfile.lastName}</p>
+				<br>
+				<h4>Address</h4>
+				<p>${user.userProfile.city}, ${user.userProfile.state}</p>
+				<br>
+				<h4>About</h4>
+				<p>${user.userProfile.aboutMe}</p>
+				<br>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- UserProfile Modal-->
+	
+	<!-- Update UserProfile Modal-->
+	<div class="light-modal" id="updateUserModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">User Profile</h3>
+				<input type="submit" class="light-modal-close-btn" form="updateForm" value="Commit Update"/>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<form id="updateForm" action="getSearchResults.do" method="GET">
+				<h4>User Name:</h4>
+				<p></p>
+				<br>
+				<h4>Email:</h4>
+				<p></p>
+				<br>
+				<h4>First Name:</h4>
+				<p></p>
+				<br>
+				<h4>Last Name:</h4>
+				<p></p>
+				<br>
+				<h4>Address:</h4>
+				<p></p>
+				<br>
+				<h4>About:</h4>
+				<p></p>
+				<br>
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Update UserProfile Modal-->
 
 
 </body>

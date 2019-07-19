@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>CO Fish</title>
 <link rel="stylesheet" href="css/index_styles.css">
-<link rel="stylesheet" href="css/Animate.css">
 <link rel="stylesheet" href="css/light-modal.min.css">
 
 </head>
@@ -18,9 +17,10 @@
 
 <!--below is being used to test if data is being passed  -->
 <%-- <c:if test="${! empty user }"><h1>${user.userName}</h1></c:if> --%> 
-
+<!--  Login Page Forms -->
 <div class='login-form'>
-<form action="getUserSplash.do" method="GET">
+<!--  User Login form (start)-->
+<form action="loginUser.do" method="GET">
   <div class="flex-row">
     <label class="lf--label" for="username">
       <svg x="0px" y="0px" width="12px" height="13px">
@@ -41,17 +41,21 @@
     </label>
     <input id="password" class='lf--input' placeholder='Password' name = "password" type='password'>
   </div>
-  
   <input class='lf--submit' type='submit' value='LOGIN'>
   </form>
+  <!--  User Login form (end)-->
+  <!--  Register form (start)-->
   <form action="#registrationModal">
     <input class='lf--register' type='submit' value='REGISTER'>
   </form>
-  <form action="getGuestSplash.do" method="GET">
+  <!--  Register form (end)-->
+  <!--  Guest form (start)-->
+  <form action="getSearchResults.do" method="GET">
   <input class='lf--guest' type='submit' value='GUEST'>
   </form>
+  <!--  Guest form (end)-->
  </div>
- 
+ <!--  Login Page Forms -->
  
  <!-- Registration Modal-->
 <div class="light-modal" id="registrationModal" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
@@ -64,15 +68,15 @@
             <!-- light modal body -->
             <div class="light-modal-body">
                 <!-- Your content -->
-                <form action="getRegistration.do" method="GET" id="registerForm">
-			Enter User Name: <input type="text" /> 
+                <form action="registerNewUser.do" method="POST" id="registerForm">
+			Enter User Name: <input type="text" name="userName" /> 
 			<br>
-			Enter Email Name: <input type="text" />
+			Enter Email Name: <input type="text" name="email"/>
 			<br>
-			<br>
-			Enter Password: <input type="text" /> 
-			<br>
-			Enter Confirm: <input type="text" /> 
+			<br> 
+			Enter Password: <input type="text" name="password"/> 
+			<!-- <br>
+			Enter Confirm: <input type="text" />  -->
 			<br>
 			<br>
 		</form>
