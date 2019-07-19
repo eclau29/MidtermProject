@@ -44,8 +44,11 @@
 		<ul class="topnav">
 			<li><a href="getUserSplash.do">Home</a></li>
 			<li><a class="btn" href="#searchModal">Search</a></li>
-			<li><a href="getSearchResults.do">Locations</a></li>
+			<!-- <li><a href="getSearchResults.do">Locations</a></li> -->
+			<li><a href="showAllLocations.do">Locations</a></li>
+			
 			<li><a class="btn" href="#userModal">User Profile</a></li>
+			
 			<li class="right"><a href="logoutUser.do">Logout</a></li>
 		</ul>
 		<!-- Nav Bar -->
