@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(200) BINARY NOT NULL,
   `role` VARCHAR(50) NOT NULL DEFAULT 'user',
-  `active` TINYINT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -405,7 +405,15 @@ COMMIT;
 START TRANSACTION;
 USE `cofishdb`;
 INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (1, 1, 1, 13, 3.2, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'Caught ealry morning cool weather');
-INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (2, 1, 3, 6, 2.2, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'Caught mid afternoon, on a hot day with no wind');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (2, 1, 3, 10, 2.2, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'Caught mid afternoon, on a hot day with no wind');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (3, 2, 5, 11, 3.0, 'fly 9 ft', 'Wooley Bugger', 'This was a slippery fella');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (4, 2, 8, 11, 2.9, 'fly 9 ft', 'Wooley Bugger', 'Took this sucker long enough to bite');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (5, 3, 12, 14, 3.5, 'fly 8 ft 6 in', 'Zonker', 'Good struggle');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (6, 4, 20, 10, 3.2, 'fly 9 ft', 'Stimulator', 'This was a fast catch');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (7, 5, 13, 9, 3.1, 'fly 8 ft 6 in', 'Muddler Minnow', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (8, 6, 16, 12, 3.0, 'fly 8 ft 6 in', 'Griffith\'s Gnat', 'Good Struggle');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (9, 7, 13, 12, 3.0, 'fly 9 ft', 'Black Ghost', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (10, 7, 11, 14, 3.5, 'fly 9 ft', 'Black Ghost', 'fun reeling');
 
 COMMIT;
 
