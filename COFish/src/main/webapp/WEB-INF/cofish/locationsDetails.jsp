@@ -211,6 +211,8 @@
 	</div>
 	<!-- UserProfile Modal-->
 	
+	
+	
 	<!-- Update UserProfile Modal-->
 	<div class="light-modal" id="updateUserModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
