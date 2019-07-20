@@ -25,3 +25,25 @@
      padding: 0;
 }
 
+#main #searchResults {
+	overflow-y: scroll;
+    height: 460px;
+    list-style-type: none;
+}
+
+
+
+#main {
+	margin: auto;
+	background: #706F74;
+	padding: 20px;
+	width: 300px;
+	height: auto;
+	opacity: 0.96;
+	padding: 20px;
+	
+	border-radius: 15px;
+	border-color: #A239CA;
+	border-style: solid;
+	border-width: 2px;
+}

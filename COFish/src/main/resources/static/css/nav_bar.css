@@ -5,7 +5,7 @@ a {
 	 color: inherit;
 }
 
-ul {
+.botnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -16,12 +16,14 @@ ul {
   width: 100%;
 }
 
-li {
+.botnav #navLeft {
   float: left;
 }
-li.right {float: right;}
 
-li a {
+.botnav #navRight {
+	float: right;}
+
+#navRight a {
   display: block;
   color: white;
   text-align: center;
@@ -29,7 +31,19 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+#navRight a:hover:not(.active) {
+  background-color: #111;
+}
+
+#navLeft a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navLeft a:hover:not(.active) {
   background-color: #111;
 }
 
