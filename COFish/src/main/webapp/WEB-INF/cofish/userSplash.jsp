@@ -65,7 +65,7 @@
 				
 					Search by <select name="searchCategory">
 						<option value="location" >Body of Water:</option>
-						<option value="fish" >Fish:</option>
+						<!-- <option value="fish" >Fish:</option> -->
 						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
 					</select>
 					<br> 

@@ -134,20 +134,20 @@ public class CaughtFish {
 	
 	//CONSTRUCTORS
 	
-	public CaughtFish() {
-		super();
-	}
-
-	public CaughtFish(int id, int fishTypeId, Double lengthInches, Double weightLbs, String rodType, String lureType,
-			int reportId, String comment) {
-		super();
-		this.id = id;
-		this.lengthInches = lengthInches;
-		this.weightLbs = weightLbs;
-		this.rodType = rodType;
-		this.lureType = lureType;
-		this.comment = comment;
-	}
+//	public CaughtFish() {
+//		super();
+//	}
+//
+//	public CaughtFish(int id, int fishTypeId, Double lengthInches, Double weightLbs, String rodType, String lureType,
+//			int reportId, String comment) {
+//		super();
+//		this.id = id;
+//		this.lengthInches = lengthInches;
+//		this.weightLbs = weightLbs;
+//		this.rodType = rodType;
+//		this.lureType = lureType;
+//		this.comment = comment;
+//	}
 
 	@Override
 	public String toString() {

@@ -136,8 +136,8 @@
 		</ul>
 		<!-- Nav Bar -->
 		
-		<!-- Report Modal-->
-	<div class="light-modal" id="reportModal" role="dialog"
+		<!-- Create Report Modal-->
+	<div class="light-modal" id="addReportModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
@@ -146,22 +146,105 @@
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
-				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET">
+				<!-- My Content EMILY! edit here-->
 				
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select>
-					<br> 
-					<br> 
-					 <input type="text" /> 
-					<br> 
-					<br> 
+				<form action="createReport.do" method="POST">
+					<input type ="hidden" value="${location.id }" name="id">
+					<input type="hidden" value="${user.userProfile.id }" name="profileId">
+					<!-- <label for="date">Date: </label>
+					<input type="datetime-local" name="date">
+					<br> -->
+					<label for="comment">Comment: </label>
+					<input type="text" name="comment">
+					<br>
+					<br>
+						
+					<!--  use this for update -->
+					<%-- <label for="caughtFishList">List of Fish: </label>
+						<ul>
+							<c:forEach items="${user.caughtFishList }" var="caughtFish">
+								<li>${caughtFish.fishType.name }</li>
+									<ul>
+										<li>${caughtFish.lengthInches }</li>
+										<li>${caughtFish.weightLbs }</li>
+										<li>${caughtFish.rodType }</li>
+										<li>${caughtFish.lureType }</li>
+										<li>${caughtFish.comment }</li>
+									</ul>
+							</c:forEach>
+						</ul>
+					<br> --%>
 					<input
-						type="submit" value="Show Locations" class="light-modal-close-btn"
+						type="submit" value="Submit Form" class="light-modal-close-btn"
 						aria-label="close" />
+				</form>
+				
+				<form>
+					<label for="caughtFish">Fish Caught: </label>
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
 				</form>
 			</div>
 			<!-- light modal footer -->
@@ -187,7 +270,7 @@
 				
 					Search by <select name="searchCategory">
 						<option value="location" >Body of Water:</option>
-						<option value="fish" >Fish:</option>
+						<!-- <option value="fish" >Fish:</option> -->
 						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
 					</select>
 					<br> 

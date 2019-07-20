@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.cofish.data.LocationDAO;
+import com.skilldistillery.cofish.data.ReportDAO;
+import com.skilldistillery.cofish.entities.CaughtFish;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 
@@ -20,6 +22,8 @@ public class LocationController {
 
 	@Autowired
 	private LocationDAO dao;
+	
+	private ReportDAO reportDao;
 	
 	@RequestMapping(path = "getReportDetails.do", method = RequestMethod.GET)
 	public void populateReportDatails(int reportId, Model model) {
@@ -34,12 +38,21 @@ public class LocationController {
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
-	public String createReport(Model model, Report report) {
-		
+	public String createReport(Model model, Report report, CaughtFish ...caughtFish) {
+		System.err.println("report details:" + report);
 		Report newReport = dao.createReport(report);
+		
+		if(caughtFish.length != 0) {
+			for (CaughtFish caughtFish2 : caughtFish) {
+				if(caughtFish2.getReport().isActive()) {
+					CaughtFish fish = reportDao.create(caughtFish2);
+					newReport.addCaughtFish(fish);
+				}
+			}
+		}	
 		model.addAttribute("report", newReport);
+		
 		return "cofish/locationsDetails";
-
 	}
 
 	@RequestMapping(path = "updateReport.do", method = RequestMethod.POST)
