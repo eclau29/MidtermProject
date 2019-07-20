@@ -23,31 +23,24 @@
  	
    <!-- Page Information-->
   
+    <div class='location-banner-container'>
+      <div class='location-banner'>
+        <div class='date'>Aug 14, 2016</div>
+        <div class='signup'>Location Details</div>
+        <div class='login'>Login</div>
+      </div>
+    </div>
+    
+    
     <div class='location-details-container'>
       <div class='location-details'>
-        <div class='date'>Aug 14, 2016</div>
-        <div class='signup'>Location Details</div>
-        <div class='login'>Login</div>
-      </div>
-    </div>
-    
-    <div class='location-details--container'>
-      <div class='location-details'>
-        <div class='date'>Aug 14, 2016</div>
-        <div class='signup'>Location Details</div>
-        <div class='login'>Login</div>
-      </div>
-    </div>
-    
-    <div class='report-list-container'>
-      <div class='report-list-details'>
         <div class='date'>Aug 14, 2016</div>
         <div class='signup'>Report List</div>
         <div class='login'>Login</div>
       </div>
     </div>
     
-    <div class='current-report-container'>
+    <div class='report-list-container'>
       <div class='current-report-details'>
         <div class='date'>Aug 14, 2016</div>
         <div class='signup'>Current Report</div>
@@ -127,42 +120,52 @@
 
 <!-- Nav Bar -->
 		<ul class="botnav">
+		    <c:choose>
+			<c:when test="${sessionScope.user != null}">
 			<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+			</c:when>
+			</c:choose>
 			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
 			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<c:choose>
+			<c:when test="${sessionScope.user != null}">
 			<li id="navLeft"><a class="btn" href="#userModal">User Profile</a></li>
 			<li id="navLeft"><a class="btn" href="#addReportModal">Add Report</a></li>
+			</c:when>
+			</c:choose>
 			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
 		</ul>
 		<!-- Nav Bar -->
 		
 		<!-- Report Modal-->
-	<div class="light-modal" id="reportModal" role="dialog"
+		<c:forEach items="${location.reports}" var="report">
+	<div class="light-modal" id="${report.id}" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Search</h3>
+				<h3 class="light-modal-heading">${report.userProfile.user.userName}'s Report</h3>
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET">
-				
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select>
-					<br> 
-					<br> 
-					 <input type="text" /> 
-					<br> 
-					<br> 
-					<input
-						type="submit" value="Show Locations" class="light-modal-close-btn"
-						aria-label="close" />
-				</form>
+				<p>
+        		<br>
+        		<b>Date of Report:</b> ${report.date }
+        		<br>
+        		<b>Fish Caught at this Location:</b>
+        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
+        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs } lbs
+        				<br>
+        				Rod Type: ${caughtFish.rodType }
+        				<br>
+        				Lure Type: ${caughtFish.lureType }
+        				<br>
+        			</c:forEach>
+        		<br>
+        		Comment: ${report.comment }
+        		<br>
+        		</p>
 			</div>
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
@@ -170,6 +173,7 @@
 			</div>
 		</div>
 	</div>
+	</c:forEach>
 	<!-- Report Modal-->
 
 <!-- Search Modal-->

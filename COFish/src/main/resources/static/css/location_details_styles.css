@@ -9,19 +9,19 @@
 	
 }
 
-.location-details-container {
+.location-banner-container {
   color: #fff;
   background-color: #DD6E42;  /* Reddish*/
   padding: 20px 20px;
    display: flex;
 }
 
-.location-details {
+.location-banner {
   border: 1px solid #fff;  /* For debugging */
   width: 900px;
 }
 
-.report-list-container {
+.location-details-container {
   color: #fff;
   background-color: #E8DAB2;  /* Tan */
   padding: 20px 20px;
@@ -30,12 +30,12 @@
    
 }
 
-.report-list-details {
+.location-details {
   border: 1px solid #fff;  /* For debugging */
   width: 900px;
 }
 
-.current-report-container {
+.report-list-container {
   color: #fff;
   background-color: #4F6D7A;  /* Blue */
   padding: 20px 20px;
@@ -51,7 +51,7 @@
   margin-top: -50px;
 }
 
-.current-report-details {
+.report-list-details {
   border: 1px solid #fff;  /* For debugging */
  width: 900px;
 }
