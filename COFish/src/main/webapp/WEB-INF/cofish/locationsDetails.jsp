@@ -135,6 +135,42 @@
 			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
 		</ul>
 		<!-- Nav Bar -->
+		
+		<!-- Report Modal-->
+	<div class="light-modal" id="reportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Search</h3>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<form action="getSearchResults.do" method="GET">
+				
+					Search by <select>
+						<option value="location">Location:</option>
+						<option value="fish">Fish:</option>
+						<option value="accessibility">Accessibility:</option>
+					</select>
+					<br> 
+					<br> 
+					 <input type="text" /> 
+					<br> 
+					<br> 
+					<input
+						type="submit" value="Show Locations" class="light-modal-close-btn"
+						aria-label="close" />
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Report Modal-->
 
 <!-- Search Modal-->
 	<div class="light-modal" id="searchModal" role="dialog"
@@ -210,6 +246,8 @@
 		</div>
 	</div>
 	<!-- UserProfile Modal-->
+	
+	
 	
 	<!-- Update UserProfile Modal-->
 	<div class="light-modal" id="updateUserModal" role="dialog"
