@@ -26,7 +26,7 @@
     <div class='location-banner-container'>
       <div class='location-banner'>
         <div class='date'>Aug 14, 2016</div>
-        <div class='signup'>Location Details</div>
+        <div class='signup'>Location Banner</div>
         <div class='login'>Login</div>
       </div>
     </div>
@@ -35,7 +35,7 @@
     <div class='location-details-container'>
       <div class='location-details'>
         <div class='date'>Aug 14, 2016</div>
-        <div class='signup'>Report List</div>
+        <div class='signup'>Location Details</div>
         <div class='login'>Login</div>
       </div>
     </div>
@@ -43,7 +43,7 @@
     <div class='report-list-container'>
       <div class='current-report-details'>
         <div class='date'>Aug 14, 2016</div>
-        <div class='signup'>Current Report</div>
+        <div class='signup'>Report List</div>
         <div class='login'>Login</div>
       </div>
     </div>
@@ -118,7 +118,7 @@
 
 
 
-<!-- Nav Bar -->
+        <!-- Nav Bar -->
 		<ul class="botnav">
 		    <c:choose>
 			<c:when test="${sessionScope.user != null}">
@@ -133,48 +133,16 @@
 			<li id="navLeft"><a class="btn" href="#addReportModal">Add Report</a></li>
 			</c:when>
 			</c:choose>
-			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
+			<li id="navRight" class="right"><a href="logoutUser.do">
+			<c:choose>
+			<c:when test="${sessionScope.user != null}">Logout</c:when>
+			<c:otherwise>Login</c:otherwise>
+			</c:choose>
+			</a></li>	
 		</ul>
 		<!-- Nav Bar -->
 		
-		<!-- Report Modal-->
-		<c:forEach items="${location.reports}" var="report">
-	<div class="light-modal" id="${report.id}" role="dialog"
-		aria-labelledby="light-modal-label" aria-hidden="false">
-		<div class="light-modal-content animated zoomInUp">
-			<!-- light modal header -->
-			<div class="light-modal-header">
-				<h3 class="light-modal-heading">${report.userProfile.user.userName}'s Report</h3>
-			</div>
-			<!-- light modal body -->
-			<div class="light-modal-body">
-				<!-- My Content -->
-				<p>
-        		<br>
-        		<b>Date of Report:</b> ${report.date }
-        		<br>
-        		<b>Fish Caught at this Location:</b>
-        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
-        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs } lbs
-        				<br>
-        				Rod Type: ${caughtFish.rodType }
-        				<br>
-        				Lure Type: ${caughtFish.lureType }
-        				<br>
-        			</c:forEach>
-        		<br>
-        		Comment: ${report.comment }
-        		<br>
-        		</p>
-			</div>
-			<!-- light modal footer -->
-			<div class="light-modal-footer">
-				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
-			</div>
-		</div>
-	</div>
-	</c:forEach>
-	<!-- Report Modal-->
+		
 
 <!-- Search Modal-->
 	<div class="light-modal" id="searchModal" role="dialog"
@@ -319,13 +287,58 @@
 	</div>
 	<!-- Add Report Modal-->
 	
-	<!-- Update Report Modal-->
-	<div class="light-modal" id="updateReportModal" role="dialog"
+	<!-- Report Modal-->
+		<c:forEach items="${location.reports}" var="report">
+	<div class="light-modal" id="${report.id}" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Search</h3>
+				<h3 class="light-modal-heading">${report.userProfile.user.userName}'s Report</h3>
+				<c:choose>
+				<c:when test="${user.id eq report.userProfile.user.id}">
+				<a href="#updateUserReportModal" class="light-modal-close-btn" aria-label="close">Update Report</a>
+				</c:when>
+				</c:choose>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<p>
+        		<br>
+        		<b>Date of Report:</b> ${report.date }
+        		<br>
+        		<b>Fish Caught at this Location:</b>
+        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
+        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs
+        				<br>
+        				Rod Type: ${caughtFish.rodType }
+        				<br>
+        				Lure Type: ${caughtFish.lureType }
+        				<br>
+        			</c:forEach>
+        		<br>
+        		Comment: ${report.comment }
+        		<br>
+        		</p>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	</c:forEach>
+	<!-- Report Modal-->
+	
+	<!-- Update Report Modal-->
+	<div class="light-modal" id="updateUserReportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Update Report</h3>
+				<a href="#updateUserModal" class="light-modal-close-btn" aria-label="close">Commit Update</a>
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
@@ -350,6 +363,7 @@
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
 				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+				<a href="#updateUserModal" class="light-modal-close-btn" aria-label="close">Delete Report</a>
 			</div>
 		</div>
 	</div>

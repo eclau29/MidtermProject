@@ -38,7 +38,12 @@
 			<li id="navLeft"><a class="btn" href="#userModal">User Profile</a></li>
 			</c:when>
 			</c:choose>
-			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
+			<li id="navRight" class="right"><a href="logoutUser.do">
+			<c:choose>
+			<c:when test="${sessionScope.user != null}">Logout</c:when>
+			<c:otherwise>Login</c:otherwise>
+			</c:choose>
+			</a></li>
 		</ul>
 		<!-- Nav Bar -->
 
