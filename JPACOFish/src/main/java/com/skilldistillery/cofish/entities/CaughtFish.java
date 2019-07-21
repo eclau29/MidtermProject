@@ -135,7 +135,7 @@ public class CaughtFish {
 	//CONSTRUCTORS
 	
 	public CaughtFish() {
-		super();
+		
 	}
 
 	public CaughtFish(int id, int fishTypeId, Double lengthInches, Double weightLbs, String rodType, String lureType,

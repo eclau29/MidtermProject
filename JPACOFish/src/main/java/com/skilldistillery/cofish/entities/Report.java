@@ -26,7 +26,6 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="report_date")
 	@CreationTimestamp

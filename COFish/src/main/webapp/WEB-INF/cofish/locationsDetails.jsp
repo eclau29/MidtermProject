@@ -142,15 +142,16 @@
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Search</h3>
+				<h3 class="light-modal-heading">Add Report</h3>
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content EMILY! edit here-->
 				
 				<form action="createReport.do" method="POST">
-					<input type ="hidden" value="${location.id }" name="id">
+					<input type ="hidden" value="${location.id }" name="locationId">
 					<input type="hidden" value="${user.userProfile.id }" name="profileId">
+					<input type="hidden" value="true" name="active">
 					<!-- <label for="date">Date: </label>
 					<input type="datetime-local" name="date">
 					<br> -->
@@ -179,19 +180,20 @@
 						aria-label="close" />
 				</form>
 				
-				<form>
-					<label for="caughtFish">Fish Caught: </label>
+				<!-- <form action="createCaughtFish.do" method="POST"> -->
+					<%-- <label for="caughtFish">Fish Caught: </label>
 							<select name="fishType">
-								<c:forEach items="${fishType}">
+								<c:forEach items="${sessionScope.fishType}">
 									<option value="${fishType.name }">Type of Fish: </option>
 								</c:forEach>
 							</select>
-							
+								<!-- line below is a test -->
+								<input type="hidden" name="fishType" value="Rainbow Trout">
 								<label for="lengthInches">Length of Fish (inches): </label>
-								<input type="text" name="lengthInches">
+								<input type="number" name="lengthInches">
 								<br>
 								<label for="weightLbs">Weight of Fish (lbs): </label>
-								<input type="text" name="lengthInches">
+								<input type="number" name="weightLbs">
 								<br>
 								<label for="rodType">Rod Type Used: </label>
 								<input type="text" name="rodType">
@@ -245,7 +247,7 @@
 								<br>
 								<br>
 								<br>
-				</form>
+				</form> --%>
 			</div>
 			<!-- light modal footer -->
 			<div class="light-modal-footer">

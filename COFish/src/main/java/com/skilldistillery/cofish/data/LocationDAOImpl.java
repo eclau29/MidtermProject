@@ -22,7 +22,10 @@ public class LocationDAOImpl implements LocationDAO{
 		
 		@Override//RM done
 		public Report createReport(Report report) {
+			System.err.println("********* in location dao ******** Report: " + report);
 			em.persist(report);
+			System.err.println("********* in location dao after persist******** Report: " + report);
+			
 			em.flush();
 			return report;
 		}

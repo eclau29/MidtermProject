@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.cofish.data.FishDAO;
 import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.UserDAO;
 import com.skilldistillery.cofish.entities.Location;
@@ -28,6 +29,7 @@ public class UserController {
 	@Autowired
 	private UserDAO dao;
 	private LocationDAO locDAO;
+	private FishDAO fishDAO;
 	
 	@RequestMapping(path = "/")
 	public String index(Model model) {
@@ -40,12 +42,14 @@ public class UserController {
 	public String loginUser(HttpSession session, 
 			@RequestParam("userName") String userName, @RequestParam("password") String password ) {
 		session.setAttribute("user", dao.login(userName, password));
+		session.setAttribute("fishType", fishDAO.findAll());
 		return "cofish/userSplash";
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)
 	public String logoutUser(HttpSession session, Model model) {
 		session.removeAttribute("user");
+		session.removeAttribute("fishType");
 		model.addAttribute("user", new User());
 		return "index";
 	}

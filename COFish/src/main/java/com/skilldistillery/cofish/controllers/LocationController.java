@@ -1,12 +1,15 @@
 
 package com.skilldistillery.cofish.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,7 @@ import com.skilldistillery.cofish.data.ReportDAO;
 import com.skilldistillery.cofish.entities.CaughtFish;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
+import com.skilldistillery.cofish.entities.User;
 
 @Controller
 public class LocationController {
@@ -33,13 +37,18 @@ public class LocationController {
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
 	public String findLocationById (int locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
+		List<CaughtFish> caughtFishForReport = new ArrayList<>();
+		model.addAttribute("caughtFishForReport", caughtFishForReport);
 		model.addAttribute("location", foundLocation);
 		return "cofish/locationsDetails";
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
-	public String createReport(Model model, Report report, CaughtFish ...caughtFish) {
-		System.err.println("report details:" + report);
+	public String createReport(int locationId, Model model, Report report, HttpSession session, @RequestParam("caughtFishForReport") CaughtFish ...caughtFish) {
+		Location curLocation = dao.findLocationById(locationId);
+		User curUser = (User) session.getAttribute("user");
+		report.setUserProfile(curUser.getUserProfile());
+		report.setLocation(curLocation);
 		Report newReport = dao.createReport(report);
 		
 		if(caughtFish.length != 0) {
@@ -50,6 +59,7 @@ public class LocationController {
 				}
 			}
 		}	
+		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
 		model.addAttribute("report", newReport);
 		
 		return "cofish/locationsDetails";
