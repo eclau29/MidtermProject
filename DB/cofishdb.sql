@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `location` ;
 
 CREATE TABLE IF NOT EXISTS `location` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `accessibility_id` INT NOT NULL,
   `latitude` DOUBLE NULL,
   `longitude` DOUBLE NULL,
@@ -101,12 +101,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `report` ;
 
 CREATE TABLE IF NOT EXISTS `report` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `profile_id` INT NOT NULL,
   `location_id` INT NOT NULL,
   `comment` VARCHAR(1000) NULL,
   `report_date` DATETIME NULL,
-  `active` TINYINT NULL DEFAULT 1,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_report_location1_idx` (`location_id` ASC),
   INDEX `fk_report_profile_idx` (`profile_id` ASC),
@@ -129,7 +129,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fish_type` ;
 
 CREATE TABLE IF NOT EXISTS `fish_type` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `image_url` VARCHAR(1000) NULL,
   `description` TEXT NULL,
@@ -144,7 +144,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `caught_fish` ;
 
 CREATE TABLE IF NOT EXISTS `caught_fish` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `report_id` INT NOT NULL,
   `fish_type_id` INT NOT NULL,
   `length_inches` DOUBLE NULL,
@@ -174,7 +174,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `location_comment` ;
 
 CREATE TABLE IF NOT EXISTS `location_comment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `location_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
   `comment_date` DATETIME NULL,
@@ -201,7 +201,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
-  `user_profile_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL AUTO_INCREMENT,
   `location_id` INT NOT NULL,
   `rating_date` DATETIME NOT NULL,
   `rating` INT NULL,
@@ -227,7 +227,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `favorite_location` ;
 
 CREATE TABLE IF NOT EXISTS `favorite_location` (
-  `user_profile_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL AUTO_INCREMENT,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`user_profile_id`, `location_id`),
   INDEX `fk_user_profile_has_location_location1_idx` (`location_id` ASC),
@@ -262,6 +262,7 @@ START TRANSACTION;
 USE `cofishdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (1, 'fisher', 'fisher', 'fisher@gmail.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (2, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `active`) VALUES (3, 'toodles', 'toodles', 'toodles@too.com', 'user', 1);
 
 COMMIT;
 
@@ -346,7 +347,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cofishdb`;
-INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `city`, `state`, `about_me`, `date_created`, `image_url`) VALUES (1, 1, 'Bob', 'Fishermen', 'Denver', 'Colorado', 'I fish for food', '2019-07-16 11:09', 'http://dslv9ilpbe7p1.cloudfront.net/bF7svvAwQ1OWrFzbHMnWdQ_store_header_image');
+INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `city`, `state`, `about_me`, `date_created`, `image_url`) VALUES (1, 1, 'Bob', 'Fishermen', 'Denver', 'Colorado', 'I am born and raised in Denvor, I have been fishing for 15 years. I first started fishing when I was 8, my dad took me to The South Platte and I caught my first Rainbow Trout. I have been hooked on fishing since, and have gone fishing almost once a week every week. My favorite fish is the Rainbow Trout. I also fish for food', '2016-07-16 11:09', 'http://dslv9ilpbe7p1.cloudfront.net/bF7svvAwQ1OWrFzbHMnWdQ_store_header_image');
+INSERT INTO `user_profile` (`id`, `user_id`, `first_name`, `last_name`, `city`, `state`, `about_me`, `date_created`, `image_url`) VALUES (2, 3, 'Katherine', 'Barbara', 'Denver', 'Colorado', 'I love fishing, I go fishing whenever I have free time. It relaxes my mind and body, plus I get to enjoy nature to the fullest.', '2017-01-18 12:00', 'https://media.glamour.com/photos/5695e00ad9dab9ff41b4af43/master/w_1600%2Cc_limit/inspired-2015-08-nelly-hand-alaska-fisherman-courtesy-main.jpg');
 
 COMMIT;
 
@@ -363,6 +365,21 @@ INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date
 INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (5, 1, 6, 'Flows at Deckers are currently at 990 cfs. Cheesman reservoir is full and spilling. Flows will likely stay high for the foreseeable future. 2x and 3x fluorocarbon is a must when it comes to landing fish with these big flows. While the flows are high, the water is gin clear. You can expect leeches, worms, PMDs, caddis and stoneflies to be the ticket. Find the slow water created by banks, boulders and bends in the river to find the fish. When you find one, there will likely be more since they are very concentrated in the river. Please exercise extreme caution wading!', '2019-05-10 01:00', 1);
 INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (6, 1, 25, 'Clarity looks good this morning round Salida, and the river has fished extremely since Wednesday considering the above average flows.  Conditions will continue to improve over the next few days with the stable forecast and slowly dropping flows.  Fish are extremely concentrated along the banks and in broken pocket water as they seek refuge from the swift current.  Coincidentally, as stonefly nypmhs migrate to the edges and hatch they become vulnerable, easy food for trout.  This has provided some excellent dry and dry/dropper fishing with large stonefly imitations out along the edges.  Don\'t worry about the fast water in the middle of the river; think small stream tactics right along the shoreline, and you\'ll find success.  Fish are not leader shy, so stock up on heavy leader/tippet material to give yourself a fighting chance at landing your quarry in the fast flow!', '2019-05-20 01:45', 1);
 INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (7, 1, 35, 'It was very cold, don\'t know why I went fishing', '2018-11-25  02:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (8, 2, 1, 'It is my first time at this location and I love it, I caught some fish at this location.', '2018-10-15 12:30', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (9, 2, 7, 'Second time at this location and it still sucks to fish here. I\'ve been here for 4 hours and not a single nibble.', '2019-04-08 2:25', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (10, 2, 15, 'This was my third trip to Belize but my first to Turneffe flats. I\'m in love and will return! Great people, great food, great lodge, fishing variety and the Turneffe Atoll is amazing. If you NEED to catch a permit book a trip they were everywhere!', '2019-01-16 01:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (11, 2, 38, 'Awesome Fishing adventure - travel was easy, met at the airport,and returned to the airport. Did a Mayan ruin on my arrival morning it was excellently guided with much information about the country as well as the Mayans. The accommodations were air conditioned and clean with a friendly staff. Meals were professionally prepared And excellent. I had the best guide ever that took me to some great fishing and beautiful spots to do it. My only complaint was I had to leave', '2018-09-02 09:45', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (12, 1, 46, 'My Daughter and I had the trip of a lifetime fishing at Turneffe Flats Lodge. We had a great Guide, Michael Anderson who helped us catch lots of Bonefish and we each landed very nice Permit This was a great adventure to an island of the coast of Bellize . The Lodge is is remarkable and the setting is wonderful.', '2018-09-14 10:30', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (13, 1, 37, 'Fishing extravaganza- Awesome week of fishing! Guides are proficient and extremely knowledgeable. Loved it and will go back. Highly recommend!!!!! Cabanas are really nice as are all amenities. Food is great. Water is gorgeous. There are flats right outside of the cabanas.', '2019-05-05 11:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (14, 2, 29, 'Does not get better than this- imagine great fly fishing / world class diving / and snorkeling for the wives and non diver-fisherman! mix that up with great guides - perfect gear - pristine location / perfect reef and flats / good food - nice hosts / in paradise.', '2019-04-05 11:20', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (15, 2, 30, 'Great fishing, snorkeling & hospitality - I spent 3 days fishing for Bonefish and snorkeling out front of the property. Great locations, nice accomodations and friendly service. They do everything 1st class - from the boat ride to the property, to the daily service, to the post visit exit survey.', '2019-05-10 11:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (16, 2, 39, 'Turneffe Flats is a special place. The owners Craig and Karen are wonderful people. They have put together a great staff. The fishing is great. The food is great. The whole experience was great. I will go back as soon as I can.', '2019-04-12 12:00', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (17, 1, 19, 'Great permit fishing, great owners and great staff- Just returned from a week chasing permit on the flats and saw more permit in 1 week than my previous 10+ flats trips combined. Craig and Karen are wonderful hosts. Guides and staff were excellent and happy...which says a lot about the work environment. I will go back!', '2019-03-26 12:15', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (18, 2, 17, 'Nothing less than fabulous! We visited Turneffe Flats for one week in September 2015. We Loved the entire vacation, from the snorkeling, to the fabulous fishing, food, and the really wonderful Lodge Owners Karen and Craig. I cannot think of a thing I would change. From the arrival at the airport you are handled with care and shuttled off by boat to this very lovely location in a very special place. This is a location to be cherished on this planet and one feels rather lucky to have had the experience of going. We hope to return in the not too distant future. Perfect vacation from start to finish! No need to waffle on this one.', '2019-02-20 01:25', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (19, 1, 45, 'Just returned from my third visit to T Flats to fly fish for permit, bone fish, and tarpon. The fish cooperated adding to the enjoyment. I\'ve always found the accommodations, food, guides, and staff helpful, cooperative and friendly. The fishing guides are knowledgeable, hard working, and fun to fish with... I shall return.', '2019-03-18 12:45', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (20, 2, 38, 'Best resort in Belize for Fishing & Diving - My husband and I just returned from Turneffe Flats. Everything about the place was great. Even though the wind was blowing we still saw fish. We went to flyfish for Permit, Bonefish and Tarpon. All the staff was so friendly and helpful. The rooms were clean and kept that way. The food was very good and they were very accommodating', '2019-05-13  11:55', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (21, 2, 1, 'Turneffe Flats is a first class operation. From the moment you dock to the van ride to the airport you are treated with courtesy and a friendly smile. We stayed in the waterfront rooms. Comfortable beds and serious hot water make for a relaxing night after a day of fishing. And the sunrise view is spectacular. Fishing was great. And food was also. The staff is always ready to help and will go out of their way to accomodate any special requests. Thanks Craig, Karen, Alex and Roxie for a great week.', '2019-03-15 12:30', 1);
+INSERT INTO `report` (`id`, `profile_id`, `location_id`, `comment`, `report_date`, `active`) VALUES (22, 1, 1, 'I was here for with my family and a friend for 7 nights Christmas week 2013 and we all had an incredible time. The location is perfect for fishing, diving, or just gazing at the ocean. The Garden Villa was spacious and comfortable and the food was always delicious and plentiful. The fishing guides, dive masters, and staff are among the best you could find anywhere. Top notch people all around, from ownership to kitchen porters. Hats off to Craig, \"Dubs\", \"Jad\" and John in particular. My wife got her dive certification and my son his advanced dive certification. I fly fished alone and with my daughter and we had one of the best times of our life. We fell in love with this this place and now dream of returning again someday.', '2019-07-06 11:30', 1);
 
 COMMIT;
 
@@ -413,7 +430,17 @@ INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `
 INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (7, 5, 13, 9, 3.1, 'fly 8 ft 6 in', 'Muddler Minnow', 'Fun reeling');
 INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (8, 6, 16, 12, 3.0, 'fly 8 ft 6 in', 'Griffith\'s Gnat', 'Good Struggle');
 INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (9, 7, 13, 12, 3.0, 'fly 9 ft', 'Black Ghost', 'Fun reeling');
-INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (10, 7, 11, 14, 3.5, 'fly 9 ft', 'Black Ghost', 'fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (10, 7, 11, 14, 3.5, 'fly 9 ft', 'Black Ghost', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (11, 8, 7, 12, 3.5, 'fly 8 ft 6 in', 'Wooley Bugger', 'Only took 15 minutes for it to bite');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (12, 8, 7, 15, 3.8, 'fly 8 ft 6 in', 'Wooley Bugger', 'That took 30 minutes, but a fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (13, 8, 8, 16, 4.3, 'fly 8 ft 6 in', 'Wooley Bugger', 'Good Struggle');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (14, 10, 10, 13, 3.5, 'fly 8 ft 6 in', 'Hoppers/Stimulators/GoldenStone nymph', 'This was a fast catch');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (15, 13, 20, 12, 3.6, 'fly 8 ft 6 in', 'Griffith\'s Gnat', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (16, 15, 21, 14, 3.8, 'fly 9 ft', 'Hoppers/Stimulators/GoldenStone nymph', 'Good Struggle');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (17, 17, 18, 10, 3.4, 'fly 8 ft 6 in', 'Black Ghost', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (18, 18, 22, 9, 2.8, 'fly 9 ft', 'Wooley Bugger', 'Fun reeling');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (19, 20, 23, 15, 3.9, 'fly 8 ft 6 in', 'Griffith\'s Gnat', 'Good Struggle');
+INSERT INTO `caught_fish` (`id`, `report_id`, `fish_type_id`, `length_inches`, `weight_lbs`, `rod_type`, `lure_type`, `comment`) VALUES (20, 14, 14, 11, 3.6, 'fly 9 ft', 'Black Ghost', 'Good Struggle');
 
 COMMIT;
 
@@ -450,6 +477,7 @@ INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 7)
 INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 8);
 INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 20);
 INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (1, 35);
+INSERT INTO `favorite_location` (`user_profile_id`, `location_id`) VALUES (2, 1);
 
 COMMIT;
 
