@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skilldistillery.cofish.data.FishDAO;
 import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.UserDAO;
+import com.skilldistillery.cofish.entities.FishType;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 import com.skilldistillery.cofish.entities.User;
@@ -34,6 +35,9 @@ public class UserController {
 	@RequestMapping(path = "/")
 	public String index(Model model) {
 		model.addAttribute("user", new User());
+		//FIXME
+//		List<FishType> fishType = new ArrayList<FishType>();
+//		model.addAttribute("fishType", fishType);
 		return "index";
 	}
 	
@@ -41,8 +45,11 @@ public class UserController {
 	@RequestMapping(path = "loginUser.do", method = RequestMethod.GET)
 	public String loginUser(HttpSession session, 
 			@RequestParam("userName") String userName, @RequestParam("password") String password ) {
+		System.err.println("User deets: " + userName + " " + password);
 		session.setAttribute("user", dao.login(userName, password));
-		session.setAttribute("fishType", fishDAO.findAll());
+		//FIXME
+//		session.setAttribute("fishType", fishDAO.findAll());
+//		System.err.println(fishDAO.findAll());
 		return "cofish/userSplash";
 	}
 	

@@ -160,28 +160,14 @@
 					<br>
 					<br>
 						
-					<!--  use this for update -->
-					<%-- <label for="caughtFishList">List of Fish: </label>
-						<ul>
-							<c:forEach items="${user.caughtFishList }" var="caughtFish">
-								<li>${caughtFish.fishType.name }</li>
-									<ul>
-										<li>${caughtFish.lengthInches }</li>
-										<li>${caughtFish.weightLbs }</li>
-										<li>${caughtFish.rodType }</li>
-										<li>${caughtFish.lureType }</li>
-										<li>${caughtFish.comment }</li>
-									</ul>
-							</c:forEach>
-						</ul>
-					<br> --%>
+					
 					<input
 						type="submit" value="Submit Form" class="light-modal-close-btn"
 						aria-label="close" />
-				</form>
+				
 				
 				<!-- <form action="createCaughtFish.do" method="POST"> -->
-					<%-- <label for="caughtFish">Fish Caught: </label>
+					<label for="caughtFish">Fish Caught: </label>
 							<select name="fishType">
 								<c:forEach items="${sessionScope.fishType}">
 									<option value="${fishType.name }">Type of Fish: </option>
@@ -247,7 +233,7 @@
 								<br>
 								<br>
 								<br>
-				</form> --%>
+				</form>
 			</div>
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
@@ -376,7 +362,7 @@
 	<!-- Update UserProfile Modal-->
 	
 	<!-- Add Report Modal-->
-	<div class="light-modal" id="addReportModal" role="dialog"
+	<%-- <div class="light-modal" id="addReportModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
@@ -397,7 +383,7 @@
 				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	<!-- Add Report Modal-->
 	
 	<!-- Update Report Modal-->
@@ -406,26 +392,21 @@
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Search</h3>
+				<h3 class="light-modal-heading">Update Report</h3>
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET">
-				
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select>
-					<br> 
-					<br> 
-					 <input type="text" /> 
-					<br> 
-					<br> 
-					<input
-						type="submit" value="Show Locations" class="light-modal-close-btn"
-						aria-label="close" />
+				<form action="updateReport.do" method="GET">
+					<label for="comment">Comment:</label> 
+					<input type="text" name="comment" value="${report.comment}">
+					<br>
+					<label for="">Comment:</label> 
+					<input type="text" name="comment" value="${report.comment}">
+					<br>
+					
+			
+					
 				</form>
 			</div>
 			<!-- light modal footer -->
