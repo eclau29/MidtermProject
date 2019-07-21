@@ -1,49 +1,85 @@
 @charset "UTF-8";
 
- html, body {
-	 height: 100%;
-}
- body {
- color: #FFF;
-  font-family: Helvetica;
-  text-align: center;
-  margin: 0;
-	 display: flex;
-	 align-items: center;
-	 justify-content: center;
-	 flex-direction: column;
-	 position: relative;
-	 font-size: 1.5em;
-	 background-image: url("../images/search_background.png"); 
-	 -webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
- 	 background-size: cover;
- 	 width: 100vw;
-  	 height: 100vh;
-  	 margin: 0;
-     padding: 0;
+
+body {
+	color: #FFF;
+	background-image: url("../images/locations_background.png");
+	background-repeat: no-repeat;
+	background-size: auto;
 }
 
-#main #searchResults {
+.searchResults {
 	overflow-y: scroll;
-    height: 460px;
-    list-style-type: none;
+	height:150px;
 }
 
-
-
-#main {
-	margin: auto;
-	background: #706F74;
-	padding: 20px;
-	width: 300px;
-	height: auto;
-	opacity: 0.96;
-	padding: 20px;
-	
-	border-radius: 15px;
-	border-color: #A239CA;
-	border-style: solid;
-	border-width: 2px;
+.page-data {
+	color: #5995DA;
+	background-color: #D6E9FE;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
 }
+
+/* Location Banner */
+.search-banner-container {
+	color: #fff;
+	background-color: #DD6E42; /* Reddish*/
+	padding: 20px 20px;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.search-banner {
+	background-color: #666;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: 400px;
+}
+/* Location Banner */
+
+/* Location Details */
+.search-results-container {
+	color: #fff;
+	background-color: #E8DAB2; /* Tan */
+	padding: 20px 20px;
+	display: flex;
+	width: 100%;
+}
+
+.search-details {
+	background-color: #666;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: 200px;
+}
+/* Location Details */
+
+/* Report List */
+.map-container {
+	color: #fff;
+	background-color: #4F6D7A; /* Blue */
+	padding: 20px 20px;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.map-details {
+	background-color: #666;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: 400px;
+}
+/* Report List */

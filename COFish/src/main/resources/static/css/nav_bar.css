@@ -51,12 +51,12 @@ a {
   background-color: #4F6D7A;
 }
 
-.container {
+/* .container {
 	 display: grid;
 	 justify-content: center;
 	 align-items: center;
 	 height: 100vh;
-}
+} */
 
 /*  Search Modal */
 .modalDialog {
