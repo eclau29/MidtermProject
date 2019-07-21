@@ -126,7 +126,115 @@
 </div>  --%>
 	<!-- Grid Information-->
 
-	<!-- Search Modal-->
+
+
+		
+		<!-- Create Report Modal-->
+	<div class="light-modal" id="addReportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Add Report</h3>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content EMILY! edit here-->
+				
+				<form action="createReport.do" method="POST">
+					<input type ="hidden" value="${location.id }" name="locationId">
+					<input type="hidden" value="${user.userProfile.id }" name="profileId">
+					<input type="hidden" value="true" name="active">
+					<!-- <label for="date">Date: </label>
+					<input type="datetime-local" name="date">
+					<br> -->
+					<label for="comment">Comment: </label>
+					<input type="text" name="comment">
+					<br>
+					<br>
+						
+					
+					<input
+						type="submit" value="Submit Form" class="light-modal-close-btn"
+						aria-label="close" />
+				
+				<!-- <form action="createCaughtFish.do" method="POST"> -->
+					<label for="caughtFish">Fish Caught: </label>
+							<select name="fishType">
+								<c:forEach items="${sessionScope.fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+								<!-- line below is a test -->
+								<input type="hidden" name="fishType" value="Rainbow Trout">
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="number" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="number" name="weightLbs">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Report Modal-->
+
+<!-- Search Modal-->
 	<div class="light-modal" id="searchModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
@@ -139,12 +247,17 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
-						type="submit" value="Show Locations" class="light-modal-close-btn"
+					Search by <select name="searchCategory">
+						<option value="location" >Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
+					</select>
+					<br> 
+					<br> 
+					 <input type="text" /> 
+					<br> 
+					<br> 
+					<input type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
 				</form>
 			</div>
@@ -241,7 +354,7 @@
 	<!-- Update UserProfile Modal-->
 
 	<!-- Add Report Modal-->
-	<div class="light-modal" id="addReportModal" role="dialog"
+	<%-- <div class="light-modal" id="addReportModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
@@ -265,7 +378,7 @@
 				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	<!-- Add Report Modal-->
 
 	<!-- Report Modal-->
@@ -317,21 +430,23 @@
 			<!-- light modal header -->
 			<div class="light-modal-header">
 				<h3 class="light-modal-heading">Update Report</h3>
+
 				<a href="#updateUserModal" class="light-modal-close-btn"
 					aria-label="close">Commit Update</a>
+
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET">
 
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
-						type="submit" value="Show Locations" class="light-modal-close-btn"
-						aria-label="close" />
+				<form action="updateReport.do" method="GET">
+					<label for="comment">Comment:</label> 
+					<input type="text" name="comment" value="${report.comment}">
+					<br>
+					<label for="">Comment:</label> 
+					<input type="text" name="comment" value="${report.comment}">
+					<br>
+		
 				</form>
 			</div>
 			<!-- light modal footer -->

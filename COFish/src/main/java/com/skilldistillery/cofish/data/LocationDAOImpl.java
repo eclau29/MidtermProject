@@ -22,7 +22,10 @@ public class LocationDAOImpl implements LocationDAO{
 		
 		@Override//RM done
 		public Report createReport(Report report) {
+			System.err.println("********* in location dao ******** Report: " + report);
 			em.persist(report);
+			System.err.println("********* in location dao after persist******** Report: " + report);
+			
 			em.flush();
 			return report;
 		}
@@ -78,41 +81,41 @@ public class LocationDAOImpl implements LocationDAO{
 		@Override
 		public List<Location> locationsByName(String name){
 			String query = "SELECT loc from Location loc WHERE loc.name LIKE :name ";
-			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "%" + name + "%").getResultList();
 			return locationsByName ;
 		}
 		
 		@Override
 		public List<Location> locationsByWaterBody(String name){
 			String query = "SELECT loc from Location loc WHERE loc.waterBody LIKE :name ";
-			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "%" + name + "%").getResultList();
 			return locationsByName ;
 		}
 		
 		@Override
 		public List<Location> locationsByRegion(String name){
 			String query = "SELECT loc from Location loc WHERE loc.area LIKE :name ";
-			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "%" + name + "%").getResultList();
 			return locationsByName ;
 		}
 		
 		@Override
 		public List<Location> locationsByAccessibility(String name){
 			String query = "SELECT loc from Location loc WHERE loc.access.name LIKE :name ";
-			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			List<Location> locationsByName = em.createQuery(query, Location.class).setParameter("name", "%" + name + "%").getResultList();
 			return locationsByName ;
 		}
 		
 		@Override
 		public List<Location> locationByFishName(String name){
 			String query = "SELECT loc FROM Location loc WHERE loc.reports.caughtFishList.fishType.name LIKE :name ";
-			List<Location> locationByFishName = em.createQuery(query, Location.class).setParameter("name", "% " + name + " %").getResultList();
+			List<Location> locationByFishName = em.createQuery(query, Location.class).setParameter("name", "%" + name + "%").getResultList();
 			return locationByFishName;
 		}
 		
 		@Override
 		public List<Location> showAllLocations(){
-			String query = "Select loc From Location loc";
+			String query = "Select loc From Location loc ORDER BY loc.name ASC";
 			List<Location> showAllLocations = em.createQuery(query, Location.class).getResultList();
 			return showAllLocations;
 		}

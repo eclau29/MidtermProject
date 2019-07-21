@@ -86,12 +86,17 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
-
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
+					Search by <select name="searchCategory">
+						<option value="location" >Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
+					</select>
+					<br> 
+					<br> 
+					 <input type="text" name="keyword" /> 
+					<br> 
+					<br> 
+					<input
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
 				</form>

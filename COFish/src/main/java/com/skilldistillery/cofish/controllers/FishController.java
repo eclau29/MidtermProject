@@ -20,7 +20,7 @@ public class FishController {
 	
 	
 	
-	@RequestMapping(path = "showAll.do", method= RequestMethod.GET)
+	@RequestMapping(path = "showAllFishTypes.do", method= RequestMethod.GET)
 	public String showAllFishType(Model model) {
 		List<FishType> allFishType = dao.findAll();
 		model.addAttribute("fishType", allFishType);

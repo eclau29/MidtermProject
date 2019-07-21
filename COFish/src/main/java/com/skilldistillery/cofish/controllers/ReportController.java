@@ -59,15 +59,20 @@ public class ReportController {
 			return "cofish/searchResult";
 		}
 	}
+	
 	@RequestMapping(path = "createCaughtFish.do", method = RequestMethod.POST)
-	public String addCaughtFish(@RequestParam("reportId") int id, CaughtFish caughtFish, Model model) {
-		if(caughtFish.getReport().isActive()) {
-			CaughtFish fish = dao.create(caughtFish);
-			Report newReport = dao.findReportById(id);
-			newReport.addCaughtFish(fish);
-			model.addAttribute("report", newReport);
-		}
-		
+	public String addCaughtFish(@RequestParam("reportId") int id, Model model, CaughtFish ...caughtFish) {
+		if(caughtFish.length != 0) {
+			for (CaughtFish caughtFish2 : caughtFish) {
+				if(caughtFish2.getReport().isActive()) {
+					CaughtFish fish = dao.create(caughtFish2);
+					Report newReport = dao.findReportById(id);
+					newReport.addCaughtFish(fish);
+					model.addAttribute("report", newReport);
+				}
+			}
+			
+		}		
 		return "cofish/searchResult";
 	}
 	
