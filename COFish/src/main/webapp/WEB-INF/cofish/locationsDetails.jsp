@@ -278,7 +278,13 @@
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET"></form>
+				<form action="createReport.do" method="POST">
+				
+				
+				
+				 <input type="submit" value="Add Report" class="light-modal-close-btn" aria-label="close" />
+				
+				</form>
 			</div>
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
