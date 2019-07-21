@@ -26,7 +26,9 @@ public class LocationController {
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
 	public String findLocationById (int locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
+		
 		model.addAttribute("location", foundLocation);
+		
 		return "cofish/locationsDetails";
 	}
 

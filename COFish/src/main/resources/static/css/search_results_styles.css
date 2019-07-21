@@ -24,7 +24,7 @@ body {
 
 /* Location Banner */
 .search-banner-container {
-	color: #fff;
+
 	background-color: #DD6E42; /* Reddish*/
 	padding: 20px 20px;
 	display: flex;
@@ -33,8 +33,8 @@ body {
 }
 
 .search-banner {
-	background-color: #666;
-	color: #fff;
+	background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
 	-moz-border-radius: 5px;
@@ -45,7 +45,6 @@ body {
 
 /* Location Details */
 .search-results-container {
-	color: #fff;
 	background-color: #E8DAB2; /* Tan */
 	padding: 20px 20px;
 	display: flex;
@@ -53,8 +52,8 @@ body {
 }
 
 .search-details {
-	background-color: #666;
-	color: #fff;
+	background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
 	-moz-border-radius: 5px;
@@ -65,7 +64,6 @@ body {
 
 /* Report List */
 .map-container {
-	color: #fff;
 	background-color: #4F6D7A; /* Blue */
 	padding: 20px 20px;
 	display: flex;
@@ -74,8 +72,8 @@ body {
 }
 
 .map-details {
-	background-color: #666;
-	color: #fff;
+	background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
 	-moz-border-radius: 5px;

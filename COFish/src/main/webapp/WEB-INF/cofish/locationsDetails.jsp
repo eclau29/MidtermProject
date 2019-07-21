@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +27,10 @@
 		<!-- Location Banner-->
 		<div class='location-banner-container'>
 			<div class='location-banner'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Location Banner</div>
-				<div class='login'>Login</div>
+				<div class='innerBox'>
+				<div class='locationName'><h3>${location.waterBody}</h3></div>
+				<div class='curDate'><h5>Todays Date - <%= (new java.util.Date())%></h5></div>
+				</div>
 			</div>
 		</div>	
 		<!-- Location Banner-->
@@ -35,8 +38,16 @@
 		<!-- Location Details-->
 		<div class='location-details-container'>
 			<div class='location-details'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Location Details</div>
+				<div class='locationTitle'>
+				<h4>${location.name }</h4>
+				<c:choose>
+				<c:when test="${location.name != location.waterBody}"><h3>${location.waterBody}</h3></c:when>
+				</c:choose>
+				</div>
+				<div class='locatioDescription'>
+				Location Details
+				<p></p>
+				</div>
 				<div class='login'>Login</div>
 			</div>
 		</div>
@@ -45,9 +56,12 @@
 		<!-- Report List-->
 		<div class='report-list-container'>
 			<div class='current-report-details'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Report List</div>
-				<div class='login'>Login</div>
+				<h3>Current Reports</h3>
+				<c:forEach items="${location.reports}" var="report">
+				<div class='report'>
+				<a  class="reportLink" href="#${report.id}"  aria-label="close">${report.date} <br> By: ${report.userProfile.user.userName} | Fish Caught: ${fn:length(report.caughtFishList)}</a>
+				</div>
+				</c:forEach>
 			</div>
 		</div>
 		<!-- Report List-->
@@ -100,7 +114,7 @@
         		<br>
         		Region: ${location.area }
         		<br>
-        		<a href="${location.mapUrl }">Map of Location</a>
+        		<a href="${location.mapUrl}">Map of Location</a>
         		<br>
         		Accessibility: ${location.access.name }
         		<br>
@@ -108,49 +122,9 @@
         		<br>
         		Fishing Notes: ${location.fishingNotes}</p>
         	
-        	
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-     <div class="w3-container w3-white">
-        <p><b>List of Reports for This Location</b></p>
-        <p>
-        	<c:forEach items="${location.reports }" var="report">
-        		<p>
-        		Posted By: ${report.userProfile.firstName }
-        		<br>
-        		Date of Report: ${report.date }
-        		<br>
-        		Fish Caught at this Location:
-        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
-        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs } lbs
-        				<br>
-        				Rod Type: ${caughtFish.rodType }
-        				<br>
-        				Lure Type: ${caughtFish.lureType }
-        				<br>
-        			</c:forEach>
-        		<br>
-        		Comment: ${report.comment }
-        		<br>
-        		</p>
-        		
-        	
-        	</c:forEach>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<div>
+       
 </div>  --%>
 	<!-- Grid Information-->
-
-
-
-
-
-
 
 	<!-- Search Modal-->
 	<div class="light-modal" id="searchModal" role="dialog"
@@ -302,7 +276,7 @@
 				<!-- light modal header -->
 				<div class="light-modal-header">
 					<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
-						Report</h3>
+						Report On ${report.date}</h3>
 					<c:choose>
 						<c:when test="${user.id eq report.userProfile.user.id}">
 							<a href="#updateUserReportModal" class="light-modal-close-btn"
@@ -319,12 +293,12 @@
 						<c:forEach items="${report.caughtFishList }" var="caughtFish">
         				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs
         				<br>
-        				Rod Type: ${caughtFish.rodType }
+        				<b>Rod Type:</b> ${caughtFish.rodType }
         				<br>
-        				Lure Type: ${caughtFish.lureType }
+        				<b>Lure Type:</b> ${caughtFish.lureType }
         				<br>
 						</c:forEach>
-						<br> Comment: ${report.comment } <br>
+						<br> <b>Comment:</b> ${report.comment } <br>
 					</p>
 				</div>
 				<!-- light modal footer -->
