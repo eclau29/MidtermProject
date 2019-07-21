@@ -51,7 +51,7 @@
   </form>
   <!--  Register form (end)-->
   <!--  Guest form (start)-->
-  <form action="getSearchResults.do" method="GET">
+  <form action="showAllLocations.do" method="GET">
   <input class='lf--guest' type='submit' value='GUEST'>
   </form>
   <!--  Guest form (end)-->

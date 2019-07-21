@@ -1,35 +1,81 @@
 @charset "UTF-8";
 
- html, body {
-	 height: 100%;
-}
+
  body {
- color: #FFF;
-  font-family: Helvetica;
-  text-align: center;
-  margin: 0;
-	 display: flex;
-	 align-items: center;
-	 justify-content: center;
-	 flex-direction: column;
-	 position: relative;
-	 font-size: 1.5em;
-	 background-image: url("../images/user_background.png"); 
-	 -webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
- 	 background-size: cover;
- 	 width: 100vw;
-  	 height: 100vh;
-  	 margin: 0;
-     padding: 0;
-}
-
-.floatingMedia {
+  color: #FFF;
+  background-image: url("../images/locations_background.png"); 
+  background-repeat: no-repeat;
+  background-size: auto;
 	
 }
 
-.innerMedia {
-	
+
+.page-data {
+  color: #5995DA;
+  background-color: #D6E9FE;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height:100%;
 }
 
+/* User Banner */
+.user-banner-container {
+  background-color: #DD6E42;  /* Reddish*/
+  padding: 20px 20px;
+   display: flex;
+   width: 100%;
+   justify-content: flex-end;
+}
+
+.user-banner {
+   background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;  /* For debugging */
+  width: 400px;
+  
+}
+/* User Banner */
+
+/* User Reports Details */
+.user-reports-container{
+  background-color: #E8DAB2;  /* Tan */
+  padding: 20px 20px;
+   display: flex;
+   width: 100%;
+   
+}
+
+.reports-details {
+   background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;  /* For debugging */
+  width: 200px;
+}
+/* User Reports Details */
+
+/* Favorites List */
+.favorites-container {
+  background-color: #4F6D7A;  /* Blue */
+  padding: 20px 20px;
+   display: flex;
+   width: 100%;
+   
+}
+
+.favorites-details {
+   background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;  /* For debugging */
+  width: 150px;
+}
+/* Favorites List */

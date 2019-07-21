@@ -9,13 +9,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.cofish.data.FishDAO;
 import com.skilldistillery.cofish.data.LocationDAO;
+
 import com.skilldistillery.cofish.data.ReportDAO;
+
 import com.skilldistillery.cofish.entities.CaughtFish;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
@@ -26,6 +31,7 @@ public class LocationController {
 
 	@Autowired
 	private LocationDAO dao;
+	private FishDAO daoFish;
 	
 	private ReportDAO reportDao;
 	
@@ -37,13 +43,17 @@ public class LocationController {
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
 	public String findLocationById (int locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
+
 		List<CaughtFish> caughtFishForReport = new ArrayList<>();
 		model.addAttribute("caughtFishForReport", caughtFishForReport);
+
 		model.addAttribute("location", foundLocation);
+		
 		return "cofish/locationsDetails";
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
+
 	public String createReport(int locationId, Model model, Report report, HttpSession session, @RequestParam("caughtFishForReport") CaughtFish ...caughtFish) {
 		Location curLocation = dao.findLocationById(locationId);
 		User curUser = (User) session.getAttribute("user");
@@ -55,11 +65,14 @@ public class LocationController {
 			for (CaughtFish caughtFish2 : caughtFish) {
 				if(caughtFish2.getReport().isActive()) {
 					CaughtFish fish = reportDao.create(caughtFish2);
+
 					newReport.addCaughtFish(fish);
 				}
 			}
 		}	
+
 		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
+
 		model.addAttribute("report", newReport);
 		
 		return "cofish/locationsDetails";

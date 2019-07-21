@@ -55,7 +55,7 @@
 }
  @media screen and (min-width: 300px) {
 	 .login-form {
-		 width: 25vw;
+		 width: auto;
 		 max-width: 15em;
 	}
 }
