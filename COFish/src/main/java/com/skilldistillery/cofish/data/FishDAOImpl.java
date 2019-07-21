@@ -44,6 +44,7 @@ public class FishDAOImpl implements FishDAO {
 	
 	@Override
 	public FishType findByIdFishType(int id) {
+		System.err.println(id + "****************************************************888888888");
 		return em.find(FishType.class, id);
 	}
 	

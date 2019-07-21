@@ -29,7 +29,9 @@ public class UserController {
 		
 	@Autowired
 	private UserDAO dao;
+	@Autowired
 	private LocationDAO locDAO;
+	@Autowired
 	private FishDAO fishDAO;
 	
 	@RequestMapping(path = "/")
