@@ -21,14 +21,16 @@ public interface LocationDAO {
 
 	public Location removeReportFromLocation(Report report, int locationId);
 
-	List<Location> locationsByName(String name);
+	public List<Location> locationsByName(String name);
 
-	List<Location> locationsByWaterBody(String name);
+	public List<Location> locationsByWaterBody(String name);
 
-	List<Location> locationsByRegion(String name);
+	public List<Location> locationsByRegion(String name);
 
-	List<Location> locationsByAccessibility(String name);
+	public List<Location> locationsByAccessibility(String name);
 
-	List<Location> locationByFishName(String name);
+	public List<Location> locationByFishName(String name);
+
+	public List<Location> showAllLocations();
 
 }

@@ -4,24 +4,60 @@
 	 height: 100%;
 }
  body {
- color: #FFF;
-  font-family: Helvetica;
-  text-align: center;
-  margin: 0;
-	 display: flex;
-	 align-items: center;
-	 justify-content: center;
-	 flex-direction: column;
-	 position: relative;
-	 font-size: 1.5em;
-	 background-image: url("../images/locations_background.png"); 
-	 -webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
- 	 background-size: cover;
- 	 width: 100vw;
-  	 height: 100vh;
-  	 margin: 0;
-     padding: 0;
+  color: #FFF;
+  background-image: url("../images/locations_background.png"); 
+	
 }
+
+.location-details-container {
+  color: #fff;
+  background-color: #DD6E42;  /* Reddish*/
+  padding: 20px 20px;
+   display: flex;
+}
+
+.location-details {
+  border: 1px solid #fff;  /* For debugging */
+  width: 900px;
+}
+
+.report-list-container {
+  color: #fff;
+  background-color: #E8DAB2;  /* Tan */
+  padding: 20px 20px;
+   display: flex;
+   width: 300px;
+   
+}
+
+.report-list-details {
+  border: 1px solid #fff;  /* For debugging */
+  width: 900px;
+}
+
+.current-report-container {
+  color: #fff;
+  background-color: #4F6D7A;  /* Blue */
+  padding: 20px 20px;
+  display: flex;
+  
+  
+  
+  width: 500px;
+  position: relative;
+  left: 50%;
+  margin-left: -450px;
+  top: 50%;
+  margin-top: -50px;
+}
+
+.current-report-details {
+  border: 1px solid #fff;  /* For debugging */
+ width: 900px;
+}
+
+
+
+
+
 

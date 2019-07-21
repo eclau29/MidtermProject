@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>User Portal</title>
 <link rel="stylesheet" href="css/search_results_styles.css">
-<link rel="stylesheet" href="css/Animate.css">
+<!-- animate is giving a 404 so commented out -->
+<!-- <link rel="stylesheet" href="css/Animate.css"> -->
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="/css/nav_bar.css">
@@ -18,40 +19,38 @@
 </head>
 <body>
 
-
 <div class="wrapper">
   <h1>Static Layout</h1>
   <header> Search Results </header>
+  </div>
   
-<ul class="topnav">
-  <li><a href="getUserSplash.do">Home</a></li>
-  <li><a class="btn" href="#searchModal">Search</a></li>
-  <li><a href="getSearchResults.do">Locations</a></li>
-  <li class="right"><a href="logoutUser.do">Logout</a></li>
-  <li><a class="btn" href="#userModal">User Profile</a></li>
-</ul>
+        <!-- Nav Bar -->
+		<ul class="botnav">
+			<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
+			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<li id="navLeft"><a class="btn" href="#userModal">User Profile</a></li>
+			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
+		</ul>
+		<!-- Nav Bar -->
 
    <!-- Grid Information-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      
-      <div class="w3-container w3-white">
-        <p><b>Reports</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      
-      <div class="w3-container w3-white">
+
+      <div id="main">
         <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <ul id="searchResults"  style="list-style: none;">
+        <c:forEach items="${allLocations }" var="location">
+        <li><a href="findLocationById.do?locationId=${location.id }">${location.name }</a></li>
+        </c:forEach>
+        </ul>
       </div>
-    </div>
     
-  </div>
-</div>
-<div>
-</div>
+<!-- Grid Information-->
+
+
+
+
+
 
 
 

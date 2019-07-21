@@ -30,8 +30,8 @@ public class UserController {
 	private LocationDAO locDAO;
 	
 	@RequestMapping(path = "/")
-	public String index() {
-		
+	public String index(Model model) {
+		model.addAttribute("user", new User());
 		return "index";
 	}
 	
@@ -44,16 +44,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)
-	public String logoutUser(HttpSession session) {
+	public String logoutUser(HttpSession session, Model model) {
 		session.removeAttribute("user");
+		model.addAttribute("user", new User());
 		return "index";
 	}
 	
 	@RequestMapping(path = "registerNewUser.do", method = RequestMethod.POST)
-		public String registerNewUser(HttpSession session, @Valid User user) {
-		User newUser = dao.registerUser(user);
-		System.err.println(newUser);
-		if(newUser != null) {
+		public String registerNewUser(HttpSession session, @Valid User user, Errors errors) {
+		System.err.println(user);
+		if(errors.getErrorCount() == 0) {
+			User newUser = dao.registerUser(user);
 			session.setAttribute("user", newUser);
 			
 			return "cofish/userSplash";
@@ -61,6 +62,11 @@ public class UserController {
 		else {
 			return "index";
 		}
+	}
+	@RequestMapping(path = "registerNewUser.do", method = RequestMethod.GET)
+	public String registerNewUser(Model model) {
+		model.addAttribute("user", new User());
+			return "index";
 	}
 	
 	@RequestMapping(path = "getUserSplash.do")

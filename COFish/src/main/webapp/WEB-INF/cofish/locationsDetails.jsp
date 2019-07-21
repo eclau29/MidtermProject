@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>User Portal</title>
 <link rel="stylesheet" href="css/location_details_styles.css">
-<link rel="stylesheet" href="css/Animate.css">
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="/css/nav_bar.css">
@@ -19,25 +18,49 @@
 <body>
 
 
-<div class="wrapper">
-  <h1>Static Layout</h1>
-  <header> Location Details Page </header>
-  
-  <!-- Nav Bar-->
-<ul class="topnav">
-  <li><a href="getUserSplash.do">Home</a></li>
-  <li><a class="btn" href="#searchModal">Search</a></li>
-  <li><a href="getSearchResults.do">Locations</a></li>
-  <li><a class="btn" href="#userModal">User Profile</a></li>
-  <li class="right"><a href="logoutUser.do">Logout</a></li>
-</ul>
-<!-- Nav Bar-->
 
-   <!-- Grid Information-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
+  
+ 	
+   <!-- Page Information-->
+  
+    <div class='location-details-container'>
+      <div class='location-details'>
+        <div class='date'>Aug 14, 2016</div>
+        <div class='signup'>Location Details</div>
+        <div class='login'>Login</div>
+      </div>
+    </div>
+    
+    <div class='location-details--container'>
+      <div class='location-details'>
+        <div class='date'>Aug 14, 2016</div>
+        <div class='signup'>Location Details</div>
+        <div class='login'>Login</div>
+      </div>
+    </div>
+    
+    <div class='report-list-container'>
+      <div class='report-list-details'>
+        <div class='date'>Aug 14, 2016</div>
+        <div class='signup'>Report List</div>
+        <div class='login'>Login</div>
+      </div>
+    </div>
+    
+    <div class='current-report-container'>
+      <div class='current-report-details'>
+        <div class='date'>Aug 14, 2016</div>
+        <div class='signup'>Current Report</div>
+        <div class='login'>Login</div>
+      </div>
+    </div>
+<!-- Page Information-->
+    
+            
+ <%--   <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom w3-margin-top">
       
-      <div class="w3-container w3-white">
+      <div class="w3-container w3-white w3-padding-64">
         <p><b>Reports</b></p>
         <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
       </div>
@@ -45,22 +68,192 @@
     <div class="w3-third w3-container w3-margin-bottom">
       
       <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p><b>Location Details</b></p>
+        	Note: CSS doesn't like <ul> and <li> tags...
+        	
+        		<p>Location Name: ${location.name }
+        		<br>
+        		Body of Water: ${location.waterBody }
+        		<br>
+        		Region: ${location.area }
+        		<br>
+        		<a href="${location.mapUrl }">Map of Location</a>
+        		<br>
+        		Accessibility: ${location.access.name }
+        		<br>
+        		Location Description: ${location.description}
+        		<br>
+        		Fishing Notes: ${location.fishingNotes}</p>
+        	
+        	
       </div>
     </div>
     <div class="w3-third w3-container">
      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p><b>List of Reports for This Location</b></p>
+        <p>
+        	<c:forEach items="${location.reports }" var="report">
+        		<p>
+        		Posted By: ${report.userProfile.firstName }
+        		<br>
+        		Date of Report: ${report.date }
+        		<br>
+        		Fish Caught at this Location:
+        			<c:forEach items="${report.caughtFishList }" var = "caughtFish">
+        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs } lbs
+        				<br>
+        				Rod Type: ${caughtFish.rodType }
+        				<br>
+        				Lure Type: ${caughtFish.lureType }
+        				<br>
+        			</c:forEach>
+        		<br>
+        		Comment: ${report.comment }
+        		<br>
+        		</p>
+        		
+        	
+        	</c:forEach>
+        </p>
       </div>
     </div>
   </div>
 </div>
 <div>
-</div>
+</div>  --%>
 <!-- Grid Information-->
 
+
+
+<!-- Nav Bar -->
+		<ul class="botnav">
+			<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
+			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<li id="navLeft"><a class="btn" href="#userModal">User Profile</a></li>
+			<li id="navLeft"><a class="btn" href="#addReportModal">Add Report</a></li>
+			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
+		</ul>
+		<!-- Nav Bar -->
+		
+		<!-- Create Report Modal-->
+	<div class="light-modal" id="addReportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Search</h3>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content EMILY! edit here-->
+				
+				<form action="createReport.do" method="POST">
+					<input type ="hidden" value="${location.id }" name="id">
+					<input type="hidden" value="${user.userProfile.id }" name="profileId">
+					<!-- <label for="date">Date: </label>
+					<input type="datetime-local" name="date">
+					<br> -->
+					<label for="comment">Comment: </label>
+					<input type="text" name="comment">
+					<br>
+					<br>
+						
+					<!--  use this for update -->
+					<%-- <label for="caughtFishList">List of Fish: </label>
+						<ul>
+							<c:forEach items="${user.caughtFishList }" var="caughtFish">
+								<li>${caughtFish.fishType.name }</li>
+									<ul>
+										<li>${caughtFish.lengthInches }</li>
+										<li>${caughtFish.weightLbs }</li>
+										<li>${caughtFish.rodType }</li>
+										<li>${caughtFish.lureType }</li>
+										<li>${caughtFish.comment }</li>
+									</ul>
+							</c:forEach>
+						</ul>
+					<br> --%>
+					<input
+						type="submit" value="Submit Form" class="light-modal-close-btn"
+						aria-label="close" />
+				</form>
+				
+				<form>
+					<label for="caughtFish">Fish Caught: </label>
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+								
+								
+							<select name="fishType">
+								<c:forEach items="${fishType}">
+									<option value="${fishType.name }">Type of Fish: </option>
+								</c:forEach>
+							</select>
+							
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Report Modal-->
 
 <!-- Search Modal-->
 	<div class="light-modal" id="searchModal" role="dialog"
@@ -75,10 +268,10 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 				
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
+					Search by <select name="searchCategory">
+						<option value="location" >Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
 					</select>
 					<br> 
 					<br> 
@@ -137,6 +330,8 @@
 	</div>
 	<!-- UserProfile Modal-->
 	
+	
+	
 	<!-- Update UserProfile Modal-->
 	<div class="light-modal" id="updateUserModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
@@ -177,6 +372,67 @@
 		</div>
 	</div>
 	<!-- Update UserProfile Modal-->
+	
+	<!-- Add Report Modal-->
+	<div class="light-modal" id="addReportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Add Report to ${location.name }</h3>
+				
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<form action="getSearchResults.do" method="GET">
+				
+					
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Add Report Modal-->
+	
+	<!-- Update Report Modal-->
+	<div class="light-modal" id="updateReportModal" role="dialog"
+		aria-labelledby="light-modal-label" aria-hidden="false">
+		<div class="light-modal-content animated zoomInUp">
+			<!-- light modal header -->
+			<div class="light-modal-header">
+				<h3 class="light-modal-heading">Search</h3>
+			</div>
+			<!-- light modal body -->
+			<div class="light-modal-body">
+				<!-- My Content -->
+				<form action="getSearchResults.do" method="GET">
+				
+					Search by <select>
+						<option value="location">Location:</option>
+						<option value="fish">Fish:</option>
+						<option value="accessibility">Accessibility:</option>
+					</select>
+					<br> 
+					<br> 
+					 <input type="text" /> 
+					<br> 
+					<br> 
+					<input
+						type="submit" value="Show Locations" class="light-modal-close-btn"
+						aria-label="close" />
+				</form>
+			</div>
+			<!-- light modal footer -->
+			<div class="light-modal-footer">
+				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+			</div>
+		</div>
+	</div>
+	<!-- Update Report Modal-->
 
 
 </body>

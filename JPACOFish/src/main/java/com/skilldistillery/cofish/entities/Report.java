@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Report {
 	
@@ -24,8 +26,10 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="report_date")
+	@CreationTimestamp
 	private Date date;
 	
 //	@Column(name="user_id")

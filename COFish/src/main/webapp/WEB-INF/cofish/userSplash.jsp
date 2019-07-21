@@ -27,7 +27,7 @@
 		</div>
 		
 		<!-- Grid Information-->
-		<div class="floatingMedia" margin:>
+		<div class="floatingMedia">
 			<div class="innerMedia">
                 <h2 class="userHomeTitle">
                     GRADIENT BACKGROUND
@@ -41,12 +41,12 @@
 		
 		
 		<!-- Nav Bar -->
-		<ul class="topnav">
-			<li><a href="getUserSplash.do">Home</a></li>
-			<li><a class="btn" href="#searchModal">Search</a></li>
-			<li><a href="getSearchResults.do">Locations</a></li>
-			<li><a class="btn" href="#userModal">User Profile</a></li>
-			<li class="right"><a href="logoutUser.do">Logout</a></li>
+		<ul class="botnav">
+			<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
+			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<li id="navLeft"><a class="btn" href="#userModal">User Profile</a></li>
+			<li id="navRight" class="right"><a href="logoutUser.do">Logout</a></li>
 		</ul>
 		<!-- Nav Bar -->
 
@@ -63,14 +63,14 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 				
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
+					Search by <select name="searchCategory">
+						<option value="location" >Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
 					</select>
 					<br> 
 					<br> 
-					 <input type="text" /> 
+					 <input type="text" name="keyword" /> 
 					<br> 
 					<br> 
 					<input

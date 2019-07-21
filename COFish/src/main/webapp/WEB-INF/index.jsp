@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,18 +69,22 @@
             <!-- light modal body -->
             <div class="light-modal-body">
                 <!-- Your content -->
-                <form action="registerNewUser.do" method="POST" id="registerForm">
-			Enter User Name: <input type="text" name="userName" /> 
+                <form:form action="registerNewUser.do" method="POST" id="registerForm" modelAttribute="user">
+			Enter User Name: <form:input type="text" path="userName" /> 
 			<br>
-			Enter Email Name: <input type="text" name="email"/>
+			Enter Email Name: <form:input type="text" path="email"/>
+				<form:errors path="email" />
 			<br>
 			<br> 
-			Enter Password: <input type="text" name="password"/> 
+			Enter Password: <form:input type="text" path="password"/>
+			<input type="hidden" name="role" value="user"> 
+			<input type="hidden" name="active" value="true">
+				<form:errors path="password" />
 			<!-- <br>
 			Enter Confirm: <input type="text" />  -->
 			<br>
 			<br>
-		</form>
+		</form:form>
             </div>
             <!-- light modal footer -->
             <div class="light-modal-footer">
