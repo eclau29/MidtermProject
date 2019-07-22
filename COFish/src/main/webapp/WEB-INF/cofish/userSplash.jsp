@@ -60,7 +60,7 @@
 				</c:when>
 			</c:choose>
 			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
-			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<li id="navLeft"><a href="showAllLocations.do">All Locations</a></li>
 			<c:choose>
 				<c:when test="${sessionScope.user != null}">
 					<li id="navLeft"><a class="btn" href="#userModal">User
@@ -86,7 +86,6 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
-<<<<<<< HEAD
 				
 					Search by <select name="searchCategory">
 						<option value="location" >Body of Water:</option>

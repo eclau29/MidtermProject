@@ -22,6 +22,7 @@ import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.ReportDAO;
 
 import com.skilldistillery.cofish.entities.CaughtFish;
+import com.skilldistillery.cofish.entities.FishType;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 import com.skilldistillery.cofish.entities.User;
@@ -31,21 +32,33 @@ public class LocationController {
 
 	@Autowired
 	private LocationDAO dao;
+	@Autowired
 	private FishDAO daoFish;
-	
+	@Autowired
 	private ReportDAO reportDao;
 	
 	@RequestMapping(path = "getReportDetails.do", method = RequestMethod.GET)
-	public void populateReportDatails(int reportId, Model model) {
+	public String populateReportDatails(int reportId, Model model) {
 		model.addAttribute("reportDetails", dao.searchReportById(reportId));
+		return "cofish/locationsDetails";
 	}
+//	@RequestMapping(path = "getReportDetails.do", method = RequestMethod.GET)
+//	public void populateReportDatails(int reportId, Model model) {
+//		model.addAttribute("reportDetails", dao.searchReportById(reportId));
+//	}
 	
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
-	public String findLocationById (int locationId, Model model) {
+	public String findLocationById (Integer locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
-
-		List<CaughtFish> caughtFishForReport = new ArrayList<>();
-		model.addAttribute("caughtFishForReport", caughtFishForReport);
+		List<Report> locationReports = foundLocation.getReports();
+		
+		for (Report report : locationReports) {
+			List<CaughtFish> reportsFish = report.getCaughtFishList();
+			System.out.println(reportsFish.size());
+		}
+		
+		List<FishType> curFishList = daoFish.findAll();
+		model.addAttribute("fishList", curFishList);
 
 		model.addAttribute("location", foundLocation);
 		
@@ -53,34 +66,73 @@ public class LocationController {
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
-
-	public String createReport(int locationId, Model model, Report report, HttpSession session, @RequestParam("caughtFishForReport") CaughtFish ...caughtFish) {
-		Location curLocation = dao.findLocationById(locationId);
+	public String createReport(int locationId, Model model, Report report, HttpSession session
+								, CaughtFish caughtFishForReport, @RequestParam("fishTypeId") Integer fishTypeId){
+System.err.println("--------------------Fish Type ID: " + fishTypeId);
+		System.err.println("Caught Fish object coming in " + caughtFishForReport);
+		
 		User curUser = (User) session.getAttribute("user");
+		Location curLocation = dao.findLocationById(locationId);
 		report.setUserProfile(curUser.getUserProfile());
 		report.setLocation(curLocation);
 		Report newReport = dao.createReport(report);
 		
-		if(caughtFish.length != 0) {
-			for (CaughtFish caughtFish2 : caughtFish) {
-				if(caughtFish2.getReport().isActive()) {
-					CaughtFish fish = reportDao.create(caughtFish2);
-
-					newReport.addCaughtFish(fish);
-				}
-			}
-		}	
-
-		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
-
+		FishType caughtFishType = daoFish.findByIdFishType(fishTypeId);
+		caughtFishForReport.setFishType(caughtFishType);
+		caughtFishForReport.setReport(newReport);
+		CaughtFish cf = daoFish.create(caughtFishForReport);
+		
+		newReport.addCaughtFish(cf);
+		newReport = dao.updateReport(newReport.getId(), newReport);
+		
+		List<FishType> curFishList = daoFish.findAll();
+		model.addAttribute("fishList", curFishList); //of type FishType
+		
+		List<CaughtFish> caughtFishList = new ArrayList<>();
+		System.err.println("IN LOCATION CONTORLLER new report added: " + newReport.getCaughtFishList().size());
 		model.addAttribute("report", newReport);
 		
 		return "cofish/locationsDetails";
 	}
+//	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
+//	public String createReport(int locationId, Model model, Report report, HttpSession session
+//			, @RequestParam("caughtFishForReport") int caughtFishId){
+//		System.out.println("Caught fish ID: " + caughtFishId); //tiger muskie
+//		CaughtFish cf = daoFish.findByIdCaughtFish(caughtFishId);
+//		Location curLocation = dao.findLocationById(locationId);
+//		User curUser = (User) session.getAttribute("user");
+//		report.setUserProfile(curUser.getUserProfile());
+//		report.setLocation(curLocation);
+//		report.addCaughtFish(cf);
+//		Report newReport = dao.createReport(report);
+//		List<FishType> curFishList = daoFish.findAll();
+//		model.addAttribute("fishList", curFishList); //of type FishType
+//		
+//		List<CaughtFish> caughtFishList = new ArrayList<>();
+//		
+//		
+////		caughtFishList.add(caughtFish);
+////		if(caughtFish.length != 0) {
+////			for (CaughtFish caughtFish2 : caughtFish) {
+////				if(caughtFish2.getReport().isActive()) {
+////					CaughtFish fish = reportDao.create(caughtFish2);
+////
+////					newReport.addCaughtFish(fish);
+////				}
+////			}
+////		}	
+////
+////		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
+//		System.err.println("IN LOCATION CONTORLLER new report added: " + newReport.getCaughtFishList().size());
+//		model.addAttribute("report", newReport);
+//		
+//		return "cofish/locationsDetails";
+//	}
 
 	@RequestMapping(path = "updateReport.do", method = RequestMethod.POST)
-	public String updateReport(@RequestParam("reportId") int id, Model model, Report report) {
-
+	public String updateReport(@RequestParam int id, Model model, Report report) {
+		System.err.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + report);
+		System.err.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + id);
 		Report newReport = dao.updateReport(id, report);
 		model.addAttribute("report", newReport);
 		return "cofish/locationsDetails";
@@ -105,7 +157,7 @@ public class LocationController {
 	public String removeReport(Model model, @RequestParam("reportId") int id, int locationId) {
 			Report reportToRemove = dao.searchReportById(id);
 			dao.removeReportFromLocation(reportToRemove, locationId);
-			
+//			dao.findAllReports(locationId);
 			return "cofish/locationsDetails";
 	}
 	

@@ -84,4 +84,11 @@ public class ReportController {
 		
 	}
 	
+	@RequestMapping(path="deleteReport.do", method = RequestMethod.POST)
+	public String deleteReport(@RequestParam("reportId") int id) {
+		System.err.println("***********REPORT ID COMING IN TO DELETE REPORT METHOD: " + id);
+		dao.deleteReport(id);
+		return "cofish/locationsDetails";
+	}
+	
 }

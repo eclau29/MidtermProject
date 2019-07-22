@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Report {
 	@JoinColumn(name="profile_id")
 	private UserProfile userProfile;
 	
-	@OneToMany(mappedBy="report")
+	@OneToMany(mappedBy="report",fetch=FetchType.EAGER)
 	private List<CaughtFish> caughtFishList;
 	
 	private boolean active;
@@ -53,13 +54,14 @@ public class Report {
 	// M E T H O D S
 	
 	public void addCaughtFish (CaughtFish caughtFish) {
+		System.err.println("caught fish top of addCF" + caughtFish);
 		if (caughtFishList == null) {
 			caughtFishList = new ArrayList<>();
 		}
 		
 		if (!caughtFishList.contains(caughtFish)) {
 			caughtFishList.add(caughtFish);
-			
+			System.err.println("caught fish after add.CF" + caughtFish);
 			if (caughtFish.getReport() != null) {
 				caughtFish.getReport().getCaughtFishList().remove(caughtFish);
 			}
@@ -112,7 +114,7 @@ public class Report {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Report [id=").append(id).append(", date=").append(date).append(", comment=").append(comment)
+		builder.append("Report [id=").append(id).append(", date=").append(date).append(", comment=").append(comment).append(", Fish Caught=").append(caughtFishList)
 				.append("]");
 		return builder.toString();
 	}

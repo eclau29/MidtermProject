@@ -49,6 +49,7 @@
 		<!-- Map Details-->
 		<div class='map-container'>
 			<div class='map-details'>
+
 				<div id="map"></div>
     <script>
     var map;
@@ -85,6 +86,7 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5Cu9_ocZUjeCAfmNH3GqaMU-rOIm_Fg&callback=initMap"
         async defer></script>
+
 			</div>
 		</div>
 		<!-- Extra Details-->
@@ -97,7 +99,7 @@
 				</c:when>
 			</c:choose>
 			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>
-			<li id="navLeft"><a href="showAllLocations.do">Locations</a></li>
+			<li id="navLeft"><a href="showAllLocations.do">All Locations</a></li>
 			<c:choose>
 				<c:when test="${sessionScope.user != null}">
 					<li id="navLeft"><a class="btn" href="#userModal">User
