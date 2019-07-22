@@ -2,17 +2,19 @@ package com.skilldistillery.cofish.controllers;
 
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.cofish.data.FishDAO;
+import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.ReportDAO;
 import com.skilldistillery.cofish.entities.CaughtFish;
+import com.skilldistillery.cofish.entities.FishType;
+import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 
 @Controller
@@ -20,6 +22,12 @@ public class ReportController {
 
 	@Autowired
 	private ReportDAO dao;
+	
+	@Autowired
+	private LocationDAO daoL;
+	
+	@Autowired
+	private FishDAO daoFish;
 //
 ////	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
 ////	public String createReport(Model model, Errors errors, Report report) {
@@ -80,14 +88,20 @@ public class ReportController {
 	public String directCaughtFish(@RequestParam("reportId") int id, Model model) {
 		List <CaughtFish> fishCaught = dao.findCaughtFishByReportId(id);
 		model.addAttribute("caughtFish", fishCaught);
+		
 		return "updateCaughtFish";
 		
 	}
 	
 	@RequestMapping(path="deleteReport.do", method = RequestMethod.POST)
-	public String deleteReport(@RequestParam("reportId") int id) {
+	public String deleteReport(@RequestParam("reportId") int id, Model model) {
 		System.err.println("***********REPORT ID COMING IN TO DELETE REPORT METHOD: " + id);
+		Report report = dao.findReportById(id);
 		dao.deleteReport(id);
+		Location newLocation = daoL.findLocationById(report.getLocation().getId());
+		model.addAttribute("location", newLocation);
+		List<FishType> curFishList = daoFish.findAll();
+		model.addAttribute("fishList", curFishList);
 		return "cofish/locationsDetails";
 	}
 	

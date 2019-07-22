@@ -36,7 +36,7 @@ public class LocationController {
 	private FishDAO daoFish;
 	@Autowired
 	private ReportDAO reportDao;
-	
+
 	@RequestMapping(path = "getReportDetails.do", method = RequestMethod.GET)
 	public String populateReportDatails(int reportId, Model model) {
 		model.addAttribute("reportDetails", dao.searchReportById(reportId));
@@ -46,52 +46,60 @@ public class LocationController {
 //	public void populateReportDatails(int reportId, Model model) {
 //		model.addAttribute("reportDetails", dao.searchReportById(reportId));
 //	}
-	
+
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
-	public String findLocationById (Integer locationId, Model model) {
+	public String findLocationById(Integer locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
 		List<Report> locationReports = foundLocation.getReports();
-		
+
 		for (Report report : locationReports) {
 			List<CaughtFish> reportsFish = report.getCaughtFishList();
 			System.out.println(reportsFish.size());
 		}
-		
+
 		List<FishType> curFishList = daoFish.findAll();
 		model.addAttribute("fishList", curFishList);
 
 		model.addAttribute("location", foundLocation);
-		
+
 		return "cofish/locationsDetails";
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
-	public String createReport(int locationId, Model model, Report report, HttpSession session
-								, CaughtFish caughtFishForReport, @RequestParam("fishTypeId") Integer fishTypeId){
-System.err.println("--------------------Fish Type ID: " + fishTypeId);
+	public String createReport(int locationId, Model model, Report report, HttpSession session,
+			CaughtFish caughtFishForReport, @RequestParam("fishTypeId") Integer fishTypeId) {
+
+		System.err.println("--------------------Fish Type ID: " + fishTypeId);
 		System.err.println("Caught Fish object coming in " + caughtFishForReport);
-		
-		User curUser = (User) session.getAttribute("user");
+
 		Location curLocation = dao.findLocationById(locationId);
+		List<Report> locationReports = curLocation.getReports();
+
+		for (Report reported : locationReports) {
+			List<CaughtFish> reportsFish = reported.getCaughtFishList();
+			System.out.println(reportsFish.size());
+		}
+		User curUser = (User) session.getAttribute("user");
 		report.setUserProfile(curUser.getUserProfile());
 		report.setLocation(curLocation);
 		Report newReport = dao.createReport(report);
-		
+
 		FishType caughtFishType = daoFish.findByIdFishType(fishTypeId);
 		caughtFishForReport.setFishType(caughtFishType);
 		caughtFishForReport.setReport(newReport);
 		CaughtFish cf = daoFish.create(caughtFishForReport);
-		
+
 		newReport.addCaughtFish(cf);
 		newReport = dao.updateReport(newReport.getId(), newReport);
-		
+		Location newLocation = dao.findLocationById(newReport.getLocation().getId());
+
 		List<FishType> curFishList = daoFish.findAll();
-		model.addAttribute("fishList", curFishList); //of type FishType
-		
-		List<CaughtFish> caughtFishList = new ArrayList<>();
+		model.addAttribute("fishList", curFishList); // of type FishType
+
 		System.err.println("IN LOCATION CONTORLLER new report added: " + newReport.getCaughtFishList().size());
-		model.addAttribute("report", newReport);
-		
+//		model.addAttribute("report", newReport);
+		model.addAttribute("location", newLocation);
+
 		return "cofish/locationsDetails";
 	}
 //	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
@@ -138,90 +146,90 @@ System.err.println("--------------------Fish Type ID: " + fishTypeId);
 		return "cofish/locationsDetails";
 	}
 
-	@RequestMapping(path = "showAllLocations.do", method= RequestMethod.GET)
+	@RequestMapping(path = "showAllLocations.do", method = RequestMethod.GET)
 	public String showAllLocations(Model model) {
 		List<Location> showAllLocations = dao.showAllLocations();
 		model.addAttribute("allLocations", showAllLocations);
 		return "cofish/searchResults";
 	}
-	
-	@RequestMapping(path = "showAllReportsForLocation.do", method= RequestMethod.GET)
+
+	@RequestMapping(path = "showAllReportsForLocation.do", method = RequestMethod.GET)
 	public String showAllReportsForLocation(Model model, @RequestParam("locationId") int id) {
-		
+
 		List<Report> allReports = dao.findAllReports(id);
 		model.addAttribute("allReports", allReports);
 		return "cofish/locationsDetails";
 	}
 
-	@RequestMapping(path= "removeReport.do", method= RequestMethod.POST)
-	public String removeReport(Model model, @RequestParam("reportId") int id, int locationId) {
-			Report reportToRemove = dao.searchReportById(id);
-			dao.removeReportFromLocation(reportToRemove, locationId);
+	@RequestMapping(path = "removeReport.do", method = RequestMethod.POST)
+	public String removeReport(Model model, @RequestParam("reportId") int id, Integer locationId) {
+		Report reportToRemove = dao.searchReportById(id);
+		Location newLocation = dao.findLocationById(reportToRemove.getLocation().getId());
+		dao.removeReportFromLocation(reportToRemove, locationId);
+		model.addAttribute("location", newLocation);
 //			dao.findAllReports(locationId);
-			return "cofish/locationsDetails";
+		return "cofish/locationsDetails";
 	}
-	
-	@RequestMapping(path="getSearchResults.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "getSearchResults.do", method = RequestMethod.GET)
 	public String directSearchByCategory(String searchCategory, String keyword, Model model) {
 		System.err.println("**********serach results method***********" + searchCategory);
-		
-		if (searchCategory.equals("location")){
+
+		if (searchCategory.equals("location")) {
 //			System.err.println("******** IN SEARCH method for location********");
 			List<Location> searchLocationList = listLocationsByWaterBody(keyword);
 //			System.err.println("keyword; " + keyword);
 			for (Location location : searchLocationList) {
 				System.err.println(location);
 			}
-			model.addAttribute("resultsList",searchLocationList);
+			model.addAttribute("allLocations", searchLocationList);
 			return "cofish/searchResults";
 		}
 		if (searchCategory.equals("fish")) {
 			List<Location> searchFishList = listLocationsByFish(keyword);
-			model.addAttribute("resultsList", searchFishList);
+			model.addAttribute("allLocations", searchFishList);
 			return "cofish/searchResults";
-		}
-		else {
+		} else {
 			List<Location> searchAccessList = listLocationsByAccess(keyword);
 			System.err.println("********** IN SEARCH ACCESS ELSE BLOCK **********");
 			System.err.println(keyword);
 			for (Location location : searchAccessList) {
 				System.err.println(location);
 			}
-			model.addAttribute("resultsList", searchAccessList);
+			model.addAttribute("allLocations", searchAccessList);
 			return "cofish/searchResults";
 		}
 	}
-	
+
 //	@RequestMapping(path= "showLocationsByWaterBody.do", method= RequestMethod.GET)
 	public List<Location> listLocationsByWaterBody(String name) {
-		List <Location> locationByWaterBody = dao.locationsByWaterBody(name);
+		List<Location> locationByWaterBody = dao.locationsByWaterBody(name);
 		return locationByWaterBody;
 	}
-	
-	
+
 //	@RequestMapping(path="showLocationsByAccess.do", method= RequestMethod.GET)
 	public List<Location> listLocationsByAccess(String access) {
 		List<Location> locationsByAccess = dao.locationsByAccessibility(access);
 		return locationsByAccess;
 	}
-	
+
 //	@RequestMapping(path="showLocationsByFishName", method= RequestMethod.GET)
 	public List<Location> listLocationsByFish(String fish) {
 		List<Location> locationsByFishName = dao.locationByFishName(fish);
 		return locationsByFishName;
 	}
-	
-	@RequestMapping(path= "showLocationsByName.do", method= RequestMethod.GET)
+
+	@RequestMapping(path = "showLocationsByName.do", method = RequestMethod.GET)
 	public String listLocationsByName(Model model, @RequestParam("locationName") String name) {
-		List <Location> locationByName = dao.locationsByName(name);
+		List<Location> locationByName = dao.locationsByName(name);
 		model.addAttribute("location", locationByName);
 		return "cofish/locationsDetails";
 	}
-	@RequestMapping(path= "showLocationsByRegion.do", method= RequestMethod.GET)
+
+	@RequestMapping(path = "showLocationsByRegion.do", method = RequestMethod.GET)
 	public String listLocationsByRegion(Model model, @RequestParam("regionName") String region) {
-		List <Location> locationByRegion = dao.locationsByRegion(region);
+		List<Location> locationByRegion = dao.locationsByRegion(region);
 		model.addAttribute("location", locationByRegion);
 		return "cofish/locationsDetails";
 	}
 }
-
