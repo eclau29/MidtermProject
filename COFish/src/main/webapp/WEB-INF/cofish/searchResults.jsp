@@ -65,17 +65,31 @@
    	var marker;
    	var i = 0;
    	var markers = [];
+   	var mapInfo;
     	 <c:forEach var="L" items = "${allLocations}">
+   	 
     		
    		marker = new google.maps.Marker({
    			position: new google.maps.LatLng(${L.getLongitude()}, ${L.getLatitude()}),
    			map: map
    		});
-   		markers.push(marker);
+   		google.maps.event.addListener(
+   		      marker,
+   		      'click',
+   		      (function(marker, i) {
+   		        return function() {
+   		          infowindow.setContent('<font size="3" color="black"><strong> Name: "${L.getName()}"</strong></font><br><font size="2" color="blue">\r\
+   		          		BodyOfWater: "${L.getWaterBody()}"<br> Accessibility: "${L.getAccess().getName()}"<br>\
+   		        		URL: <a href="${L.getMapUrl()}">"${L.getMapUrl()}"</a></font>')
+   		          infowindow.open(map, marker)
+   		        }
+   		      })(marker, i)
+   		    )
+/*    		markers.push(marker); */
+   		i++;
     	 </c:forEach>
-    	 var markerCluster = new MarkerClusterer(map, markers);
-      google.maps.event.addDomListener(window, 'load', initMap); 
-      console.log(markers);
+    	/*  var markerCluster = new MarkerClusterer(map, markers);
+      google.maps.event.addDomListener(window, 'load', initMap);  */
      }
      
    

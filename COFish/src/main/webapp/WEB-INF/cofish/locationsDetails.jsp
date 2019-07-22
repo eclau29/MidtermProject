@@ -64,6 +64,7 @@
 			</div>
 			<!-- Location Data Box End-->
 			
+			
 			<!-- Location Description Start -->
 			<div class='description-details'>
 				<h2 class="dataBlockHeaders">Description</h2>
@@ -104,6 +105,61 @@
 				</c:forEach>
 				</c:otherwise>
 				</c:choose>
+				<!-- Map Details-->
+		<div class='map-container'>
+			<div class='map-details'>
+
+				<div id="map"></div>
+    <script>
+    var map;
+     function initMap() {/*  */
+    	 /* var j; */
+       map = new google.maps.Map(document.getElementById('map'), {
+   		zoom:14,
+   		center: new google.maps.LatLng(${location.getLongitude()}, ${location.getLatitude()}),
+   		zoom: 13,
+   		mapTypeId: google.maps.MapTypeId.ROADMAP
+   	});
+   	var infowindow = new google.maps.InfoWindow({});
+   	var marker;
+   	var i = 0;
+   	var markers = [];
+   	var mapInfo;
+   	 
+   		marker = new google.maps.Marker({
+   			position: new google.maps.LatLng(${location.getLongitude()}, ${location.getLatitude()}),
+   			map: map
+   		});
+   		google.maps.event.addListener(
+   		      marker,
+   		      'click',
+   		      (function(marker, i) {
+   		        return function() {
+   		          infowindow.setContent('<font size="3" color="black"><strong> Name: "${location.getName()}"</strong></font><br><font size="2" color="blue">\r\
+   		          		BodyOfWater: "${location.getWaterBody()}"<br> Accessibility: "${location.getAccess().getName()}"<br>\
+   		        		URL: <a href="${location.getMapUrl()}">"${location.getMapUrl()}"</a></font>')
+   		          infowindow.open(map, marker)
+   		        }
+   		      })(marker, i)
+   		    )
+/*    		markers.push(marker); */
+   		i++;
+    	/*  var markerCluster = new MarkerClusterer(map, markers);
+      google.maps.event.addDomListener(window, 'load', initMap);  */
+     }
+     
+   
+     
+   </script>
+       <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+   </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5Cu9_ocZUjeCAfmNH3GqaMU-rOIm_Fg&callback=initMap"
+        async defer></script>
+
+			</div>
+		</div>
+		<!-- Extra Details-->
 			</div>
 			<!-- Reports Box End -->
 		</div>
