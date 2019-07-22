@@ -406,10 +406,12 @@
 
 	<!-- Report Modal-->
 	<c:forEach items="${location.reports}" var="report">
+				<c:if test="${report.active eq true }">
 		<div class="light-modal" id="${report.id}" role="dialog"
 			aria-labelledby="light-modal-label" aria-hidden="false">
 			<div class="light-modal-content animated zoomInUp">
 				<!-- light modal header -->
+				
 				<div class="light-modal-header">
 					<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
 						Report On ${report.date}</h3>
@@ -425,6 +427,7 @@
 					<!-- My Content -->
 					<p>
 						<br> <b>Date of Report:</b> ${report.date } <br> 
+						<br> <b>Report ID: </b> ${report.id } <br> 
 						<b>Fish Caught at this Location:</b>
 						<c:forEach items="${report.caughtFishList }" var="caughtFish">
         				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs
@@ -441,8 +444,13 @@
 				<div class="light-modal-footer">
 					<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
 				</div>
+				<form action="deleteReport.do" method="POST">
+						<input type="hidden" name="reportId" value="${report.id }">
+						<input type="submit" value="Delete Report">
+					</form>
 			</div>
 		</div>
+				</c:if>
 	</c:forEach>
 	<!-- Report Modal-->
 
@@ -462,7 +470,7 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 
-				<form action="updateReport.do" method="GET">
+				<form action="updateReport.do" method="POST">
 						<c:forEach items="${report.caughtFishList }" var="caughtFish">
 							<label for="fishType">Fish Type: </label>
 							<input type="text" name="fishType" value="${caughtFish.fishType.name}">
@@ -494,8 +502,13 @@
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
 				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
-				<a href="#updateUserModal" class="light-modal-close-btn"
-					aria-label="close">Delete Report</a>
+				<!-- <a href="#updateUserModal" class="light-modal-close-btn" -->
+				<!-- <a href="deleteReport.do" method="POST" class="light-modal-close-btn"
+					aria-label="close">Delete Report</a> -->
+					<%-- <form action="deleteReport.do" method="POST">
+						<input type="hidden" name="reportId" value="${report.id }">
+						<input type="submit" value="Delete Report">
+					</form> --%>
 			</div>
 		</div>
 	</div>
