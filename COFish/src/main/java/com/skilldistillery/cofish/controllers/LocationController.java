@@ -171,12 +171,12 @@ System.err.println("--------------------Fish Type ID: " + fishTypeId);
 			for (Location location : searchLocationList) {
 				System.err.println(location);
 			}
-			model.addAttribute("resultsList",searchLocationList);
+			model.addAttribute("allLocations",searchLocationList);
 			return "cofish/searchResults";
 		}
 		if (searchCategory.equals("fish")) {
 			List<Location> searchFishList = listLocationsByFish(keyword);
-			model.addAttribute("resultsList", searchFishList);
+			model.addAttribute("allLocations", searchFishList);
 			return "cofish/searchResults";
 		}
 		else {
@@ -186,7 +186,7 @@ System.err.println("--------------------Fish Type ID: " + fishTypeId);
 			for (Location location : searchAccessList) {
 				System.err.println(location);
 			}
-			model.addAttribute("resultsList", searchAccessList);
+			model.addAttribute("allLocations", searchAccessList);
 			return "cofish/searchResults";
 		}
 	}

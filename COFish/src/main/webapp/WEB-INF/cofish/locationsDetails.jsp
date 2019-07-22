@@ -96,6 +96,10 @@
 		</div>
 		<!-- Report List-->
 </div>
+
+<!--  all locations list -->
+
+
 	<!-- Page Information-->
 		<!-- Nav Bar -->
 		<ul class="botnav">

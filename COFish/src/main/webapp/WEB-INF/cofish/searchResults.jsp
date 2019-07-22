@@ -31,7 +31,7 @@
 		</div>
 		<!-- Search Results Banner-->
 
-		<!-- Search Results -->
+		<!-- All Locations Results -->
 		<div class='search-results-container'>
 			<div class='search-details'>
 				<p>
@@ -44,7 +44,7 @@
 				</ul>
 			</div>
 		</div>
-		<!-- Search Results -->
+		<!-- All Locations Results -->
 
 		<!-- Map Details-->
 		<div class='map-container'>
@@ -95,10 +95,11 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
+					Search by <select name="searchCategory">
+						<option value="location">Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy,
+							Medium, Hard):</option>
 					</select> <br> <br> <input type="text" /> <br> <br> <input
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
@@ -111,6 +112,7 @@
 		</div>
 	</div>
 	<!-- Search Modal-->
+
 
 	<!-- UserProfile Modal-->
 	<div class="light-modal" id="userModal" role="dialog"
