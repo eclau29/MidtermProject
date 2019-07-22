@@ -7,6 +7,8 @@ body {
 	background-repeat: no-repeat;
 	background-size: auto;
 	
+	display: block;
+	background-attachment: scroll;
 }
 
 .page-data {
@@ -41,6 +43,8 @@ body {
 	width: 700px;
 }
 /* Location Banner */
+
+
 
 /* Location Details */
 .location-details-container {
