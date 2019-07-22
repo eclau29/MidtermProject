@@ -87,9 +87,11 @@
 				</c:when>
 				<c:otherwise>
 				<c:forEach items="${location.reports}" var="report">
+					<c:if test="${report.active eq true }">
 					<div class='report'>
 						<a class="reportLink" href="#${report.id}" aria-label="close">${report.date}
-							<br> By: ${report.userProfile.user.userName} | Fish Caught:
+							<br>Report Id: ${report.id} By: ${report.userProfile.user.userName} | Fish Caught:
+							
 							<c:if test="${fn:length(report.caughtFishList) != 0}">
 								${fn:length(report.caughtFishList)} 
 							</c:if> 
@@ -98,6 +100,7 @@
 							</c:if>
 						</a>
 					</div>
+					</c:if>
 				</c:forEach>
 				</c:otherwise>
 				</c:choose>
@@ -205,21 +208,35 @@
 						for="lureType">Lure Type Used: </label> <input type="text"
 						name="lureType"> <br> <br> <br>
 --%>
-					<label for="comment">Comment: </label> <input type="text"
-						name="comment"> <br> <br> <label
-						for="caughtFishForReport">List of Fish</label> <select
-						name="caughtFishForReport">
+
+					<label for="comment">Comment: </label>
+					<input type="text" name="comment">
+					<br>
+					<br>
+					<label for="caughtFishForReport">List of Fish</label>
+					<select name="fishTypeId">
 						<c:forEach var="curFish" items="${fishList}">
 							<option value="${curFish.id}">${curFish.name}</option>
 						</c:forEach>
-					</select> <input type="hidden" name="fishType" value="Rainbow Trout">
-					<label for="lengthInches">Length of Fish (inches): </label> <input
-						type="text" name="lengthInches"> <br> <label
-						for="weightLbs">Weight of Fish (lbs): </label> <input type="text"
-						name="weightLbs"> <br> <label for="rodType">Rod
-						Type Used: </label> <input type="text" name="rodType"> <br> <label
-						for="lureType">Lure Type Used: </label> <input type="text"
-						name="lureType"> <br> <br> <br> <input
+					</select>
+					
+								<label for="lengthInches">Length of Fish (inches): </label>
+								<input type="text" name="lengthInches">
+								<br>
+								<label for="weightLbs">Weight of Fish (lbs): </label>
+								<input type="text" name="weightLbs">
+								<br>
+								<label for="rodType">Rod Type Used: </label>
+								<input type="text" name="rodType">
+								<br>
+								<label for="lureType">Lure Type Used: </label>
+								<input type="text" name="lureType">
+								<br>
+								<br>
+								<br>
+					
+					<input
+
 						type="submit" value="Submit Form" class="light-modal-close-btn"
 						aria-label="close" />
 
@@ -386,24 +403,31 @@
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
-				<form id="updateForm" action="getSearchResults.do" method="GET">
+				<form id="updateForm" action="updateUserProfileReport.do" method="POST">
 					<h4>User Name:</h4>
 					<p></p>
 					<br>
-					<h4>Email:</h4>
-					<p></p>
+				<label for="email">Email: </label> 
+					<input type="text" name="email" value="${sessionScope.user.email}">
 					<br>
-					<h4>First Name:</h4>
-					<p></p>
+				<label for="firstName">First Name: </label> 
+					<input type="text" name="firstName" value="${sessionScope.user.userProfile.firstName}">
 					<br>
-					<h4>Last Name:</h4>
-					<p></p>
+				<label for="lastName">Last Name: </label> 
+					<input type="text" name="lastName" value="${sessionScope.user.userProfile.lastName}">
 					<br>
-					<h4>Address:</h4>
-					<p></p>
+				<label for="city">City: </label> 
+					<input type="text" name="city" value="${sessionScope.user.userProfile.city}">
 					<br>
-					<h4>About:</h4>
-					<p></p>
+				<label for="state">State: </label> 
+					<input type="text" name="email" value="${sessionScope.user.userProfile.state}">
+					<br>
+					<br>
+				<label for="aboutMe">About Me: </label> 
+					<input type="text" name="aboutMe" value="${sessionScope.user.userProfile.aboutMe}">
+					<br>
+				<label for="imageUrl">Profile Picture: </label> 
+					<input type="text" name="imageUrl" value="${sessionScope.user.userProfile.imageUrl}">
 					<br>
 				</form>
 			</div>
@@ -445,30 +469,32 @@
 
 	<!-- Report Modal-->
 	<c:forEach items="${location.reports}" var="report">
-		<c:if test="${report.active eq true }">
-			<div class="light-modal" id="${report.id}" role="dialog"
-				aria-labelledby="light-modal-label" aria-hidden="false">
-				<div class="light-modal-content animated zoomInUp">
-					<!-- light modal header -->
+				<c:if test="${report.active eq true }">
+				
+		<div class="light-modal" id="${report.id}" role="dialog"
+			aria-labelledby="light-modal-label" aria-hidden="false">
+			
+			<div class="light-modal-content animated zoomInUp">
+				<!-- light modal header -->
+				
+				<div class="light-modal-header">
+					<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
+						Report On ${report.date}  Report Id: ${report.id}</h3>
+					<c:choose>
+						<c:when test="${user.id eq report.userProfile.user.id}">
+								<a href="#${report.id}${user.id}" class="light-modal-close-btn" aria-label="close">Update</a>
+						</c:when>
+					</c:choose>
+				</div>
+				<!-- light modal body -->
+				<div class="light-modal-body">
+					<!-- My Content -->
 
-					<div class="light-modal-header">
-						<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
-							Report On ${report.date}</h3>
-						<c:choose>
-							<c:when test="${user.id eq report.userProfile.user.id}">
-								<a href="#updateUserReportModal" class="light-modal-close-btn"
-									aria-label="close">Update</a>
-							</c:when>
-						</c:choose>
-					</div>
-					<!-- light modal body -->
-					<div class="light-modal-body">
-						<!-- My Content -->
 
-						<br> <b>Date of Report:</b> ${report.date } <br> <b>Fish
-							Caught at this Location:</b> <br>
-						<c:forEach items="${report.caughtFishList }" var="caughtFish">
-							<b>Fish Type:</b> ${caughtFish.fishType.name }
+					<br> <b>Date of Report:</b> ${report.date } <br> <br> <b>Fish
+						Caught at this Location:</b> <br>
+					<c:forEach items="${report.caughtFishList }" var="caughtFish">
+						<b>Fish Type:</b> ${caughtFish.fishType.name }
 
         				<br>
 							<b>Size:</b>${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs.
@@ -494,53 +520,61 @@
 								 form="deleteForm" value="Delete"/>
 					</div>
 				</div>
-			</div>
-		</c:if>
-	</c:forEach>
-	<!-- Report Modal-->
+          </div>
+		</div>
+				</c:if>
+				
+				<!-- Update Report Modal-->
+	
+	
+	<div class="light-modal" id="${report.id}${user.id}" role="dialog"
 
-	<!-- Update Report Modal-->
-	<div class="light-modal" id="updateUserReportModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
+		
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-			
-				<h3 class="light-modal-heading">Update Report</h3>
 
-				<a href="#updateUserModal" class="light-modal-close-btn"
-					aria-label="close">Commit Update</a>
+				<h3 class="light-modal-heading">Update Report  Report Id: ${report.id}</h3>
 				
+				<input type="submit" class="light-modal-close-btn"
+					aria-label="close" form= "${user.id}${report.id}" value="Commit Update"/>
+
+				<!-- <a href="#updateUserReportModal" class="light-modal-close-btn"
+					aria-label="close">Commit Update</a> -->
+
 
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
 
-				<form action="updateReport.do" method="POST">
-					<c:forEach items="${report.caughtFishList }" var="caughtFish">
-						<label for="fishType">Fish Type: </label>
-						<input type="text" name="fishType"
-							value="${caughtFish.fishType.name}">
-						<br>
-						<label for="lengthInches">Fish Length (inches): </label>
-						<input type="text" name="lengthInches"
-							value="${caughtFish.lengthInches}">
-						<br>
-						<label for="weightLbs">Fish Weight (lbs): </label>
-						<input type="text" name="weightLbs"
-							value="${caughtFish.weightLbs}">
-						<br>
-						<label for="rodType">Rod Type: </label>
-						<input type="text" name="rodType" value="${caughtFish.rodType}">
-						<br>
-						<label for="lureType">Lure Type: </label>
-						<input type="text" name="lureType" value="${caughtFish.lureType}">
-						<br>
-					</c:forEach>
+
+				<form action="updateReport.do" id="${user.id}${report.id}" method="POST">
+				<input type="hidden" value="${report.id}" name="id">
+						<c:forEach items="${report.caughtFishList }" var="caughtFish">
+							<label for="fishType">Fish Type: </label>
+							<input type="text" name="fishType" value="${caughtFish.fishType.name}">
+							<br>
+							<label for="lengthInches">Fish Length (inches): </label>
+							<input type="text" name="lengthInches" value="${caughtFish.lengthInches}">
+							<br>
+							<label for="weightLbs">Fish Weight (lbs): </label>
+							<input type="text" name="weightLbs" value="${caughtFish.weightLbs}">
+							<br>
+							<label for="rodType">Rod Type: </label>
+							<input type="text" name="rodType" value="${caughtFish.rodType}">
+							<br>
+							<label for="lureType">Lure Type: </label>
+							<input type="text" name="lureType" value="${caughtFish.lureType}">
+							<br>
+						</c:forEach>
+						<%-- <input type="text" name="comment" value="${report.caught.comment}"> --%>
+							<br>
+					<br>
+					<label for="comment">Comment:</label> 
 					<input type="text" name="comment" value="${report.comment}">
-					<br> <br> <label for="comment">Comment:</label> <input
-						type="text" name="comment" value="${report.comment}"> <br>
+					<br>
 
 				</form>
 			</div>
@@ -557,7 +591,14 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- Update Report Modal-->
+				
+				
+	</c:forEach>
+	<!-- Report Modal-->
+
+	
 
 
 </body>
