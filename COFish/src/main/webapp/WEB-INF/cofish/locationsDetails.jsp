@@ -50,7 +50,7 @@
 					<c:if test="${location.name != location.waterBody}">
 						 - ${location.waterBody}
 					</c:if></h3>
-					<h3>+${location.latitude} -${location.longitude}</h3>
+					<h3>+${location.longitude} -${location.latitude}</h3>
 				</div>
 				<h2 class="dataBlockHeaders">Accessibility</h2>
 				<div class='difficulty'>
@@ -479,7 +479,7 @@
 				
 				<div class="light-modal-header">
 					<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
-						Report On ${report.date}  Report Id: ${report.id}</h3>
+						Report On ${report.date}</h3>
 					<c:choose>
 						<c:when test="${user.id eq report.userProfile.user.id}">
 								<a href="#${report.id}${user.id}" class="light-modal-close-btn" aria-label="close">Update</a>
@@ -508,17 +508,17 @@
 						<br> <b>Comment:</b>
 						<p>${report.comment }</p>
 						<br>
-					<form action="deleteReport.do" method="POST" id="deleteForm">
+					<form action="deleteReport.do" method="POST" id="{report.id }{report.id }{report.id }">
 						<input type="hidden" name="reportId" value="${report.id }">
-						
 					</form>
 
 					</div>
 					<!-- light modal footer -->
 					<div class="light-modal-footer">
 						<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
+						
 						<input type="submit" class="light-modal-close-btn"
-								 form="deleteForm" value="Delete"/>
+								 form="{report.id }{report.id }{report.id }" value="Delete"/>
 					</div>
 				</div>
 			</div>
