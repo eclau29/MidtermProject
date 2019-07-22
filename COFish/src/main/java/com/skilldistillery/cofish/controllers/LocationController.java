@@ -59,6 +59,7 @@ public class LocationController {
 		
 		List<FishType> curFishList = daoFish.findAll();
 		model.addAttribute("fishList", curFishList);
+
 		model.addAttribute("location", foundLocation);
 		
 		return "cofish/locationsDetails";
