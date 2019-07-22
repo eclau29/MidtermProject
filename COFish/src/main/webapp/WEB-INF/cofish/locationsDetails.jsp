@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,34 +21,51 @@
 </head>
 <body>
 	<!-- Top Of Page -->
-	
+
 	<!-- Page Information-->
 	<div id="page-data">
 		<!-- Location Banner-->
 		<div class='location-banner-container'>
 			<div class='location-banner'>
 				<div class='innerBox'>
-				<div class='locationName'><h3>${location.waterBody}</h3></div>
-				<div class='curDate'><h5>Todays Date - <%= (new java.util.Date())%></h5></div>
+					<div class='locationName'>
+						<h1>${location.waterBody}</h1>
+					</div>
+					<div class='curDate'>
+						<h2>
+							Todays Date -
+							<%=(new java.util.Date())%></h2>
+					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<!-- Location Banner-->
 
 		<!-- Location Details-->
 		<div class='location-details-container'>
 			<div class='location-details'>
+
 				<div class='locationTitle'>
-				<h4>${location.name }</h4>
-				<c:choose>
-				<c:when test="${location.name != location.waterBody}"><h3>${location.waterBody}</h3></c:when>
-				</c:choose>
+					<h2>${location.name }</h2>
+						<c:if test="${location.name != location.waterBody}">
+							<h3>${location.waterBody}</h3>
+						</c:if>
+					</div>
+				<div class='difficulty'>
+					<h3>Difficulty: ${location.access.name }</h3>
 				</div>
-				<div class='locatioDescription'>
-				Location Details
-				<p></p>
+				
+
+				<div class='locationArea'>
+					Location Details
+					<p>${location.area }</p>
 				</div>
-				<div class='login'>Login</div>
+				<div class='locationDescription'>
+				 <p>${location.description}</p>
+				</div>
+				<div class='locationFishingNotes'>
+				Fishing Notes: ${location.fishingNotes}
+				</div>
 			</div>
 		</div>
 		<!-- Location Details-->
@@ -58,14 +75,23 @@
 			<div class='current-report-details'>
 				<h3>Current Reports</h3>
 				<c:forEach items="${location.reports}" var="report">
-				<div class='report'>
-				<a  class="reportLink" href="#${report.id}"  aria-label="close">${report.date} <br> By: ${report.userProfile.user.userName} | Fish Caught: ${fn:length(report.caughtFishList)}</a>
-				</div>
+					<div class='report'>
+						<a class="reportLink" href="#${report.id}" aria-label="close">${report.date}
+							<br> By: ${report.userProfile.user.userName} | Fish Caught:
+							<c:if test="${fn:length(report.caughtFishList) != 0}">
+								${fn:length(report.caughtFishList)} 
+							</c:if> 
+							<c:if test="${fn:length(report.caughtFishList) == 0}">
+								None
+							</c:if>
+						</a>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
 		<!-- Report List-->
-
+</div>
+	<!-- Page Information-->
 		<!-- Nav Bar -->
 		<ul class="botnav">
 			<c:choose>
@@ -91,8 +117,7 @@
 		</ul>
 		<!-- Nav Bar -->
 
-	</div>
-	<!-- Page Information-->
+	
 
 	<%--   <div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom w3-margin-top">
@@ -127,8 +152,8 @@
 
 
 
-		
-		<!-- Create Report Modal-->
+
+	<!-- Create Report Modal-->
 	<div class="light-modal" id="addReportModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
 		<div class="light-modal-content animated zoomInUp">
@@ -139,92 +164,59 @@
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content EMILY! edit here-->
-				
+
 				<form action="createReport.do" method="POST">
-					<input type ="hidden" value="${location.id }" name="locationId">
-					<input type="hidden" value="${user.userProfile.id }" name="profileId">
-					<input type="hidden" value="true" name="active">
+					<input type="hidden" value="${location.id }" name="locationId">
+					<input type="hidden" value="${user.userProfile.id }"
+						name="profileId"> <input type="hidden" value="true"
+						name="active">
 					<!-- <label for="date">Date: </label>
 					<input type="datetime-local" name="date">
 					<br> -->
-					<label for="comment">Comment: </label>
-					<input type="text" name="comment">
-					<br>
-					<br>
-						
-					
-					<input
-						type="submit" value="Submit Form" class="light-modal-close-btn"
+					<label for="comment">Comment: </label> <input type="text"
+						name="comment"> <br> <br> <input type="submit"
+						value="Submit Form" class="light-modal-close-btn"
 						aria-label="close" />
-				
-				
-				<!-- <form action="createCaughtFish.do" method="POST"> -->
-					<label for="caughtFish">Fish Caught: </label>
-							<select name="fishType">
-								<c:forEach items="${sessionScope.fishType}">
-									<option value="${fishType.name }">Type of Fish: </option>
-								</c:forEach>
-							</select>
-								<!-- line below is a test -->
-								<input type="hidden" name="fishType" value="Rainbow Trout">
-								<label for="lengthInches">Length of Fish (inches): </label>
-								<input type="number" name="lengthInches">
-								<br>
-								<label for="weightLbs">Weight of Fish (lbs): </label>
-								<input type="number" name="weightLbs">
-								<br>
-								<label for="rodType">Rod Type Used: </label>
-								<input type="text" name="rodType">
-								<br>
-								<label for="lureType">Lure Type Used: </label>
-								<input type="text" name="lureType">
-								<br>
-								<br>
-								<br>
-								
-								
-							<select name="fishType">
-								<c:forEach items="${fishType}">
-									<option value="${fishType.name }">Type of Fish: </option>
-								</c:forEach>
-							</select>
-							
-								<label for="lengthInches">Length of Fish (inches): </label>
-								<input type="text" name="lengthInches">
-								<br>
-								<label for="weightLbs">Weight of Fish (lbs): </label>
-								<input type="text" name="lengthInches">
-								<br>
-								<label for="rodType">Rod Type Used: </label>
-								<input type="text" name="rodType">
-								<br>
-								<label for="lureType">Lure Type Used: </label>
-								<input type="text" name="lureType">
-								<br>
-								<br>
-								<br>
-								
-								
-							<select name="fishType">
-								<c:forEach items="${fishType}">
-									<option value="${fishType.name }">Type of Fish: </option>
-								</c:forEach>
-							</select>
-							
-								<label for="lengthInches">Length of Fish (inches): </label>
-								<input type="text" name="lengthInches">
-								<br>
-								<label for="weightLbs">Weight of Fish (lbs): </label>
-								<input type="text" name="lengthInches">
-								<br>
-								<label for="rodType">Rod Type Used: </label>
-								<input type="text" name="rodType">
-								<br>
-								<label for="lureType">Lure Type Used: </label>
-								<input type="text" name="lureType">
-								<br>
-								<br>
-								<br>
+
+
+					<!-- <form action="createCaughtFish.do" method="POST"> -->
+					<label for="caughtFish">Fish Caught: </label> <select
+						name="fishType">
+						<c:forEach items="${sessionScope.fishType}">
+							<option value="${fishType.name }">Type of Fish:</option>
+						</c:forEach>
+					</select>
+					<!-- line below is a test -->
+					<input type="hidden" name="fishType" value="Rainbow Trout">
+					<label for="lengthInches">Length of Fish (inches): </label> <input
+						type="number" name="lengthInches"> <br> <label
+						for="weightLbs">Weight of Fish (lbs): </label> <input
+						type="number" name="weightLbs"> <br> <label
+						for="rodType">Rod Type Used: </label> <input type="text"
+						name="rodType"> <br> <label for="lureType">Lure
+						Type Used: </label> <input type="text" name="lureType"> <br>
+					<br> <br> <select name="fishType">
+						<c:forEach items="${fishType}">
+							<option value="${fishType.name }">Type of Fish:</option>
+						</c:forEach>
+					</select> <label for="lengthInches">Length of Fish (inches): </label> <input
+						type="text" name="lengthInches"> <br> <label
+						for="weightLbs">Weight of Fish (lbs): </label> <input type="text"
+						name="lengthInches"> <br> <label for="rodType">Rod
+						Type Used: </label> <input type="text" name="rodType"> <br> <label
+						for="lureType">Lure Type Used: </label> <input type="text"
+						name="lureType"> <br> <br> <br> <select
+						name="fishType">
+						<c:forEach items="${fishType}">
+							<option value="${fishType.name }">Type of Fish:</option>
+						</c:forEach>
+					</select> <label for="lengthInches">Length of Fish (inches): </label> <input
+						type="text" name="lengthInches"> <br> <label
+						for="weightLbs">Weight of Fish (lbs): </label> <input type="text"
+						name="lengthInches"> <br> <label for="rodType">Rod
+						Type Used: </label> <input type="text" name="rodType"> <br> <label
+						for="lureType">Lure Type Used: </label> <input type="text"
+						name="lureType"> <br> <br> <br>
 				</form>
 			</div>
 			<!-- light modal footer -->
@@ -235,7 +227,7 @@
 	</div>
 	<!-- Report Modal-->
 
-<!-- Search Modal-->
+	<!-- Search Modal-->
 
 	<div class="light-modal" id="searchModal" role="dialog"
 		aria-labelledby="light-modal-label" aria-hidden="false">
@@ -249,19 +241,13 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 
-				
-					Search by <select name="searchCategory">
-						<option value="location" >Body of Water:</option>
-						<!-- <option value="fish" >Fish:</option> -->
-						<option value="accessibility">Accessibility (Easy, Medium, Hard):</option>
-					</select>
-					<br> 
-					<br> 
-					 <input type="text" /> 
-					<br> 
-					<br> 
-					<input
 
+					Search by <select name="searchCategory">
+						<option value="location">Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy,
+							Medium, Hard):</option>
+					</select> <br> <br> <input type="text" /> <br> <br> <input
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
 				</form>
@@ -405,19 +391,23 @@
 				<!-- light modal body -->
 				<div class="light-modal-body">
 					<!-- My Content -->
-					<p>
-						<br> <b>Date of Report:</b> ${report.date } <br> <b>Fish
-							Caught at this Location:</b>
-						<c:forEach items="${report.caughtFishList }" var="caughtFish">
-        				${caughtFish.fishType.name }: ${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs
+
+					<br> <b>Date of Report:</b> ${report.date } <br> <b>Fish
+						Caught at this Location:</b> <br>
+					<c:forEach items="${report.caughtFishList }" var="caughtFish">
+						<b>Fish Type:</b> ${caughtFish.fishType.name }
         				<br>
-        				<b>Rod Type:</b> ${caughtFish.rodType }
+						<b>Size:</b>${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs.
         				<br>
-        				<b>Lure Type:</b> ${caughtFish.lureType }
+						<b>Rod Type:</b> ${caughtFish.rodType }
         				<br>
-						</c:forEach>
-						<br> <b>Comment:</b> ${report.comment } <br>
-					</p>
+						<b>Lure Type:</b> ${caughtFish.lureType }
+        				<br>
+					</c:forEach>
+					<br> <b>Comment:</b>
+					<p>${report.comment }</p>
+					<br>
+
 				</div>
 				<!-- light modal footer -->
 				<div class="light-modal-footer">
@@ -445,14 +435,12 @@
 				<!-- My Content -->
 
 				<form action="updateReport.do" method="GET">
-					<label for="comment">Comment:</label> 
-					<input type="text" name="comment" value="${report.comment}">
-					<br>
-					<label for="">Comment:</label> 
-					<input type="text" name="comment" value="${report.comment}">
-					<br>
-						
-					
+					<label for="comment">Comment:</label> <input type="text"
+						name="comment" value="${report.comment}"> <br> <label
+						for="">Comment:</label> <input type="text" name="comment"
+						value="${report.comment}"> <br>
+
+
 
 				</form>
 			</div>

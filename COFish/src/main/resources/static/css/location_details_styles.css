@@ -6,6 +6,7 @@ body {
 	background-image: url("../images/locations_background.png");
 	background-repeat: no-repeat;
 	background-size: auto;
+	
 }
 
 .page-data {
@@ -15,6 +16,9 @@ body {
 	justify-content: center;
 	flex-direction: column;
 	height: 100%;
+	overflow-y: scroll;
+	
+    
 }
 
 /* Location Banner */
@@ -34,7 +38,7 @@ body {
 	padding: 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px; /* For debugging */
-	width: 400px;
+	width: 700px;
 }
 /* Location Banner */
 
@@ -71,6 +75,31 @@ body {
 	width: auto;
 	margin: 5px;
 }
+
+.locationTitle {
+	background: #4F6D7A;
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: auto;
+	margin: 5px;
+}
+
+.difficulty, .locationArea, .locationDescription, .locationFishingNotes{
+	background: #4F6D7A;
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: auto;
+	margin: 5px;
+}
+
+
+
 /* Location Details */
 
 /* Report List */
@@ -82,6 +111,7 @@ body {
 	justify-content: flex-end;
 	opacity: .65;
 	flex-direction: row;
+	margin-bottom: 40px;
 }
 
 .current-report-details {
