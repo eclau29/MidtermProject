@@ -114,7 +114,7 @@ public class Report {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Report [id=").append(id).append(", date=").append(date).append(", comment=").append(comment)
+		builder.append("Report [id=").append(id).append(", date=").append(date).append(", comment=").append(comment).append(", Fish Caught=").append(caughtFishList)
 				.append("]");
 		return builder.toString();
 	}
