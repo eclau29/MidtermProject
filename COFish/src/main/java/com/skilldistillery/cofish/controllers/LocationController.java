@@ -54,7 +54,7 @@ public class LocationController {
 		
 		List<FishType> curFishList = daoFish.findAll();
 		model.addAttribute("fishList", curFishList);
-		System.out.println("********IN FIND LOC BY ID LOCCTRLER********" + foundLocation.getReports().get(0).getCaughtFishList().size());
+		
 		model.addAttribute("location", foundLocation);
 		
 		return "cofish/locationsDetails";

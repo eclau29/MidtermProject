@@ -23,10 +23,11 @@ body {
     
 }
 
+
 /* Location Banner */
 .location-banner-container {
-	background-color: #DD6E42; /* Reddish*/
-	padding: 50px 100px 20px 20px;
+	/* background-color: #DD6E42; Reddish */
+	padding: 50px 20px 20px 20px;
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
@@ -34,39 +35,14 @@ body {
 }
 
 .location-banner {
-	background: rgba(0, 0, 0, .35);
+	background: rgba(0, 0, 0, .55);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px; /* For debugging */
+	-moz-border-radius:  5px 5px 10px 40px;
+	-webkit-border-radius:  5px 5px 10px 40px; /* For debugging */
 	width: 700px;
-}
-/* Location Banner */
-
-
-
-/* Location Details */
-.location-details-container {
-	background-color: #E8DAB2; /* Tan */
-	padding: 20px 20px 20px 45px;
-	display: flex;
-	width: 100%;
-	opacity: .65;
-}
-
-.location-details {
-	background: rgba(0, 0, 0, .35);
-	color: #EAEAEA;
-	font-weight: bold;
-	padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px; /* For debugging */
-	width: 400px;
-}
-
-.locationName{
-	text-decoration: underline;
+	
 }
 
 .innerBox {
@@ -74,10 +50,47 @@ body {
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px; /* For debugging */
+	-moz-border-radius: 5px 5px 10px 40px;
+	-webkit-border-radius:  5px 5px 10px 40px; /* For debugging */
 	width: auto;
 	margin: 5px;
+	border-right: 5px solid #E8DAB2;
+}
+
+.locationName{
+	
+	
+}
+
+.curDate{
+	
+}
+/* Location Banner */
+
+
+/* Flex Box Center Screen */
+.location-details-container {
+	/* background-color: #E8DAB2; Tan */
+	padding: 20px 20px 20px 45px;
+	display: flex;
+	width: 100%;
+	opacity: .65;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/* Left Box */
+.location-details {
+	background: rgba(0, 0, 0, .55);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 20px 20px 5px 5px;
+	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
+	width: 400px;
+	align-self: flex-start;
+	
+	
 }
 
 .locationTitle {
@@ -89,9 +102,10 @@ body {
 	-webkit-border-radius: 5px; /* For debugging */
 	width: auto;
 	margin: 5px;
+	border-left: 5px solid #E8DAB2;
 }
 
-.difficulty, .locationArea, .locationDescription, .locationFishingNotes{
+.difficulty, .locationArea {
 	background: #4F6D7A;
 	color: #EAEAEA;
 	font-weight: bold;
@@ -99,34 +113,50 @@ body {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px; /* For debugging */
 	width: auto;
-	margin: 5px;
-}
+	border-left: 5px solid #E8DAB2;
+}	
+/* Left Box */
 
-
-
-/* Location Details */
-
-/* Report List */
-.report-list-container {
-	background-color: #4F6D7A; /* Blue */
-	padding: 20px 60px 20px 20px;
-	display: flex;
-	width: 100%;
-	justify-content: flex-end;
-	opacity: .65;
-	flex-direction: row;
-	margin-bottom: 40px;
-}
-
-.current-report-details {
-	background: rgba(0, 0, 0, .35);
+/* Center Box */
+.description-details {
+	background: rgba(0, 0, 0, .55);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
+	-moz-border-radius: 20px 20px 5px 5px;
+	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
+	width: 500px;
+	align-self: flex-start;
+	overflow-y: scroll;
+	max-height: 700px;
+	height: auto;
+}
+
+.locationDescription, .locationFishingNotes {
+	background: #4F6D7A;
+	color: #EAEAEA;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px; /* For debugging */
+	width: auto;
+	margin: 5px;
+	border-left: 5px solid #E8DAB2;
+}
+/* Center Box */
+
+
+/* Right Box */
+.current-report-details {
+	background: rgba(0, 0, 0, .55);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 20px 20px 5px 5px;
+	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
 	width: 350px;
-	height: auto;
+	align-self: flex-start;
 }
 
 .report {
@@ -138,9 +168,25 @@ body {
 	-webkit-border-radius: 5px; /* For debugging */
 	width: auto;
 	margin: 5px;
+	border-left: 5px solid #E8DAB2;
 }
 
 .report .reportLink {
 	text-decoration: none !important;
 }
-/* Report List */
+
+/* General Page Data */
+.dataBlockHeaders {
+	color: #E8DAB2;
+	font-weight: bolder;
+	text-shadow: 0px -2px 0px #333,
+	0px 2px 3px #666;
+}
+
+
+
+
+
+
+
+
