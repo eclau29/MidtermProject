@@ -34,7 +34,7 @@ public class LocationDAOImpl implements LocationDAO{
 		public Report updateReport(int id, Report report) {
 			Report updateReport = em.find(Report.class, id);
 			updateReport.setComment(report.getComment());
-			updateReport.setDate(report.getDate());
+			//updateReport.setDate(report.getDate());
 			return updateReport;
 		}
 		
@@ -55,7 +55,7 @@ public class LocationDAOImpl implements LocationDAO{
 		
 		@Override//RM DONE
 		public List<Report> findAllReports(int id){
-			String query = "Select r From Report r where r.location.id = :id AND where r.active = true";
+			String query = "Select r From Report r where r.location.id = :id AND where r.active = 1";
 			List<Report> listAllReportsForLocation = em.createQuery(query, Report.class)
 														.setParameter("id", id)
 														.getResultList();
