@@ -55,7 +55,7 @@ public class LocationDAOImpl implements LocationDAO{
 		
 		@Override//RM DONE
 		public List<Report> findAllReports(int id){
-			String query = "Select r From Report r where r.location.id = :id";
+			String query = "Select r From Report r where r.location.id = :id AND where r.active = true";
 			List<Report> listAllReportsForLocation = em.createQuery(query, Report.class)
 														.setParameter("id", id)
 														.getResultList();

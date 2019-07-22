@@ -120,7 +120,7 @@ public class LocationController {
 	public String removeReport(Model model, @RequestParam("reportId") int id, int locationId) {
 			Report reportToRemove = dao.searchReportById(id);
 			dao.removeReportFromLocation(reportToRemove, locationId);
-			
+			dao.findAllReports(locationId);
 			return "cofish/locationsDetails";
 	}
 	
