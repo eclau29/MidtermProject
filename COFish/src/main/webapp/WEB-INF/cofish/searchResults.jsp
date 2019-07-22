@@ -49,9 +49,9 @@
 		<!-- Map Details-->
 		<div class='map-container'>
 			<div class='map-details'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Report List</div>
-				<div class='login'>Login</div>
+				<div class='date'>Map</div>
+				<div class='signup'>Map info</div>
+				<div class='login'>More Map Info</div>
 			</div>
 		</div>
 		<!-- Extra Details-->
