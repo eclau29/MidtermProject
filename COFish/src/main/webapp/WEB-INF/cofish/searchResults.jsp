@@ -49,9 +49,42 @@
 		<!-- Map Details-->
 		<div class='map-container'>
 			<div class='map-details'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Report List</div>
-				<div class='login'>Login</div>
+				<div id="map"></div>
+    <script>
+    var map;
+     function initMap() {/*  */
+    	 /* var j; */
+       map = new google.maps.Map(document.getElementById('map'), {
+   		zoom: 13,
+   		center: new google.maps.LatLng(39.769795, -105.46082),
+   		zoom: 10,
+   		mapTypeId: google.maps.MapTypeId.ROADMAP
+   	});
+   	var infowindow = new google.maps.InfoWindow({});
+   	var marker;
+   	var i = 0;
+   	var markers = [];
+    	 <c:forEach var="L" items = "${allLocations}">
+    		
+   		marker = new google.maps.Marker({
+   			position: new google.maps.LatLng(${L.getLongitude()}, ${L.getLatitude()}),
+   			map: map
+   		});
+   		markers.push(marker);
+    	 </c:forEach>
+    	 var markerCluster = new MarkerClusterer(map, markers);
+      google.maps.event.addDomListener(window, 'load', initMap); 
+      console.log(markers);
+     }
+     
+   
+     
+   </script>
+       <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+   </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5Cu9_ocZUjeCAfmNH3GqaMU-rOIm_Fg&callback=initMap"
+        async defer></script>
 			</div>
 		</div>
 		<!-- Extra Details-->
