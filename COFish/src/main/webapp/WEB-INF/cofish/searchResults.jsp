@@ -135,7 +135,7 @@
 						<!-- <option value="fish" >Fish:</option> -->
 						<option value="accessibility">Accessibility (Easy,
 							Medium, Hard):</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
+					</select> <br> <br> <input type="text" name="keyword" /> <br> <br> <input
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
 				</form>

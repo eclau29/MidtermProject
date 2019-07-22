@@ -226,7 +226,7 @@
 					</select>
 					
 								<label for="lengthInches">Length of Fish (inches): </label>
-								<input type="text" name="lengthInches">
+								<input type="text" name="lengthInches" >
 								<br>
 								<label for="weightLbs">Weight of Fish (lbs): </label>
 								<input type="text" name="weightLbs">
@@ -344,9 +344,14 @@
 						<option value="location">Body of Water:</option>
 						<!-- <option value="fish" >Fish:</option> -->
 
-						<option value="accessibility">Accessibility (Easy,
-							Medium, Hard):</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
+						<option value="accessibility">Accessibility (Easy,Medium, Hard):</option>
+					</select>
+					<br>
+					<br>
+					<input type="text" name="keyword" /> 
+					<br>
+					<br>
+					<input
 
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
@@ -450,32 +455,6 @@
 		</div>
 	</div>
 	<!-- Update UserProfile Modal-->
-	
-	<!-- Add Report Modal-->
-	<div class="light-modal" id="addReportModal" role="dialog"
-		aria-labelledby="light-modal-label" aria-hidden="false">
-		<div class="light-modal-content animated zoomInUp">
-			<!-- light modal header -->
-			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Add Report to ${location.name }</h3>
-				
-			</div>
-			<!-- light modal body -->
-			<div class="light-modal-body">
-				<!-- My Content -->
-				<form action="getSearchResults.do" method="GET">
-				
-					
-				</form>
-			</div>
-			<!-- light modal footer -->
-			<div class="light-modal-footer">
-				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
-			</div>
-		</div>
-	</div>
-	<!-- Add Report Modal-->
-
 
 	<!-- Report Modal-->
 	<c:forEach items="${location.reports}" var="report">
@@ -520,17 +499,17 @@
 						<br> <b>Comment:</b>
 						<p>${report.comment }</p>
 						<br>
-					<form action="deleteReport.do" method="POST" id="deleteForm">
+					<%-- <form action="deleteReport.do" method="POST" id="deleteForm">
 						<input type="hidden" name="reportId" value="${report.id }">
 						
-					</form>
+					</form> --%>
 
 					</div>
 					<!-- light modal footer -->
 					<div class="light-modal-footer">
 						<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
-						<input type="submit" class="light-modal-close-btn"
-								 form="deleteForm" value="Delete"/>
+						<!-- <input type="submit" class="light-modal-close-btn"
+								 form="deleteForm" value="Delete"/> -->
 					</div>
 				</div>
 			</div>
@@ -569,7 +548,7 @@
 
 				<form action="updateReport.do" id="${user.id}${report.id}" method="POST">
 				<input type="hidden" value="${report.id}" name="id">
-						<c:forEach items="${report.caughtFishList }" var="caughtFish">
+						<%-- <c:forEach items="${report.caughtFishList }" var="caughtFish">
 							<label for="fishType">Fish Type: </label>
 							<input type="text" name="fishType" value="${caughtFish.fishType.name}">
 							<br>
@@ -585,12 +564,12 @@
 							<label for="lureType">Lure Type: </label>
 							<input type="text" name="lureType" value="${caughtFish.lureType}">
 							<br>
-						</c:forEach>
+						</c:forEach> --%>
 						<%-- <input type="text" name="comment" value="${report.caught.comment}"> --%>
 							<br>
 					<br>
 					<label for="comment">Comment:</label> 
-					<input type="text" name="comment" value="${report.comment}">
+					<input type="text" name="comment" value="${report.comment}" size=50>
 					<br>
 
 
@@ -600,13 +579,13 @@
 			<div class="light-modal-footer">
 				<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
 
-				<!-- <a href="#updateUserModal" class="light-modal-close-btn" -->
-				<!-- <a href="deleteReport.do" method="POST" class="light-modal-close-btn"
+				<!-- <a href="#updateUserModal" class="light-modal-close-btn"></a>
+				<a href="removeReport.do" method="POST" class="light-modal-close-btn"
 					aria-label="close">Delete Report</a> -->
-				<%-- <form action="deleteReport.do" method="POST">
+				<form action="deleteReport.do" method="POST">
 						<input type="hidden" name="reportId" value="${report.id }">
 						<input type="submit" value="Delete Report">
-					</form> --%>
+					</form>
 
 			</div>
 		</div>

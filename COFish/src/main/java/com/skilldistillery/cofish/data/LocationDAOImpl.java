@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.cofish.entities.CaughtFish;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 
@@ -31,11 +32,18 @@ public class LocationDAOImpl implements LocationDAO{
 		}
 		
 		@Override//RM done
-		public Report updateReport(int id, Report report) {
-			Report updateReport = em.find(Report.class, id);
-			updateReport.setComment(report.getComment());
+		public Report updateReport(int id, Report newReport) {
+			
+			Report oldReport = em.find(Report.class, id);
+			
+//			CaughtFish newFish = newReport.getCaughtFishList().get(0);
+//			List<CaughtFish> oldFishList = oldReport.getCaughtFishList();
+//			oldFishList.set(0, newFish);
+//			oldReport.setCaughtFishList(oldFishList);
+			
+			oldReport.setComment(newReport.getComment());
 			//updateReport.setDate(report.getDate());
-			return updateReport;
+			return oldReport;
 		}
 		
 		@Override
