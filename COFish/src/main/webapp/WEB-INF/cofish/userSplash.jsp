@@ -86,7 +86,6 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
-<<<<<<< HEAD
 				
 					Search by <select name="searchCategory">
 						<option value="location" >Body of Water:</option>

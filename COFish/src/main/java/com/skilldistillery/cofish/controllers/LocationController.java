@@ -22,6 +22,7 @@ import com.skilldistillery.cofish.data.LocationDAO;
 import com.skilldistillery.cofish.data.ReportDAO;
 
 import com.skilldistillery.cofish.entities.CaughtFish;
+import com.skilldistillery.cofish.entities.FishType;
 import com.skilldistillery.cofish.entities.Location;
 import com.skilldistillery.cofish.entities.Report;
 import com.skilldistillery.cofish.entities.User;
@@ -31,8 +32,9 @@ public class LocationController {
 
 	@Autowired
 	private LocationDAO dao;
+	@Autowired
 	private FishDAO daoFish;
-	
+	@Autowired
 	private ReportDAO reportDao;
 	
 	@RequestMapping(path = "getReportDetails.do", method = RequestMethod.GET)
@@ -43,36 +45,49 @@ public class LocationController {
 	@RequestMapping(path = "findLocationById.do", method = RequestMethod.GET)
 	public String findLocationById (int locationId, Model model) {
 		Location foundLocation = dao.findLocationById(locationId);
-
-		List<CaughtFish> caughtFishForReport = new ArrayList<>();
-		model.addAttribute("caughtFishForReport", caughtFishForReport);
-
+		List<Report> locationReports = foundLocation.getReports();
+		
+		for (Report report : locationReports) {
+			List<CaughtFish> reportsFish = report.getCaughtFishList();
+			System.out.println(reportsFish.size());
+		}
+		
+		List<FishType> curFishList = daoFish.findAll();
+		model.addAttribute("fishList", curFishList);
+		System.out.println("********IN FIND LOC BY ID LOCCTRLER********" + foundLocation.getReports().get(0).getCaughtFishList().size());
 		model.addAttribute("location", foundLocation);
 		
 		return "cofish/locationsDetails";
 	}
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
-
-	public String createReport(int locationId, Model model, Report report, HttpSession session, @RequestParam("caughtFishForReport") CaughtFish ...caughtFish) {
+	public String createReport(int locationId, Model model, Report report, HttpSession session
+								, @RequestParam("caughtFishForReport") int caughtFishId){
+		System.out.println("Caught fish ID: " + caughtFishId);
+		CaughtFish cf = daoFish.findByIdCaughtFish(caughtFishId);
 		Location curLocation = dao.findLocationById(locationId);
 		User curUser = (User) session.getAttribute("user");
 		report.setUserProfile(curUser.getUserProfile());
 		report.setLocation(curLocation);
+		report.addCaughtFish(cf);
 		Report newReport = dao.createReport(report);
+		List<FishType> curFishList = daoFish.findAll();
+		model.addAttribute("fishList", curFishList);
 		
-		if(caughtFish.length != 0) {
-			for (CaughtFish caughtFish2 : caughtFish) {
-				if(caughtFish2.getReport().isActive()) {
-					CaughtFish fish = reportDao.create(caughtFish2);
-
-					newReport.addCaughtFish(fish);
-				}
-			}
-		}	
-
-		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
-
+		List<CaughtFish> caughtFishList = new ArrayList<>();
+//		caughtFishList.add(caughtFish);
+//		if(caughtFish.length != 0) {
+//			for (CaughtFish caughtFish2 : caughtFish) {
+//				if(caughtFish2.getReport().isActive()) {
+//					CaughtFish fish = reportDao.create(caughtFish2);
+//
+//					newReport.addCaughtFish(fish);
+//				}
+//			}
+//		}	
+//
+//		model.addAttribute("caughtFishForReport", new ArrayList<CaughtFish>());
+		System.err.println("IN LOCATION CONTORLLER new report added: " + newReport.getCaughtFishList().size());
 		model.addAttribute("report", newReport);
 		
 		return "cofish/locationsDetails";
