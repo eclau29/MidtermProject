@@ -180,6 +180,27 @@ body {
 	text-shadow: 0px -2px 0px #333,
 	0px 2px 3px #666;
 }
+.map-container {
+	background-color: #4F6D7A; /* Blue */
+	padding: 20px 20px;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.map-details {
+	background: rgba(0, 0, 0, .35);
+	color: #EAEAEA;
+	font-weight: bold;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	width: 300px;
+}
+#map {
+        height: 300px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
 
 
 /* General Page Data */

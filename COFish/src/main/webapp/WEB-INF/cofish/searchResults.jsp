@@ -44,7 +44,9 @@
 		</div>
 		<!-- Search Results Banner-->
 
+
 		<!-- Search Results Start-->
+
 		<div class='search-results-container'>
 
 
@@ -72,6 +74,8 @@
 				</c:choose>
 			</div>
 
+
+
 			<!-- Search Results End -->
 
 
@@ -94,17 +98,31 @@
    	var marker;
    	var i = 0;
    	var markers = [];
+   	var mapInfo;
     	 <c:forEach var="L" items = "${allLocations}">
+   	 
     		
    		marker = new google.maps.Marker({
    			position: new google.maps.LatLng(${L.getLongitude()}, ${L.getLatitude()}),
    			map: map
    		});
-   		markers.push(marker);
+   		google.maps.event.addListener(
+   		      marker,
+   		      'click',
+   		      (function(marker, i) {
+   		        return function() {
+   		          infowindow.setContent('<font size="3" color="black"><strong> Name: "${L.getName()}"</strong></font><br><font size="2" color="blue">\r\
+   		          		BodyOfWater: "${L.getWaterBody()}"<br> Accessibility: "${L.getAccess().getName()}"<br>\
+   		        		URL: <a href="${L.getMapUrl()}">"${L.getMapUrl()}"</a></font>')
+   		          infowindow.open(map, marker)
+   		        }
+   		      })(marker, i)
+   		    )
+/*    		markers.push(marker); */
+   		i++;
     	 </c:forEach>
-    	 var markerCluster = new MarkerClusterer(map, markers);
-      google.maps.event.addDomListener(window, 'load', initMap); 
-      console.log(markers);
+    	/*  var markerCluster = new MarkerClusterer(map, markers);
+      google.maps.event.addDomListener(window, 'load', initMap);  */
      }
      
    
@@ -163,11 +181,12 @@
 				<!-- My Content -->
 				<form action="getSearchResults.do" method="GET">
 
-					Search by <select>
-						<option value="location">Location:</option>
-						<option value="fish">Fish:</option>
-						<option value="accessibility">Accessibility:</option>
-					</select> <br> <br> <input type="text" /> <br> <br> <input
+					Search by <select name="searchCategory">
+						<option value="location">Body of Water:</option>
+						<!-- <option value="fish" >Fish:</option> -->
+						<option value="accessibility">Accessibility (Easy,
+							Medium, Hard):</option>
+					</select> <br> <br> <input type="text" name="keyword" /> <br> <br> <input
 						type="submit" value="Show Locations" class="light-modal-close-btn"
 						aria-label="close" />
 				</form>
@@ -179,6 +198,7 @@
 		</div>
 	</div>
 	<!-- Search Modal-->
+
 
 	<!-- UserProfile Modal-->
 	<div class="light-modal" id="userModal" role="dialog"
