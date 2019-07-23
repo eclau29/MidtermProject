@@ -6,7 +6,6 @@ body {
 	background-image: url("../images/locations_background.png");
 	background-repeat: no-repeat;
 	background-size: auto;
-	
 	display: block;
 	background-attachment: scroll;
 }
@@ -19,7 +18,6 @@ body {
 	flex-direction: column;
 	height: 100%;
 	overflow-y: scroll;
-	
     
 }
 

@@ -24,34 +24,54 @@
 		<!-- Search Results Banner-->
 		<div class='search-banner-container'>
 			<div class='search-banner'>
-				<div class='date'>Aug 14, 2016</div>
-				<div class='signup'>Location Banner</div>
-				<div class='login'>Login</div>
+				<div class='innerBox'>
+					<div class='curDate'>
+						<h2>
+							Todays Date -
+							<%=(new java.util.Date())%></h2>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<!-- Search Results Banner-->
 
-		<!-- Search Results -->
+		<!-- Search Results Start-->
 		<div class='search-results-container'>
-			<div class='search-details'>
-				<p>
-					<b>Search Results</b>
-				</p>
-				<ul class="searchResults" style="list-style: none;">
-					<c:forEach items="${allLocations }" var="location">
-						<li><a href="findLocationById.do?locationId=${location.id }">${location.name }</a></li>
-					</c:forEach>
-				</ul>
+				
+			
+			<div class='current-search-container'>
+				<h2 class="dataBlockHeaders">Search Results</h2>
+
+				<c:choose>
+					<c:when test="${empty allLocations}">
+						<div class='search-details'>
+							<h3>No Locations Found</h3>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${allLocations}" var="location">
+								<div class='search-details'>
+									<a href="findLocationById.do?locationId=${location.id }"> 	
+										<br>${location.name }
+										 
+									</a>
+								</div>
+							
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
-		</div>
-		<!-- Search Results -->
-
-		<!-- Map Details-->
-		<div class='map-container'>
-			<div class='map-details'>
-
+			
+			<!-- Search Results End -->
+			
+			
+			<!-- Map Details Start-->
+			<div class='map-details-container'>
+		<h1 class="dataBlockHeaders">Mapped Results - Colorado</h1>
+		<br>
 				<div id="map"></div>
-    <script>
+				<script>
     var map;
      function initMap() {/*  */
     	 /* var j; */
@@ -81,15 +101,18 @@
    
      
    </script>
-       <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+				<script
+					src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
    </script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5Cu9_ocZUjeCAfmNH3GqaMU-rOIm_Fg&callback=initMap"
-        async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy5Cu9_ocZUjeCAfmNH3GqaMU-rOIm_Fg&callback=initMap"
+					async defer></script>
 
 			</div>
+			<!-- Map Details End-->
 		</div>
-		<!-- Extra Details-->
+		<!-- Search Results -->
+
+
 
 		<!-- Nav Bar -->
 		<ul class="botnav">
