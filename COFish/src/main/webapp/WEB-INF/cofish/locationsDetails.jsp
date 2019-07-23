@@ -9,7 +9,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>User Portal</title>
+
+
+<title><c:choose>
+		<c:when test="${sessionScope.user != null}">
+			${user.userName}'s Portal
+		</c:when>
+		<c:when test="${sessionScope.user == null}">
+			Guest Portal
+		</c:when>
+		
+	</c:choose></title>
+
+
 <link rel="stylesheet" href="css/location_details_styles.css">
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
@@ -38,7 +50,7 @@
 					</div>
 				</div>
 				<div class='locationName'>
-					<h1 class="dataBlockHeaders">${location.waterBody}- Colorado</h1>
+					<h1 class="dataBlockHeaders">${location.waterBody}-Colorado</h1>
 				</div>
 			</div>
 		</div>
@@ -55,7 +67,7 @@
 						 - ${location.waterBody}
 					</c:if>
 					</h3>
-					<h3>${location.longitude} ${location.latitude}</h3>
+					<h3>${location.longitude}${location.latitude}</h3>
 				</div>
 				<h2 class="dataBlockHeaders">Accessibility</h2>
 				<div class='difficulty'>
@@ -63,7 +75,7 @@
 				</div>
 				<h2 class="dataBlockHeaders">Area</h2>
 				<div class='locationArea'>
-					<h3>${location.area}- Colorado</h3>
+					<h3>${location.area}-Colorado</h3>
 				</div>
 			</div>
 			<!-- Location Data Box End-->
@@ -98,8 +110,7 @@
 										${report.userProfile.user.userName} | Fish Caught: <c:if
 											test="${fn:length(report.caughtFishList) != 0}">
 								${fn:length(report.caughtFishList)} 
-							</c:if> 
-							<c:if test="${fn:length(report.caughtFishList) == 0}">
+							</c:if> <c:if test="${fn:length(report.caughtFishList) == 0}">
 								None
 							</c:if>
 									</a>
@@ -108,7 +119,7 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				
+
 			</div>
 			<!-- Reports Box End -->
 		</div>
@@ -360,23 +371,23 @@
 			<div class="light-modal-body">
 				<!-- My Content -->
 				<div class="userContent">
-				<div class="userInfo">
-				<h4>User Name</h4>
-				<p>${user.userName}</p>
-				<br>
-				<h4>Email</h4>
-				<p>${user.email}</p>
-				<br>
-				<h4>Full Name</h4>
-				<p>${user.userProfile.lastName}, ${user.userProfile.firstName}</p>
-				<br>
-				<h4>Address</h4>
-				<p>${user.userProfile.city},${user.userProfile.state}</p>
-				</div>
-				<div class="userAbout">
-				<h4>About</h4>
-				<p>${user.userProfile.aboutMe}</p>
-				</div>
+					<div class="userInfo">
+						<h4>User Name</h4>
+						<p>${user.userName}</p>
+						<br>
+						<h4>Email</h4>
+						<p>${user.email}</p>
+						<br>
+						<h4>Full Name</h4>
+						<p>${user.userProfile.lastName},${user.userProfile.firstName}</p>
+						<br>
+						<h4>Address</h4>
+						<p>${user.userProfile.city},${user.userProfile.state}</p>
+					</div>
+					<div class="userAbout">
+						<h4>About</h4>
+						<p>${user.userProfile.aboutMe}</p>
+					</div>
 				</div>
 			</div>
 			<!-- light modal footer -->
@@ -470,64 +481,63 @@
 					<!-- light modal header -->
 
 					<div class="light-modal-header">
-						<h3 class="light-modal-heading">${report.userProfile.user.userName}'s
-							Report On ${report.date}</h3>
+						<h3 class="light-modal-heading">
+							<b>${report.userProfile.user.userName}'s</b> Report On
+							${report.date}
+						</h3>
 						<c:choose>
 							<c:when test="${user.id eq report.userProfile.user.id}">
 								<a href="#${report.id}${user.id}" class="light-modal-close-btn"
 									aria-label="close">Update</a>
-									<input type="submit" class="light-modal-close-btn"
-							form="{report.id }{report.id }{report.id }" value="Delete" />
+								<input type="submit" class="light-modal-close-btn"
+									form="{report.id }{report.id }{report.id }" value="Delete" />
 							</c:when>
 						</c:choose>
 					</div>
-					
+
 					<!-- light modal body Start-->
 					<div class="light-modal-body">
 						<!-- My Content Start-->
 						<!-- Content Container Start-->
 						<div class="reportBody">
-						<!-- Report Details Container Start -->
-						<div class="reportDetails">
+							<!-- Report Details Container Start -->
+							<div class="reportDetails">
 
-						<h3>Comment:</h3>
-						<p>${report.comment }</p>
-						</div>
-						<!-- Report Details Container End -->
-						<!--  Fish Reported or Not Container Start -->
-						<div class="reportFishBlock">
-						<div class="fishes">
-						<h3>Fish Caught at this Location:</h3>
-						 <hr>
-						 
-						<c:if test="${fn:length(report.caughtFishList) == 0}">
+								<h3>Comment:</h3>
+								<p>${report.comment }</p>
+							</div>
+							<!-- Report Details Container End -->
+							<!--  Fish Reported or Not Container Start -->
+							<div class="reportFishBlock">
+								<div class="fishes">
+									<h3>Fish Caught at this Location:</h3>
+									<hr>
+
+									<c:if test="${fn:length(report.caughtFishList) == 0}">
 								No Fish added to this Report
 							</c:if>
-						<c:if test="${fn:length(report.caughtFishList) != 0}">
-						<c:forEach items="${report.caughtFishList }" var="caughtFish">
-							<a href="${caughtFish.fishType.wikiUrl }" target="_blank">
-							<b>Fish Type:</b> ${caughtFish.fishType.name }
-        				<br>
-							<b>Size:</b>${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs.
-        				<br>
-							<b>Rod Type:</b> ${caughtFish.rodType }
-        				<br>
-							<b>Lure Type:</b> ${caughtFish.lureType }
-        				<br>
-        				<br>
-						</a>
-						</c:forEach>
-						</c:if>
-						</div>
-						
-						</div>
-						<!--  Fish Reported or Not Container End-->
+									<c:if test="${fn:length(report.caughtFishList) != 0}">
+										<c:forEach items="${report.caughtFishList }" var="caughtFish">
+											<a href="${caughtFish.fishType.wikiUrl }" target="_blank">
+												<img class="fish-image"
+												src="${caughtFish.fishType.imageUrl}"> <br> <b>Fish
+													Type:</b> ${caughtFish.fishType.name } <br> <b>Size:</b>${caughtFish.lengthInches }
+												inches, ${caughtFish.weightLbs} lbs. <br> <b>Rod
+													Type:</b> ${caughtFish.rodType } <br> <b>Lure Type:</b>
+												${caughtFish.lureType } <br> <br>
+											</a>
+										</c:forEach>
+									</c:if>
+								</div>
+
+							</div>
+							<!--  Fish Reported or Not Container End-->
 						</div>
 						<!-- Content Container End-->
 						<!-- My Content End-->
-						</div>
+					</div>
 					<!-- light modal body End-->
-					
+
 					<!-- light modal footer -->
 					<div class="light-modal-footer">
 						<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
@@ -537,9 +547,9 @@
 						</form>
 
 					</div>
-						
-					</div>
+
 				</div>
+			</div>
 		</c:if>
 
 		<!-- Update Report Modal-->

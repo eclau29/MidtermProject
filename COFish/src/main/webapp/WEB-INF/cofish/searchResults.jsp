@@ -6,7 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>User Portal</title>
+<title><c:choose>
+		<c:when test="${sessionScope.user != null}">
+			${user.userName}'s Portal
+		</c:when>
+		<c:when test="${sessionScope.user == null}">
+			Guest Portal
+		</c:when>
+		
+	</c:choose></title>
 <link rel="stylesheet" href="css/search_results_styles.css">
 <link rel="stylesheet" href="css/light-modal.min.css">
 <link rel="stylesheet" href="/css/w3.css">
