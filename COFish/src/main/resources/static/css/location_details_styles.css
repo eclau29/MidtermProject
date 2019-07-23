@@ -153,11 +153,14 @@ body {
 	padding: 10px;
 	-moz-border-radius: 20px 20px 5px 5px;
 	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
-	width: 350px;
+	width: 500px;
 	align-self: flex-start;
+	
+	height: 695;
 }
 
 .report {
+	font-size: 18px;
 	background: #4F6D7A;
 	color: #EAEAEA;
 	font-weight: bold;
@@ -173,19 +176,18 @@ body {
 	text-decoration: none !important;
 }
 
-/* General Page Data */
-.dataBlockHeaders {
-	color: #E8DAB2;
-	font-weight: bolder;
-	text-shadow: 0px -2px 0px #333,
-	0px 2px 3px #666;
-}
 .map-container {
 	background-color: #4F6D7A; /* Blue */
-	padding: 20px 20px;
+	
 	display: flex;
-	width: 100%;
-	justify-content: flex-end;
+	width: auto;
+
+	border-left: 5px solid #E8DAB2;
+	margin: 15px 5px 5px 5px;
+	padding: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; /* For debugging */
+	justify-content: center;
 }
 
 .map-details {
@@ -195,32 +197,14 @@ body {
 	padding: 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px; /* For debugging */
-	width: 300px;
+	width: 300px;	
 }
+
 #map {
         height: 300px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
-
-
-/* General Page Data */
-.dataBlockHeaders {
-	color: #E8DAB2;
-	font-weight: bolder;
-	text-shadow: 0px -2px 0px #333,
-	0px 2px 3px #666;
-}
-
-.userContent{
-	display: flex;
-	flex-direction: row;
-	justify-content:  space-evenly;
-	align-items: center;
-}
-.userInfo, .userAbout{
-	width:300px;
-}
-
+       
 .reportBody{
 	display: flex;
 	flex-direction: row;
@@ -246,7 +230,40 @@ body {
 	text-decoration: none !important;
 
 	}
+.reportControl{
+	overflow-y: scroll;
+	max-height: 270px;
+	height: auto;
+}       
+/* Right Box */
 
+/* General Page Data */
+.dataBlockHeaders {
+	color: #E8DAB2;
+	font-weight: bolder;
+	text-shadow: 0px -2px 0px #333,
+	0px 2px 3px #666;
+}
+
+
+
+/* General Page Data */
+.dataBlockHeaders {
+	color: #E8DAB2;
+	font-weight: bolder;
+	text-shadow: 0px -2px 0px #333,
+	0px 2px 3px #666;
+}
+
+.userContent{
+	display: flex;
+	flex-direction: row;
+	justify-content:  space-evenly;
+	align-items: center;
+}
+.userInfo, .userAbout{
+	width:300px;
+}
 
 
 

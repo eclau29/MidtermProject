@@ -93,10 +93,17 @@ body {
 	align-self: flex-start;
 	justify-content: space-between;
 	width: 600px;
-	overflow-y: scroll;
+	
 	max-height: 700px;
 	height: auto;
 	margin:5px;
+}
+.locationsScroll {
+overflow-y: scroll;
+	max-height: 600px;
+	height: auto;
+	
+	
 }
 
 .search-details {
@@ -110,12 +117,12 @@ body {
 	width: auto;
 	margin: 5px;
 	border-left: 5px solid #E8DAB2;
-	
+	font-size: 20px;
 }
 
 .search-details a{
 	text-decoration: none !important;
-
+	
 	}
 	
 
@@ -129,6 +136,7 @@ body {
 	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
 	width: 800px;
 	max-width: 850px;
+	max-height: 695px;
 	height: auto;
 	flex-direction: column;
 	margin:5px;

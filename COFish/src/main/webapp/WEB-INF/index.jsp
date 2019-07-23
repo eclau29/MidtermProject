@@ -21,6 +21,7 @@
 <!--  Login Page Forms -->
 <div class='login-form'>
 <!--  User Login form (start)-->
+<!--  ROB SEZ CHANGE REQUEST METHOD TO POST AND UPDATE UserController METHOD -->
 <form action="loginUser.do" method="GET">
   <div class="flex-row">
     <label class="lf--label" for="username">

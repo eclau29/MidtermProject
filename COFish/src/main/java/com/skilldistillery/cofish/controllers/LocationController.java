@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.cofish.data.FishDAO;
 import com.skilldistillery.cofish.data.LocationDAO;
@@ -67,41 +68,56 @@ public class LocationController {
 
 	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
 	public String createReport(int locationId, Model model, Report report, HttpSession session,
-			CaughtFish caughtFishForReport, @RequestParam("fishTypeId") Integer fishTypeId) {
-
-		System.err.println("--------------------Fish Type ID: " + fishTypeId);
-		System.err.println("Caught Fish object coming in " + caughtFishForReport);
+			CaughtFish caughtFishForReport, @RequestParam("fishTypeId") Integer fishTypeId,
+			RedirectAttributes redir) {
 
 		Location curLocation = dao.findLocationById(locationId);
-		List<Report> locationReports = curLocation.getReports();
+		
+		User curUser = (User) session.getAttribute("user");
+		
+		FishType caughtFishType = daoFish.findByIdFishType(fishTypeId);
+		
+		caughtFishForReport.setFishType(caughtFishType);
+//		caughtFishForReport.setReport(newReport); // ROB
+
+		report.setUserProfile(curUser.getUserProfile());
+		report.setLocation(curLocation);
+		report.addCaughtFish(caughtFishForReport); //ROB
+		Report newReport = dao.createReport(report);
+
+		
+		CaughtFish cf = daoFish.create(caughtFishForReport);
+
+		newReport.addCaughtFish(cf);
+		
+		System.out.println("*********** " + newReport.getCaughtFishList().size());
+		
+		newReport = dao.updateReport(newReport.getId(), newReport);
+		
+		System.out.println("*********** " + newReport.getCaughtFishList().size());
+		
+		Location newLocation = dao.findLocationById(newReport.getLocation().getId());
+		List<Report> locationReports = newLocation.getReports();
 
 		for (Report reported : locationReports) {
 			List<CaughtFish> reportsFish = reported.getCaughtFishList();
 			System.out.println(reportsFish.size());
 		}
-		User curUser = (User) session.getAttribute("user");
-		report.setUserProfile(curUser.getUserProfile());
-		report.setLocation(curLocation);
-		Report newReport = dao.createReport(report);
-
-		FishType caughtFishType = daoFish.findByIdFishType(fishTypeId);
-		caughtFishForReport.setFishType(caughtFishType);
-		caughtFishForReport.setReport(newReport);
-		CaughtFish cf = daoFish.create(caughtFishForReport);
-
-		newReport.addCaughtFish(cf);
-		newReport = dao.updateReport(newReport.getId(), newReport);
-		Location newLocation = dao.findLocationById(newReport.getLocation().getId());
-
+		
 		List<FishType> curFishList = daoFish.findAll();
-		model.addAttribute("fishList", curFishList); // of type FishType
+//		model.addAttribute("fishList", curFishList); // of type FishType
+//		
+//
+//		model.addAttribute("location", newLocation);
+		redir.addFlashAttribute("fishList", curFishList);
+		redir.addFlashAttribute("location", newLocation);
+		redir.addFlashAttribute("locationId", locationId);
 
-		System.err.println("IN LOCATION CONTORLLER new report added: " + newReport.getCaughtFishList().size());
-//		model.addAttribute("report", newReport);
-		model.addAttribute("location", newLocation);
-
-		return "cofish/locationsDetails";
+//		return "cofish/locationsDetails";
+		return "redirect:findLocationById.do?locationId=" + locationId;
+//		return findLocationById(newLocation.getId(), model);
 	}
+	
 //	@RequestMapping(path = "createReport.do", method = RequestMethod.POST)
 //	public String createReport(int locationId, Model model, Report report, HttpSession session
 //			, @RequestParam("caughtFishForReport") int caughtFishId){
@@ -141,8 +157,12 @@ public class LocationController {
 	public String updateReport(@RequestParam int id, Model model, Report report) {
 		System.err.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + report);
 		System.err.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + id);
+		
 		Report newReport = dao.updateReport(id, report);
 		model.addAttribute("report", newReport);
+		Location foundLocation = dao.findLocationById(newReport.getLocation().getId());
+		
+		model.addAttribute("location", foundLocation);
 		return "cofish/locationsDetails";
 	}
 

@@ -52,7 +52,7 @@
 
 			<div class='current-search-container'>
 				<h1 class="dataBlockHeaders">Available Locations</h1>
-
+				<div class="locationsScroll">
 				<c:choose>
 					<c:when test="${empty allLocations}">
 						<div class='search-details'>
@@ -72,6 +72,7 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				</div>
 			</div>
 
 
@@ -153,8 +154,7 @@
 			<li id="navLeft"><a href="showAllLocations.do">All Locations</a></li>
 			<c:choose>
 				<c:when test="${sessionScope.user != null}">
-					<li id="navLeft"><a class="btn" href="#userModal">User
-							Profile</a></li>
+					<li id="navLeft"><a class="btn" href="#userModal">${user.userName}'s Profile</a></li>
 				</c:when>
 			</c:choose>
 			<li id="navRight" class="right"><a href="logoutUser.do"> <c:choose>
@@ -206,7 +206,7 @@
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">User Profile</h3>
+				<h3 class="light-modal-heading">${user.userName}'s Profile</h3>
 				<!-- <a href="#updateUserModal" class="light-modal-close-btn"
 					aria-label="close">Update</a> -->
 			</div>

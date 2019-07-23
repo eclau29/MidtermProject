@@ -44,6 +44,7 @@ public class UserController {
 	}
 	
 	// USER METHODS
+	// ROB SEZ: CHANGE THIS TO POST (AND UPDATE YOUR LOGIN FORM METHOD TO POST
 	@RequestMapping(path = "loginUser.do", method = RequestMethod.GET)
 	public String loginUser(Model model, HttpSession session, 
 			@RequestParam("userName") String userName, @RequestParam("password") String password ) {
