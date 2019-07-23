@@ -29,11 +29,11 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
-	opacity: .65;
+	opacity: .90;
 }
 
 .location-banner {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -72,14 +72,14 @@ body {
 	padding: 20px 20px 20px 45px;
 	display: flex;
 	width: 100%;
-	opacity: .65;
+	opacity: .90;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
 /* Left Box */
 .location-details {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -117,7 +117,7 @@ body {
 
 /* Center Box */
 .description-details {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -147,7 +147,7 @@ body {
 
 /* Right Box */
 .current-report-details {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -182,7 +182,49 @@ body {
 }
 
 
+/* General Page Data */
+.dataBlockHeaders {
+	color: #E8DAB2;
+	font-weight: bolder;
+	text-shadow: 0px -2px 0px #333,
+	0px 2px 3px #666;
+}
 
+.userContent{
+	display: flex;
+	flex-direction: row;
+	justify-content:  space-evenly;
+	align-items: center;
+}
+.userInfo, .userAbout{
+	width:300px;
+}
+
+.reportBody{
+	display: flex;
+	flex-direction: row;
+	justify-content:  space-evenly;
+	align-items: flex-start;
+}
+
+.reportDetails{
+	display: flex;
+	width:500px;
+	flex-direction: column;
+	margin:10px;
+}
+
+.reportFishBlock{
+	display: flex;
+	width:500px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin:5px;
+}
+.fishes a{
+	text-decoration: none !important;
+
+	}
 
 
 

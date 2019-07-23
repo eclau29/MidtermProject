@@ -32,7 +32,7 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
-	opacity: .65;
+	opacity: .90;
 }
 
 .search-banner {
@@ -56,6 +56,7 @@ body {
 	width: auto;
 	margin: 5px;
 	border-right: 5px solid #E8DAB2;
+	
 }
 
 .locationName{
@@ -75,14 +76,14 @@ body {
 	padding: 50px 150px 150px 150px;
 	display: flex;
 	width: 100%;
-	opacity: .65;
+	opacity: .90;
 	flex-direction: row;
 	justify-content: space-between;
 	
 }
 
 .current-search-container {
-	background: rgba(0, 0, 0, .75);
+	background: rgba(0, 0, 0, .98);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -90,15 +91,16 @@ body {
 	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
 	align-self: flex-start;
 	justify-content: space-between;
-	width: 500px;
+	width: 600px;
 	overflow-y: scroll;
 	max-height: 700px;
 	height: auto;
+	margin:5px;
 }
 
 .search-details {
 	background: #DD6E42;
-	opacity: 90%;
+	opacity: 10%;
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -107,10 +109,17 @@ body {
 	width: auto;
 	margin: 5px;
 	border-left: 5px solid #E8DAB2;
+	
 }
 
+.search-details a{
+	text-decoration: none !important;
+
+	}
+	
+
 .map-details-container {
-	background: rgba(0, 0, 0, .85);
+	background: rgba(0, 0, 0, .98);
 	color: #EAEAEA;
 	display: flex;
 	font-weight: bold;
@@ -121,8 +130,10 @@ body {
 	max-width: 850px;
 	height: auto;
 	flex-direction: column;
+	margin:5px;
 }
 #map {
+	
         height: 600px;  /* The height is 400 pixels */
         width: auto;  /* The width is the width of the web page */
        }
@@ -134,4 +145,14 @@ body {
 	font-weight: bolder;
 	text-shadow: 0px -2px 0px #333,
 	0px 2px 3px #666;
+}
+
+.userContent{
+	display: flex;
+	flex-direction: row;
+	justify-content:  space-evenly;
+	align-items: center;
+}
+.userInfo, .userAbout{
+	width:300px;
 }

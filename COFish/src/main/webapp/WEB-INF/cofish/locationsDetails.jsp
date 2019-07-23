@@ -353,30 +353,31 @@
 			<!-- light modal header -->
 			<div class="light-modal-header">
 				<h3 class="light-modal-heading">User Profile</h3>
-				<a href="#updateUserModal" class="light-modal-close-btn"
-					aria-label="close">Update Profile</a>
+				<!-- <a href="#updateUserModal" class="light-modal-close-btn"
+					aria-label="close">Update Profile</a> -->
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
 				<!-- My Content -->
+				<div class="userContent">
+				<div class="userInfo">
 				<h4>User Name</h4>
 				<p>${user.userName}</p>
 				<br>
 				<h4>Email</h4>
 				<p>${user.email}</p>
 				<br>
-				<h4>First Name</h4>
-				<p>${user.userProfile.firstName}</p>
-				<br>
-				<h4>Last Name</h4>
-				<p>${user.userProfile.lastName}</p>
+				<h4>Full Name</h4>
+				<p>${user.userProfile.lastName}, ${user.userProfile.firstName}</p>
 				<br>
 				<h4>Address</h4>
 				<p>${user.userProfile.city},${user.userProfile.state}</p>
-				<br>
+				</div>
+				<div class="userAbout">
 				<h4>About</h4>
 				<p>${user.userProfile.aboutMe}</p>
-				<br>
+				</div>
+				</div>
 			</div>
 			<!-- light modal footer -->
 			<div class="light-modal-footer">
@@ -460,7 +461,6 @@
 	<!-- Report Modal-->
 	<c:forEach items="${location.reports}" var="report">
 
-
 		<c:if test="${report.active eq true }">
 
 			<div class="light-modal" id="${report.id}" role="dialog"
@@ -476,20 +476,37 @@
 							<c:when test="${user.id eq report.userProfile.user.id}">
 								<a href="#${report.id}${user.id}" class="light-modal-close-btn"
 									aria-label="close">Update</a>
+									<input type="submit" class="light-modal-close-btn"
+							form="{report.id }{report.id }{report.id }" value="Delete" />
 							</c:when>
 						</c:choose>
 					</div>
-					<!-- light modal body -->
+					
+					<!-- light modal body Start-->
 					<div class="light-modal-body">
-						<!-- My Content -->
+						<!-- My Content Start-->
+						<!-- Content Container Start-->
+						<div class="reportBody">
+						<!-- Report Details Container Start -->
+						<div class="reportDetails">
 
-
-						<br> <b>Date of Report:</b> ${report.date } <br> <br>
-						<b>Fish Caught at this Location:</b> <br>
+						<h3>Comment:</h3>
+						<p>${report.comment }</p>
+						</div>
+						<!-- Report Details Container End -->
+						<!--  Fish Reported or Not Container Start -->
+						<div class="reportFishBlock">
+						<div class="fishes">
+						<h3>Fish Caught at this Location:</h3>
+						 <hr>
+						 
+						<c:if test="${fn:length(report.caughtFishList) == 0}">
+								No Fish added to this Report
+							</c:if>
+						<c:if test="${fn:length(report.caughtFishList) != 0}">
 						<c:forEach items="${report.caughtFishList }" var="caughtFish">
+							<a href="${caughtFish.fishType.wikiUrl }" target="_blank">
 							<b>Fish Type:</b> ${caughtFish.fishType.name }
-
-
         				<br>
 							<b>Size:</b>${caughtFish.lengthInches } inches, ${caughtFish.weightLbs} lbs.
         				<br>
@@ -497,32 +514,35 @@
         				<br>
 							<b>Lure Type:</b> ${caughtFish.lureType }
         				<br>
+        				<br>
+						</a>
 						</c:forEach>
-						<br> <b>Comment:</b>
-						<p>${report.comment }</p>
-						<br>
+						</c:if>
+						</div>
+						
+						</div>
+						<!--  Fish Reported or Not Container End-->
+						</div>
+						<!-- Content Container End-->
+						<!-- My Content End-->
+						</div>
+					<!-- light modal body End-->
+					
+					<!-- light modal footer -->
+					<div class="light-modal-footer">
+						<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
 						<form action="deleteReport.do" method="POST"
 							id="{report.id }{report.id }{report.id }">
 							<input type="hidden" name="reportId" value="${report.id }">
 						</form>
 
 					</div>
-					<!-- light modal footer -->
-					<div class="light-modal-footer">
-						<a href="#" class="light-modal-close-btn" aria-label="close">Close</a>
-
-						<input type="submit" class="light-modal-close-btn"
-							form="{report.id }{report.id }{report.id }" value="Delete" />
+						
 					</div>
 				</div>
-			</div>
-
-
 		</c:if>
 
 		<!-- Update Report Modal-->
-
-
 		<div class="light-modal" id="${report.id}${user.id}" role="dialog"
 			aria-labelledby="light-modal-label" aria-hidden="false">
 
