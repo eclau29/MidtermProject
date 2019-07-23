@@ -222,7 +222,7 @@
 		<div class="light-modal-content animated zoomInUp">
 			<!-- light modal header -->
 			<div class="light-modal-header">
-				<h3 class="light-modal-heading">Search</h3>
+				<h3 class="light-modal-heading">Add A New Report</h3>
 			</div>
 			<!-- light modal body -->
 			<div class="light-modal-body">
