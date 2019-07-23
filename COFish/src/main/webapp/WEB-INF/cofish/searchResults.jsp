@@ -27,11 +27,11 @@
 				<div class='innerBox'>
 					<div class='curDate'>
 						<h2>
-							Todays Date -
+							Today's Date -
 							<%=(new java.util.Date())%></h2>
 					</div>
 				</div>
-				
+				<h1 class="dataBlockHeaders">Search Results - Colorado</h1>
 			</div>
 		</div>
 		<!-- Search Results Banner-->
@@ -41,7 +41,7 @@
 				
 			
 			<div class='current-search-container'>
-				<h2 class="dataBlockHeaders">Search Results</h2>
+				<h1 class="dataBlockHeaders">Search Results</h1>
 
 				<c:choose>
 					<c:when test="${empty allLocations}">
@@ -68,7 +68,7 @@
 			
 			<!-- Map Details Start-->
 			<div class='map-details-container'>
-		<h1 class="dataBlockHeaders">Mapped Results - Colorado</h1>
+			<h1 class="dataBlockHeaders">Mapped Results - Colorado</h1>
 		<br>
 				<div id="map"></div>
 				<script>
@@ -118,7 +118,7 @@
 		<ul class="botnav">
 			<c:choose>
 				<c:when test="${sessionScope.user != null}">
-					<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+				<!-- 	<li id="navLeft"><a href="getUserSplash.do">Home</a></li> -->
 				</c:when>
 			</c:choose>
 			<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>

@@ -3,11 +3,11 @@
 
 body {
 	color: #FFF;
-	background-image: url("../images/locations_background.png");
+	background-image: url("../images/search_background.png");
 	background-repeat: no-repeat;
 	background-size: auto;
 	display: block;
-	background-attachment: scroll;
+	
 }
 
 .page-data {

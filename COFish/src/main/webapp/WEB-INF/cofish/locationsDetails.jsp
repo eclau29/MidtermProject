@@ -33,7 +33,7 @@
 				<div class='innerBox'>
 					<div class='curDate'>
 						<h2>
-							Todays Date -
+							Today's Date -
 							<%=(new java.util.Date())%></h2>
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 	<ul class="botnav">
 		<c:choose>
 			<c:when test="${sessionScope.user != null}">
-				<li id="navLeft"><a href="getUserSplash.do">Home</a></li>
+				<!-- <li id="navLeft"><a href="getUserSplash.do">Home</a></li> -->
 			</c:when>
 		</c:choose>
 		<li id="navLeft"><a class="btn" href="#searchModal">Search</a></li>

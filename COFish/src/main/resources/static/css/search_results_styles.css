@@ -2,11 +2,11 @@
 
 body {
 	color: #FFF;
-	background-image: url("../images/locations_background.png");
+	background-image: url("../images/user_background.png");
 	background-repeat: no-repeat;
 	background-size: auto;
 	display: block;
-	background-attachment: scroll;
+	
 }
 
 .page-data {
@@ -36,7 +36,7 @@ body {
 }
 
 .search-banner {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -47,7 +47,7 @@ body {
 }
 
 .innerBox {
-	background: #4F6D7A;
+	background: #DD6E42;
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -82,7 +82,7 @@ body {
 }
 
 .current-search-container {
-	background: rgba(0, 0, 0, .55);
+	background: rgba(0, 0, 0, .75);
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -98,6 +98,7 @@ body {
 
 .search-details {
 	background: #DD6E42;
+	opacity: 90%;
 	color: #EAEAEA;
 	font-weight: bold;
 	padding: 10px;
@@ -109,13 +110,13 @@ body {
 }
 
 .map-details-container {
-	background: rgba(0, 0, 0, .35);
+	background: rgba(0, 0, 0, .85);
 	color: #EAEAEA;
 	display: flex;
 	font-weight: bold;
 	padding: 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px; /* For debugging */
+	-moz-border-radius: 20px 20px 5px 5px;
+	-webkit-border-radius: 20px 20px 5px 5px; /* For debugging */
 	width: 800px;
 	max-width: 850px;
 	height: auto;
@@ -123,7 +124,7 @@ body {
 }
 #map {
         height: 600px;  /* The height is 400 pixels */
-        width: 150%;  /* The width is the width of the web page */
+        width: auto;  /* The width is the width of the web page */
        }
 /* Search Results*/
 
