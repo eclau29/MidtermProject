@@ -154,7 +154,7 @@ public class CaughtFish {
 		StringBuilder builder = new StringBuilder();
 		builder.append("CaughtFish [id=").append(id).append(", fishTypeId=").append(fishType)
 				.append(", lengthInches=").append(lengthInches).append(", weightLbs=").append(weightLbs)
-				.append(", rodType=").append(rodType).append(", lureType=").append(lureType).append(", reportId=")
+				.append(", rodType=").append(rodType).append(", lureType=").append(lureType).append(", reportId=") //.append(report.getId())
 				.append(", comment=").append(comment).append("]");
 		return builder.toString();
 	}

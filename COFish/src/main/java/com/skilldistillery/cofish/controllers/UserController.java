@@ -44,15 +44,20 @@ public class UserController {
 	}
 	
 	// USER METHODS
+	// ROB SEZ: CHANGE THIS TO POST (AND UPDATE YOUR LOGIN FORM METHOD TO POST
 	@RequestMapping(path = "loginUser.do", method = RequestMethod.GET)
-	public String loginUser(HttpSession session, 
+	public String loginUser(Model model, HttpSession session, 
 			@RequestParam("userName") String userName, @RequestParam("password") String password ) {
 		System.err.println("User deets: " + userName + " " + password);
 		session.setAttribute("user", dao.login(userName, password));
 		//FIXME
 //		session.setAttribute("fishType", fishDAO.findAll());
 //		System.err.println(fishDAO.findAll());
-		return "cofish/userSplash";
+		List<Location> showAllLocations = locDAO.showAllLocations();
+		model.addAttribute("allLocations", showAllLocations);
+		return "cofish/searchResults";
+		
+//		return "cofish/userSplash";
 	}
 	
 	@RequestMapping(path = "logoutUser.do", method = RequestMethod.GET)

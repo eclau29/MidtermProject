@@ -54,19 +54,21 @@ public class Report {
 	// M E T H O D S
 	
 	public void addCaughtFish (CaughtFish caughtFish) {
-		System.err.println("caught fish top of addCF" + caughtFish);
+		System.err.println("==============================================");
+		System.err.println("caught fish top of addCF " + caughtFish);
 		if (caughtFishList == null) {
 			caughtFishList = new ArrayList<>();
 		}
 		
 		if (!caughtFishList.contains(caughtFish)) {
 			caughtFishList.add(caughtFish);
-			System.err.println("caught fish after add.CF" + caughtFish);
+			System.err.println("caught fish after add.CF " + caughtFish);
 			if (caughtFish.getReport() != null) {
 				caughtFish.getReport().getCaughtFishList().remove(caughtFish);
 			}
 			caughtFish.setReport(this);
 		}
+		System.err.println("caught fish list fter add.CF " + caughtFishList);
 	}
 	
 	public void removeCaughtFish (CaughtFish caughtFish) {
